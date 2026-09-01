@@ -106,7 +106,7 @@ segue em tom informativo por escolha editorial, não por obrigação.
 ## Pendências antes de publicar
 
 - [x] Razão social (contrato social, 08/01/2026)
-- [ ] CNPJ — não consta do contrato de constituição; pegar no cartão CNPJ
+- [x] CNPJ (cartão CNPJ, 09/01/2026)
 - [ ] Confirmar o domínio `abrao.co` (lido do timbrado) e registrá-lo
 - [ ] E-mail, telefone e WhatsApp comerciais
 - [ ] Licença de webfont da Gramatika (substitui a Figtree)

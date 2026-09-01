@@ -54,9 +54,8 @@ export const site = {
   legal: {
     // Contrato social de constituição, 08/01/2026. NIRE 52207400221.
     razaoSocial: "Abrão & Co Escritório de Negócios e Participações Ltda",
-    // PENDENTE: o CNPJ não consta do contrato de constituição — ele é
-    // atribuído depois do registro na Junta. Pegar no cartão CNPJ.
-    cnpj: "",
+    // Cartão CNPJ emitido em 09/01/2026. Matriz, situação ativa.
+    cnpj: "64.381.438/0001-40",
     // Não se aplica: o contrato social constitui uma sociedade empresária
     // limitada, não uma sociedade de advogados. Confirmado por Philipe em
     // 2026-09-01 e pelo próprio contrato.
