@@ -9,7 +9,7 @@ export const site = {
   nome: "Abrão & Co",
   assinatura: "Negócio antes do tributo.",
   descricao:
-    "Escritório de negócios com visão tributária, para empresas no Lucro Real. Revisão fiscal de cinco anos, créditos tributários e contencioso. Goiás, São Paulo, Distrito Federal e Tocantins.",
+    "Escritório de negócios com visão tributária, para empresas no Lucro Real. Revisão fiscal de cinco anos, créditos tributários e contencioso. São Paulo, Brasília e Goiânia.",
   url: "https://abrao.co",
 
   contato: {
@@ -33,12 +33,6 @@ export const site = {
       cidade: "Brasília",
       uf: "DF",
       linhas: ["SCN, Qd. 02, nº 190", "5º andar"],
-    },
-    {
-      cidade: "Tocantins",
-      uf: "TO",
-      // PENDENTE: o portfólio cita Tocantins como praça, mas sem endereço.
-      linhas: [],
     },
     {
       cidade: "Goiânia",

@@ -45,6 +45,14 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={sans.variable}>
       <body>
+        {/* Os elementos animados são servidos com opacity:0 e só recebem o
+            estado final quando o JavaScript roda. Sem ele — bundle que não
+            carregou, JS desligado, rastreador que não executa script — a
+            página ficaria praticamente em branco. Este bloco devolve todos
+            eles à visibilidade. */}
+        <noscript>
+          <style>{`[style*="opacity:0"]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <a href="#conteudo" className="skip-link">
           Pular para o conteúdo
         </a>

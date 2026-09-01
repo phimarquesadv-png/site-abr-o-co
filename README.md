@@ -121,7 +121,6 @@ segue em tom informativo por escolha editorial, não por obrigação.
 - [ ] Licença de webfont da Gramatika (substitui a Figtree)
 - [x] Fotos dos sócios (extraídas do portfólio, recortadas em 4:5)
 - [ ] Fotos de equipe e escritório
-- [ ] Endereço da praça de Tocantins (o portfólio cita o estado, sem endereço)
 - [ ] Definir o domínio oficial entre `abrao.co` e `abraoeco.com.br`
 
 - [ ] Revisão jurídica das minutas de privacidade e termos
