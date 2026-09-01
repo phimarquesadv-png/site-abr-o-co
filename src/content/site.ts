@@ -9,7 +9,7 @@ export const site = {
   nome: "Abrão & Co",
   assinatura: "Negócio antes do tributo.",
   descricao:
-    "Consultoria tributária para empresas no Lucro Real. Diagnóstico de débitos e créditos, parcelamento e aproveitamento de ICMS sobre insumos. São Paulo, Brasília e Goiânia.",
+    "Escritório de negócios com visão tributária, para empresas no Lucro Real. Revisão fiscal de cinco anos, créditos tributários e contencioso. Goiás, São Paulo, Distrito Federal e Tocantins.",
   url: "https://abrao.co",
 
   contato: {
@@ -33,6 +33,12 @@ export const site = {
       cidade: "Brasília",
       uf: "DF",
       linhas: ["SCN, Qd. 02, nº 190", "5º andar"],
+    },
+    {
+      cidade: "Tocantins",
+      uf: "TO",
+      // PENDENTE: o portfólio cita Tocantins como praça, mas sem endereço.
+      linhas: [],
     },
     {
       cidade: "Goiânia",
@@ -65,7 +71,7 @@ export const site = {
   },
 
   navegacao: [
-    { href: "/produtos/", rotulo: "Atuação" },
+    { href: "/atuacao/", rotulo: "Atuação" },
     { href: "/transportes/", rotulo: "Transportes" },
     { href: "/quem-somos/", rotulo: "Quem somos" },
     { href: "/contato/", rotulo: "Contato" },

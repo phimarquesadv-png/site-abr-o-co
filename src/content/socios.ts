@@ -28,22 +28,9 @@ export const socios: Socio[] = [
     bio: "Advogado e professor de Direito Tributário e Processo Tributário. Bacharel em Direito pela PUC-GO, pós-graduado em Direito Tributário pelo IBET-GO e em Advocacia Tributária pela ESA OAB-MG, com especializações em Planejamento Tributário e em ICMS. Vice-Presidente da Comissão de Direito Tributário da OAB-GO.",
   },
   {
-    slug: "jonathan-mota",
-    nome: "Jonathan Mota",
-    cargo: "Diretor Civil e Trabalhista, e sócio",
-    // O portfólio traz "[editar essa informação]" no lugar da biografia.
-    bio: null,
-  },
-  {
     slug: "luiz-maronezi",
     nome: "Luiz Maronezi",
     cargo: "Sócio",
     bio: "Advogado, inscrito na OAB-GO sob o nº 21.346. Bacharel em Direito pelo ITEB-SP e em Contabilidade pela ETEC-SP. Foi diretor da Antártica Niger S/A entre 1975 e 1996 e, a partir de 2010, atuou nas Secretarias de Indústria e Comércio, de Desenvolvimento Econômico e da Fazenda do Estado de Goiás, além de Goiás Fomento, Goiás Industrial, Goiás Parceria, Sebrae Goiás e CODAP.",
-  },
-  {
-    slug: "julio-neiva",
-    nome: "Julio Neiva",
-    cargo: "Sócio",
-    bio: "Atuação em contencioso tributário, com experiência em tribunais superiores. Concentra-se em defesa técnica de alta complexidade e na gestão de passivos tributários.",
   },
 ];

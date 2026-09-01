@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
-import { produtos } from "@/content/produtos";
+import { frentes } from "@/content/atuacao";
 
 const campo =
   "w-full rounded-md border border-paper-3 bg-white px-4 py-3 text-ink outline-none transition-colors placeholder:text-muted/60 focus:border-ink motion-reduce:transition-none";
@@ -146,9 +146,9 @@ export default function FormularioContato() {
         </label>
         <select id="assunto" name="assunto" className={campo} defaultValue="">
           <option value="">Ainda não sei</option>
-          {produtos.map((p) => (
-            <option key={p.slug} value={p.slug}>
-              {p.nome}
+          {frentes.map((f) => (
+            <option key={f.slug} value={f.slug}>
+              {f.nome}
             </option>
           ))}
         </select>

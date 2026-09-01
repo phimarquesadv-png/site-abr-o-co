@@ -62,7 +62,9 @@ src/components/motion/       Primitivas de animação
 src/components/layout/       Cabeçalho, rodapé, topo das páginas internas
 src/components/sections/     Seções de página
 src/components/ui/           Botão, container, rótulo
-src/content/                 Textos e dados institucionais
+src/content/site.ts          Dados institucionais, praças e contatos
+src/content/atuacao.ts       Frentes, Análise 360º, teses e segmentos
+src/content/socios.ts        Sócios
 ```
 
 ## Regras do projeto
@@ -91,6 +93,12 @@ uma vez só. Toda animação respeita `prefers-reduced-motion` — o site inteir
 fica estático para quem pediu menos movimento ao sistema. Meta de performance:
 LCP abaixo de 2s e CLS abaixo de 0,05; animação que derrubar isso sai.
 
+**Fonte do catálogo.** O portfólio institucional manda sobre a taxonomia
+pública: quatro frentes (Negócio, Tributário, Tecnologia, Agronegócio), a
+Análise 360º e as teses. Os nomes operacionais internos — ARO Débito, ARO
+Crédito, Parcelamento, Insumos — continuam valendo dentro de casa e não
+aparecem no site.
+
 **Conteúdo.** Não entram no site nome de cliente, valor de caso individual nem
 promessa de resultado. Casos de sucesso, se forem publicados, vão anonimizados
 por segmento. Os números agregados de histórico vêm do portfólio institucional
@@ -113,6 +121,8 @@ segue em tom informativo por escolha editorial, não por obrigação.
 - [ ] Licença de webfont da Gramatika (substitui a Figtree)
 - [x] Fotos dos sócios (extraídas do portfólio, recortadas em 4:5)
 - [ ] Fotos de equipe e escritório
+- [ ] Endereço da praça de Tocantins (o portfólio cita o estado, sem endereço)
+- [ ] Definir o domínio oficial entre `abrao.co` e `abraoeco.com.br`
 
 - [ ] Revisão jurídica das minutas de privacidade e termos
 - [ ] Variáveis do Resend no Cloudflare

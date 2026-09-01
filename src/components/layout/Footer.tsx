@@ -2,7 +2,7 @@ import Link from "next/link";
 import Container from "@/components/ui/Container";
 import Logo from "@/components/ui/Logo";
 import { site } from "@/content/site";
-import { produtos } from "@/content/produtos";
+import { frentes } from "@/content/atuacao";
 
 export default function Footer() {
   const ano = new Date().getFullYear();
@@ -21,13 +21,13 @@ export default function Footer() {
           <nav aria-label="Atuação">
             <p className="rotulo text-on-dark-muted">Atuação</p>
             <ul className="mt-5 space-y-3">
-              {produtos.map((p) => (
-                <li key={p.slug}>
+              {frentes.map((f) => (
+                <li key={f.slug}>
                   <Link
-                    href={`/produtos/${p.slug}/`}
+                    href="/atuacao/"
                     className="text-sm text-on-dark-muted transition-colors hover:text-on-dark motion-reduce:transition-none"
                   >
-                    {p.nome}
+                    {f.nome}
                   </Link>
                 </li>
               ))}
@@ -58,7 +58,7 @@ export default function Footer() {
         </div>
 
         {/* As três praças, na mesma ordem e no mesmo recorte do timbrado. */}
-        <div className="mt-16 grid gap-8 border-t border-on-dark/15 pt-10 sm:grid-cols-3">
+        <div className="mt-16 grid gap-8 border-t border-on-dark/15 pt-10 sm:grid-cols-2 lg:grid-cols-4">
           {site.escritorios.map((e) => (
             <address key={e.cidade} className="not-italic">
               <p className="rotulo text-on-dark">
@@ -69,11 +69,16 @@ export default function Footer() {
                   </span>
                 ) : null}
               </p>
-              <p className="mt-2.5 text-sm leading-relaxed text-on-dark-muted">
-                {e.linhas.join(", ")}
-                <br />
-                {e.cidade} — {e.uf}
-              </p>
+              {/* Tocantins consta como praça no portfólio, mas ainda sem
+                  endereço. Melhor listar a praça sem linha nenhuma do que
+                  repetir a sigla embaixo do próprio nome. */}
+              {e.linhas.length > 0 ? (
+                <p className="mt-2.5 text-sm leading-relaxed text-on-dark-muted">
+                  {e.linhas.join(", ")}
+                  <br />
+                  {e.cidade} — {e.uf}
+                </p>
+              ) : null}
             </address>
           ))}
         </div>

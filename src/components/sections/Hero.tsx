@@ -44,7 +44,7 @@ export default function Hero() {
 
           <div className="mt-10 flex flex-wrap gap-3">
             <Botao href="/contato/">Solicitar diagnóstico</Botao>
-            <Botao href="/produtos/" variante="contorno">
+            <Botao href="/atuacao/" variante="contorno">
               Conhecer a atuação
             </Botao>
           </div>
