@@ -23,7 +23,7 @@ export default function Termos() {
             </p>
 
             <div>
-              <h2 className="font-display text-2xl text-ink">
+              <h2 className="text-2xl text-ink">
                 Natureza do conteúdo
               </h2>
               <p className="mt-3">
@@ -36,7 +36,7 @@ export default function Termos() {
             </div>
 
             <div>
-              <h2 className="font-display text-2xl text-ink">
+              <h2 className="text-2xl text-ink">
                 Ausência de garantia de resultado
               </h2>
               <p className="mt-3">
@@ -47,7 +47,7 @@ export default function Termos() {
             </div>
 
             <div>
-              <h2 className="font-display text-2xl text-ink">Contato</h2>
+              <h2 className="text-2xl text-ink">Contato</h2>
               <p className="mt-3">
                 O envio de mensagem pelo formulário não cria vínculo contratual
                 nem obrigação de atendimento, e não deve conter informação

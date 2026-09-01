@@ -11,7 +11,7 @@ export default function Atuacao() {
       <Container>
         <Reveal>
           <Rotulo>Atuação</Rotulo>
-          <h2 className="mt-6 max-w-2xl font-display text-[clamp(2rem,4vw,3rem)] leading-[1.1] text-ink">
+          <h2 className="mt-6 max-w-2xl text-[clamp(2rem,4vw,3rem)] leading-[1.1] text-ink">
             Cinco frentes de trabalho, cada uma com entrada e método próprios.
           </h2>
         </Reveal>
@@ -24,7 +24,7 @@ export default function Atuacao() {
                 className="group flex h-full flex-col bg-paper p-8 transition-colors duration-300 hover:bg-white md:p-10 motion-reduce:transition-none"
               >
                 <div className="flex items-baseline justify-between gap-4">
-                  <span className="text-[0.7rem] font-medium uppercase tracking-[0.16em] text-brass">
+                  <span className="rotulo text-ink">
                     {p.chamada}
                   </span>
                   <span className="text-[0.7rem] text-muted">
@@ -32,7 +32,7 @@ export default function Atuacao() {
                   </span>
                 </div>
 
-                <h3 className="mt-5 font-display text-2xl leading-snug text-ink">
+                <h3 className="mt-5 text-2xl leading-snug text-ink">
                   {p.nome}
                 </h3>
 

@@ -67,9 +67,22 @@ src/content/                 Textos e dados institucionais
 
 ## Regras do projeto
 
-**Marca.** Nenhum componente usa cor literal. Toda a paleta e a tipografia
-estão em `src/app/globals.css`, no bloco `@theme`. Trocar os valores ali muda o
-site inteiro. As cores atuais são uma proposta, à espera do manual de marca.
+**Marca.** Extraída do timbrado oficial (`.ai`), não inventada. A identidade é
+monocromática: um único preto quente, `#231F20`, sobre branco — sem cor de
+acento. A hierarquia vem do peso, da escala e dos filetes, como no papel.
+Nenhum componente usa cor literal: tudo passa pelos tokens do `@theme` em
+`src/app/globals.css`.
+
+O logotipo em `src/components/ui/Logo.tsx` são os caminhos vetoriais do próprio
+timbrado, onde o texto já vinha convertido em curvas. Usa `currentColor`, então
+a mesma peça serve positivo e negativo.
+
+**Tipografia.** A fonte da marca é a **Gramatika** (Regular e Bold no
+timbrado). É comercial e exige licença de webfont à parte, que ainda não
+existe. Até lá o site usa **Figtree**, a substituta mais próxima entre as
+gratuitas — mesma classe de grotesca geométrica, altura de x alta, "a" de dois
+andares e "g" de um só. Comprada a licença, troca-se em `src/app/layout.tsx` e
+no comentário do `@theme`.
 
 **Motion.** Anima-se apenas `opacity` e `transform`. Entrada em scroll acontece
 uma vez só. Toda animação respeita `prefers-reduced-motion` — o site inteiro
@@ -88,11 +101,10 @@ já foi escrito nesse padrão mais restrito, que é válido nos dois cenários.
 
 ## Pendências antes de publicar
 
-- [ ] Dados legais em `src/content/site.ts` (razão social, CNPJ, endereço, OAB)
-- [ ] Domínio definitivo em `src/content/site.ts` (`url`)
+- [ ] Dados legais em `src/content/site.ts` (razão social, CNPJ, OAB)
+- [ ] Confirmar o domínio `abrao.co` (lido do timbrado) e registrá-lo
 - [ ] E-mail, telefone e WhatsApp comerciais
-- [ ] Logo em vetor substituindo `src/app/icon.svg` e o texto do cabeçalho
-- [ ] Paleta e tipografia oficiais em `globals.css`
+- [ ] Licença de webfont da Gramatika (substitui a Figtree)
 - [ ] Fotos de equipe e escritório
 - [ ] Bloco de sócios em `/quem-somos`
 - [ ] Revisão jurídica das minutas de privacidade e termos

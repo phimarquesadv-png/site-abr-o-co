@@ -31,7 +31,7 @@ export default function Produtos() {
                   className="group grid gap-6 border-t border-paper-3 py-10 transition-colors duration-300 hover:bg-paper-2 md:grid-cols-[0.4fr_1fr_auto] md:items-start md:gap-10 md:px-4 motion-reduce:transition-none"
                 >
                   <div>
-                    <span className="text-[0.7rem] font-medium uppercase tracking-[0.16em] text-brass">
+                    <span className="rotulo text-ink">
                       {p.chamada}
                     </span>
                     <p className="mt-2 text-xs text-muted">{p.recorrencia}</p>
@@ -43,7 +43,7 @@ export default function Produtos() {
                   </div>
 
                   <div>
-                    <h2 className="font-display text-2xl leading-snug text-ink md:text-3xl">
+                    <h2 className="text-2xl leading-snug text-ink md:text-3xl">
                       {p.nome}
                     </h2>
                     <p className="mt-4 max-w-2xl leading-relaxed text-muted">

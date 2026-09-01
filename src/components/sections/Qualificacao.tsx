@@ -33,7 +33,7 @@ export default function Qualificacao() {
         <div className="grid gap-14 md:grid-cols-[0.85fr_1.15fr]">
           <Reveal>
             <Rotulo>Para quem trabalhamos</Rotulo>
-            <h2 className="mt-6 font-display text-[clamp(2rem,4vw,3rem)] leading-[1.1] text-ink">
+            <h2 className="mt-6 text-[clamp(2rem,4vw,3rem)] leading-[1.1] text-ink">
               Um recorte estreito, de propósito.
             </h2>
             <p className="mt-6 max-w-sm leading-relaxed text-muted">
@@ -47,7 +47,7 @@ export default function Qualificacao() {
               <StaggerItem key={c.titulo}>
                 <div className="border-t border-paper-3 py-8 first:border-t-0 md:py-9">
                   <div className="flex gap-6">
-                    <span className="pt-1 font-display text-sm text-brass">
+                    <span className="pt-1 text-sm text-ink">
                       0{i + 1}
                     </span>
                     <div>

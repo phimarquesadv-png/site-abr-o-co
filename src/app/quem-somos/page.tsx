@@ -4,6 +4,7 @@ import Container from "@/components/ui/Container";
 import Rotulo from "@/components/ui/Rotulo";
 import Reveal from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
+import { site } from "@/content/site";
 import ChamadaFinal from "@/components/sections/ChamadaFinal";
 
 export const metadata: Metadata = {
@@ -41,7 +42,7 @@ export default function QuemSomos() {
       <PageHero
         rotulo="Quem somos"
         titulo={["Uma equipe organizada", "em torno de um regime."]}
-        descricao="Cerca de vinte profissionais distribuídos em quatro áreas, dedicados a empresas no Lucro Real."
+        descricao="Cerca de vinte profissionais distribuídos em quatro áreas, em três praças, dedicados a empresas no Lucro Real."
       />
 
       <section className="bg-paper py-20 md:py-28">
@@ -49,7 +50,7 @@ export default function QuemSomos() {
           <div className="grid gap-14 md:grid-cols-[0.8fr_1.2fr]">
             <Reveal>
               <Rotulo>Estrutura</Rotulo>
-              <h2 className="mt-6 font-display text-[clamp(1.8rem,3.5vw,2.6rem)] leading-[1.12] text-ink">
+              <h2 className="mt-6 text-[clamp(1.8rem,3.5vw,2.6rem)] leading-[1.12] text-ink">
                 Quatro áreas, um caso por vez.
               </h2>
             </Reveal>
@@ -70,6 +71,26 @@ export default function QuemSomos() {
 
           {/* PENDENTE: bloco de sócios — depende das fotos e das bios,
               e do número de inscrição na OAB quando aplicável. */}
+
+          <div className="mt-24 border-t border-paper-3 pt-14">
+            <Reveal>
+              <Rotulo>Onde estamos</Rotulo>
+            </Reveal>
+            <Stagger className="mt-10 grid gap-10 sm:grid-cols-3">
+              {site.escritorios.map((e) => (
+                <StaggerItem key={e.cidade}>
+                  <address className="not-italic">
+                    <p className="text-xl text-ink">{e.cidade}</p>
+                    <p className="mt-3 leading-relaxed text-muted">
+                      {e.linhas.join(", ")}
+                      <br />
+                      {e.cidade} — {e.uf}
+                    </p>
+                  </address>
+                </StaggerItem>
+              ))}
+            </Stagger>
+          </div>
         </Container>
       </section>
 

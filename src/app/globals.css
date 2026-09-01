@@ -2,37 +2,32 @@
 
 /* ---------------------------------------------------------------------------
    Design tokens — Abrão & Co
-   Proposta de marca. Trocar os valores aqui muda o site inteiro; nenhum
-   componente usa cor literal.
+   Extraídos do timbrado oficial (.ai). A marca é monocromática: um único
+   preto quente, #231F20, sobre branco. Não há cor de acento — a hierarquia
+   sai do peso, da escala e dos filetes, como no papel.
    --------------------------------------------------------------------------- */
 @theme {
-  /* Base escura — hero, rodapé, blocos de destaque */
-  --color-ink: #0c1a24;
-  --color-ink-2: #14293a;
-  --color-ink-3: #1e3a4f;
+  /* A cor da marca. Único valor cromático do sistema. */
+  --color-ink: #231f20;
+  --color-ink-2: #3b3536;
+  --color-ink-3: #57504f;
 
-  /* Base clara — corpo do site */
-  --color-paper: #f7f5f1;
-  --color-paper-2: #efece6;
-  --color-paper-3: #e2ded6;
+  /* Neutros derivados do preto da marca — por isso puxam para o quente. */
+  --color-body: #3b3536;
+  --color-muted: #6e6768;
+  --color-paper: #ffffff;
+  --color-paper-2: #f5f3f1;
+  --color-paper-3: #e5e1de;
 
-  /* Acento — latão sóbrio, usado com parcimônia */
-  --color-brass: #b4884c;
-  --color-brass-bright: #cb9d5c;
-  --color-brass-dim: #8d6a3a;
+  --color-on-dark: #ffffff;
+  --color-on-dark-muted: #aaa3a2;
 
-  /* Texto */
-  --color-body: #2b3a44;
-  --color-muted: #5f7280;
-  --color-on-dark: #e7eef3;
-  --color-on-dark-muted: #93a9b8;
-
-  --font-display: var(--font-display), Georgia, "Times New Roman", serif;
+  /* Gramatika é a fonte da marca, mas é comercial e exige licença de webfont.
+     Figtree entra como substituta próxima até a licença existir — trocar aqui
+     e no layout resolve o site inteiro. */
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 
-  /* Curvas de animação do projeto */
   --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
 }
 
 @layer base {
@@ -49,9 +44,9 @@
   }
 
   h1, h2, h3, h4 {
-    font-family: var(--font-display);
     font-weight: 400;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
+    color: var(--color-ink);
     text-wrap: balance;
   }
 
@@ -59,17 +54,24 @@
     text-wrap: pretty;
   }
 
-  /* Foco visível de verdade — exigência de acessibilidade, não enfeite. */
   :focus-visible {
-    outline: 2px solid var(--color-brass);
+    outline: 2px solid var(--color-ink);
     outline-offset: 3px;
     border-radius: 2px;
   }
 
   ::selection {
-    background-color: var(--color-brass);
+    background-color: var(--color-ink);
     color: #fff;
   }
+}
+
+/* Rótulo de seção — caixa alta espaçada, como no rodapé do timbrado. */
+@utility rotulo {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 /* ---------------------------------------------------------------------------
@@ -91,7 +93,6 @@
   }
 }
 
-/* Link "pular para o conteúdo" — visível só no foco por teclado. */
 .skip-link {
   position: absolute;
   left: -9999px;
@@ -101,4 +102,8 @@
 .skip-link:focus {
   left: 1rem;
   top: 1rem;
+  background: var(--color-ink);
+  color: #fff;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
 }

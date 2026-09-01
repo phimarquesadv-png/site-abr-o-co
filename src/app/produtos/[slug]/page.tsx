@@ -46,7 +46,7 @@ export default async function ProdutoPage({ params }: Params) {
                   <Reveal as="li" key={e.titulo} delay={i * 0.05}>
                     <div className="border-t border-paper-3 py-8">
                       <div className="flex gap-7">
-                        <span className="font-display text-2xl leading-none text-brass">
+                        <span className="text-2xl leading-none text-ink">
                           {String(i + 1).padStart(2, "0")}
                         </span>
                         <div>
@@ -65,14 +65,14 @@ export default async function ProdutoPage({ params }: Params) {
             <aside className="md:sticky md:top-32 md:self-start">
               <Reveal>
                 <div className="rounded-lg bg-paper-2 p-8">
-                  <p className="text-[0.7rem] font-medium uppercase tracking-[0.16em] text-muted">
+                  <p className="rotulo text-muted">
                     Para quem
                   </p>
                   <p className="mt-4 leading-relaxed text-ink">
                     {produto.paraQuem}
                   </p>
 
-                  <p className="mt-9 text-[0.7rem] font-medium uppercase tracking-[0.16em] text-muted">
+                  <p className="mt-9 rotulo text-muted">
                     Documentação
                   </p>
                   <ul className="mt-4 space-y-2.5">
@@ -81,7 +81,7 @@ export default async function ProdutoPage({ params }: Params) {
                         key={d}
                         className="flex gap-3 text-sm leading-relaxed text-muted"
                       >
-                        <span aria-hidden className="text-brass">
+                        <span aria-hidden className="text-ink">
                           ·
                         </span>
                         {d}
@@ -89,7 +89,7 @@ export default async function ProdutoPage({ params }: Params) {
                     ))}
                   </ul>
 
-                  <p className="mt-9 text-[0.7rem] font-medium uppercase tracking-[0.16em] text-muted">
+                  <p className="mt-9 rotulo text-muted">
                     Ritmo
                   </p>
                   <p className="mt-3 text-sm text-ink">{produto.recorrencia}</p>

@@ -9,14 +9,14 @@ type Props = {
 };
 
 const base =
-  "group inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium transition-colors duration-300 motion-reduce:transition-none";
+  "group inline-flex items-center gap-2.5 rounded-full px-6 py-3 text-sm transition-colors duration-300 motion-reduce:transition-none";
 
 const variantes = {
-  solido: "bg-brass text-white hover:bg-brass-bright",
+  solido: "bg-ink text-paper hover:bg-ink-2",
   contorno:
-    "border border-ink/20 text-ink hover:border-ink/60 hover:bg-ink hover:text-paper",
+    "border border-ink/25 text-ink hover:border-ink hover:bg-ink hover:text-paper",
   claro:
-    "border border-on-dark/25 text-on-dark hover:border-on-dark/70 hover:bg-on-dark hover:text-ink",
+    "border border-on-dark/30 text-on-dark hover:border-on-dark hover:bg-on-dark hover:text-ink",
 };
 
 export default function Botao({

@@ -49,7 +49,7 @@ export default function Contato() {
 
                 {site.contato.email ? (
                   <div className="mt-9 border-t border-paper-3 pt-6">
-                    <p className="text-[0.7rem] font-medium uppercase tracking-[0.16em] text-muted">
+                    <p className="rotulo text-muted">
                       Ou escreva direto
                     </p>
                     <a

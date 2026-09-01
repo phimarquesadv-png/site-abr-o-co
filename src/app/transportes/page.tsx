@@ -30,7 +30,7 @@ export default function Transportes() {
           <div className="grid gap-14 md:grid-cols-[0.8fr_1.2fr]">
             <Reveal>
               <Rotulo>O recorte</Rotulo>
-              <h2 className="mt-6 font-display text-[clamp(1.8rem,3.5vw,2.6rem)] leading-[1.12] text-ink">
+              <h2 className="mt-6 text-[clamp(1.8rem,3.5vw,2.6rem)] leading-[1.12] text-ink">
                 Por que transportadora tem tratamento próprio.
               </h2>
             </Reveal>
@@ -67,14 +67,14 @@ export default function Transportes() {
                   className="group flex h-full flex-col bg-paper p-8 transition-colors duration-300 hover:bg-white md:p-10 motion-reduce:transition-none"
                 >
                   <div className="flex items-baseline justify-between gap-4">
-                    <span className="text-[0.7rem] font-medium uppercase tracking-[0.16em] text-brass">
+                    <span className="rotulo text-ink">
                       {p.chamada}
                     </span>
                     <span className="text-[0.7rem] text-muted">
                       {p.recorrencia}
                     </span>
                   </div>
-                  <h3 className="mt-5 font-display text-2xl leading-snug text-ink">
+                  <h3 className="mt-5 text-2xl leading-snug text-ink">
                     {p.nome}
                   </h3>
                   <p className="mt-4 flex-1 leading-relaxed text-muted">

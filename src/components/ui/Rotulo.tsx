@@ -7,13 +7,15 @@ export default function Rotulo({
 }) {
   return (
     <span
-      className={`inline-flex items-center gap-2.5 text-[0.7rem] font-medium uppercase tracking-[0.18em] ${
+      className={`rotulo inline-flex items-center gap-2.5 ${
         claro ? "text-on-dark-muted" : "text-muted"
       }`}
     >
       <span
         aria-hidden
-        className="inline-block h-px w-6 bg-brass"
+        className={`inline-block h-px w-6 ${
+          claro ? "bg-on-dark-muted" : "bg-ink"
+        }`}
       />
       {children}
     </span>

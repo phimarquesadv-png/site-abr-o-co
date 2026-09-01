@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { site } from "@/content/site";
 import Container from "@/components/ui/Container";
+import Logo from "@/components/ui/Logo";
 
 export default function Header() {
   const [rolou, setRolou] = useState(false);
@@ -37,9 +38,9 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 motion-reduce:transition-none ${
+      className={`fixed inset-x-0 top-0 z-50 text-ink transition-[background-color,box-shadow] duration-500 motion-reduce:transition-none ${
         rolou || menuAberto
-          ? "bg-ink/95 backdrop-blur-md"
+          ? "bg-paper/92 shadow-[0_1px_0_rgba(35,31,32,0.08)] backdrop-blur-md"
           : "bg-transparent"
       }`}
     >
@@ -47,10 +48,10 @@ export default function Header() {
         <div className="flex h-20 items-center justify-between">
           <Link
             href="/"
-            className="font-display text-xl tracking-tight text-on-dark"
+            aria-label="Abrão & Co — início"
             onClick={() => setMenuAberto(false)}
           >
-            {site.nome}
+            <Logo className="h-[15px] w-auto md:h-4" />
           </Link>
 
           <nav className="hidden items-center gap-9 md:flex">
@@ -58,12 +59,12 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="group relative text-sm text-on-dark-muted transition-colors hover:text-on-dark motion-reduce:transition-none"
+                className="group relative text-sm text-ink-3 transition-colors hover:text-ink motion-reduce:transition-none"
               >
                 {item.rotulo}
                 <span
                   aria-hidden
-                  className="absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-0 bg-brass transition-transform duration-300 group-hover:scale-x-100 motion-reduce:transition-none"
+                  className="absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-0 bg-ink transition-transform duration-300 group-hover:scale-x-100 motion-reduce:transition-none"
                 />
               </Link>
             ))}
@@ -75,18 +76,18 @@ export default function Header() {
             aria-expanded={menuAberto}
             aria-controls="menu-mobile"
             aria-label={menuAberto ? "Fechar menu" : "Abrir menu"}
-            className="flex h-10 w-10 items-center justify-center md:hidden"
+            className="-mr-2 flex h-10 w-10 items-center justify-center md:hidden"
           >
             <span className="relative block h-3 w-6">
               <span
                 aria-hidden
-                className={`absolute left-0 block h-px w-6 bg-on-dark transition-transform duration-300 motion-reduce:transition-none ${
+                className={`absolute left-0 block h-px w-6 bg-ink transition-transform duration-300 motion-reduce:transition-none ${
                   menuAberto ? "top-1.5 rotate-45" : "top-0"
                 }`}
               />
               <span
                 aria-hidden
-                className={`absolute left-0 block h-px w-6 bg-on-dark transition-transform duration-300 motion-reduce:transition-none ${
+                className={`absolute left-0 block h-px w-6 bg-ink transition-transform duration-300 motion-reduce:transition-none ${
                   menuAberto ? "top-1.5 -rotate-45" : "top-3"
                 }`}
               />
@@ -99,21 +100,20 @@ export default function Header() {
         {menuAberto && (
           <motion.div
             id="menu-mobile"
-            className="md:hidden"
+            className="overflow-hidden bg-paper md:hidden"
             initial={menosMovimento ? false : { height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={menosMovimento ? undefined : { height: 0, opacity: 0 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            style={{ overflow: "hidden" }}
           >
             <Container>
-              <nav className="flex flex-col gap-1 border-t border-on-dark/10 py-6">
+              <nav className="flex flex-col border-t border-paper-3 py-4">
                 {site.navegacao.map((item) => (
                   <Link
                     key={item.href}
                     href={item.href}
                     onClick={() => setMenuAberto(false)}
-                    className="py-3 font-display text-2xl text-on-dark"
+                    className="border-b border-paper-3 py-4 text-2xl tracking-tight text-ink last:border-b-0"
                   >
                     {item.rotulo}
                   </Link>

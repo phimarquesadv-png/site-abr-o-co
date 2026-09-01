@@ -7,7 +7,7 @@ export default function ChamadaFinal() {
     <section className="bg-paper py-24 md:py-36">
       <Container>
         <Reveal className="mx-auto max-w-3xl text-center">
-          <h2 className="font-display text-[clamp(2rem,4.5vw,3.4rem)] leading-[1.08] text-ink">
+          <h2 className="text-[clamp(2rem,4.5vw,3.4rem)] leading-[1.08] text-ink">
             Vale uma conversa de vinte minutos.
           </h2>
           <p className="mx-auto mt-7 max-w-xl leading-relaxed text-muted">

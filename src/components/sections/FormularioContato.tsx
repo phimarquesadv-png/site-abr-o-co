@@ -5,7 +5,7 @@ import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { produtos } from "@/content/produtos";
 
 const campo =
-  "w-full rounded-md border border-paper-3 bg-white px-4 py-3 text-ink outline-none transition-colors placeholder:text-muted/60 focus:border-brass motion-reduce:transition-none";
+  "w-full rounded-md border border-paper-3 bg-white px-4 py-3 text-ink outline-none transition-colors placeholder:text-muted/60 focus:border-ink motion-reduce:transition-none";
 const rotulo = "block text-sm text-ink";
 
 type Estado = "parado" | "enviando" | "ok" | "erro";
@@ -59,7 +59,7 @@ export default function FormularioContato() {
         className="rounded-lg bg-paper-2 p-10"
         role="status"
       >
-        <h2 className="font-display text-2xl text-ink">Recebido.</h2>
+        <h2 className="text-2xl text-ink">Recebido.</h2>
         <p className="mt-4 leading-relaxed text-muted">
           A equipe comercial entra em contato para uma primeira conversa. Se
           preferir adiantar, responda ao e-mail de confirmação com o regime e o
@@ -179,7 +179,7 @@ export default function FormularioContato() {
           type="checkbox"
           name="consentimento"
           required
-          className="mt-1 accent-[var(--color-brass)]"
+          className="mt-1 accent-[var(--color-ink)]"
         />
         <span>
           Autorizo o contato da Abrão &amp; Co e o tratamento dos dados
@@ -200,7 +200,7 @@ export default function FormularioContato() {
       <button
         type="submit"
         disabled={estado === "enviando"}
-        className="inline-flex items-center gap-2 rounded-full bg-brass px-7 py-3.5 text-sm font-medium text-white transition-colors hover:bg-brass-bright disabled:opacity-60 motion-reduce:transition-none"
+        className="inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-medium text-white transition-colors hover:bg-ink-2 disabled:opacity-60 motion-reduce:transition-none"
       >
         {estado === "enviando" ? "Enviando…" : "Enviar"}
       </button>

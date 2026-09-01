@@ -25,7 +25,7 @@ export default function Privacidade() {
             </p>
 
             <div>
-              <h2 className="font-display text-2xl text-ink">
+              <h2 className="text-2xl text-ink">
                 Quem trata os dados
               </h2>
               <p className="mt-3">
@@ -36,7 +36,7 @@ export default function Privacidade() {
             </div>
 
             <div>
-              <h2 className="font-display text-2xl text-ink">
+              <h2 className="text-2xl text-ink">
                 Que dados coletamos
               </h2>
               <p className="mt-3">
@@ -48,7 +48,7 @@ export default function Privacidade() {
             </div>
 
             <div>
-              <h2 className="font-display text-2xl text-ink">Para quê</h2>
+              <h2 className="text-2xl text-ink">Para quê</h2>
               <p className="mt-3">
                 Exclusivamente para responder ao contato e avaliar se há
                 trabalho possível dentro da nossa área de atuação. Não vendemos,
@@ -57,7 +57,7 @@ export default function Privacidade() {
             </div>
 
             <div>
-              <h2 className="font-display text-2xl text-ink">Por quanto tempo</h2>
+              <h2 className="text-2xl text-ink">Por quanto tempo</h2>
               <p className="mt-3">
                 Pelo tempo necessário ao atendimento do contato e ao cumprimento
                 de obrigações legais aplicáveis.
@@ -65,7 +65,7 @@ export default function Privacidade() {
             </div>
 
             <div>
-              <h2 className="font-display text-2xl text-ink">Seus direitos</h2>
+              <h2 className="text-2xl text-ink">Seus direitos</h2>
               <p className="mt-3">
                 A Lei nº 13.709/2018 assegura, entre outros, o direito de
                 confirmar o tratamento, acessar, corrigir, anonimizar, bloquear
@@ -76,7 +76,7 @@ export default function Privacidade() {
             </div>
 
             <div>
-              <h2 className="font-display text-2xl text-ink">Cookies</h2>
+              <h2 className="text-2xl text-ink">Cookies</h2>
               <p className="mt-3">
                 Este site não utiliza cookies de publicidade nem de rastreamento
                 entre sites. Caso venhamos a adotar ferramenta de medição de

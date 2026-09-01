@@ -38,7 +38,7 @@ export default function Processo() {
           <div className="md:sticky md:top-32 md:self-start">
             <Reveal>
               <Rotulo claro>Como funciona</Rotulo>
-              <h2 className="mt-6 font-display text-[clamp(2rem,4vw,3rem)] leading-[1.1]">
+              <h2 className="mt-6 text-[clamp(2rem,4vw,3rem)] leading-[1.1]">
                 Do primeiro contato à operação.
               </h2>
               <p className="mt-6 max-w-sm leading-relaxed text-on-dark-muted">
@@ -53,7 +53,7 @@ export default function Processo() {
               <Reveal as="li" key={e.titulo} delay={i * 0.05}>
                 <div className="border-t border-on-dark/10 py-8 md:py-10">
                   <div className="flex gap-8">
-                    <span className="font-display text-3xl leading-none text-brass">
+                    <span className="text-3xl leading-none text-ink">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <div>
