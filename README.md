@@ -1,0 +1,100 @@
+# Site Abrão & Co
+
+Site institucional da Abrão & Co — consultoria tributária para empresas no
+regime de Lucro Real.
+
+Next.js 16 (App Router) · React 19 · Tailwind CSS 4 · Motion · Lenis.
+Build estático, publicado no Cloudflare Pages.
+
+## Rodar local
+
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # gera a pasta out/
+```
+
+## Publicação no Cloudflare Pages
+
+O projeto é exportado como site estático (`output: "export"` em
+`next.config.ts`), então o Pages serve arquivos prontos — não há servidor Node
+em produção.
+
+**Configuração no painel** (Workers & Pages → o projeto → Settings → Build):
+
+| Campo | Valor |
+|---|---|
+| Framework preset | None |
+| Build command | `npm run build` |
+| Build output directory | `out` |
+| Root directory | *(vazio)* |
+| Node version | 20 ou superior |
+
+Cada `push` na branch `main` publica em produção. Cada Pull Request ganha uma
+URL de preview própria para aprovação antes do merge.
+
+### Variáveis de ambiente
+
+Configurar em Settings → Environment variables, nos ambientes **Production** e
+**Preview**. Nenhuma delas entra no repositório — este repo é público.
+
+| Variável | Para quê |
+|---|---|
+| `RESEND_API_KEY` | Chave da API do Resend, usada no envio do formulário |
+| `LEAD_EMAIL_TO` | Caixa do Comercial que recebe os leads |
+| `LEAD_EMAIL_FROM` | Remetente, em domínio verificado no Resend |
+
+Sem essas três variáveis o formulário responde com erro explícito e orienta o
+visitante a escrever pelo e-mail do rodapé. É proposital: formulário que finge
+ter enviado perde lead sem ninguém perceber.
+
+### Domínio
+
+Settings → Custom domains → adicionar o domínio e seguir os registros que o
+Cloudflare indicar. **Não mexer nos registros MX** — são o e-mail do escritório.
+
+## Estrutura
+
+```
+functions/api/lead.ts        Function do Cloudflare que recebe o formulário
+src/app/                     Rotas (App Router)
+src/components/motion/       Primitivas de animação
+src/components/layout/       Cabeçalho, rodapé, topo das páginas internas
+src/components/sections/     Seções de página
+src/components/ui/           Botão, container, rótulo
+src/content/                 Textos e dados institucionais
+```
+
+## Regras do projeto
+
+**Marca.** Nenhum componente usa cor literal. Toda a paleta e a tipografia
+estão em `src/app/globals.css`, no bloco `@theme`. Trocar os valores ali muda o
+site inteiro. As cores atuais são uma proposta, à espera do manual de marca.
+
+**Motion.** Anima-se apenas `opacity` e `transform`. Entrada em scroll acontece
+uma vez só. Toda animação respeita `prefers-reduced-motion` — o site inteiro
+fica estático para quem pediu menos movimento ao sistema. Meta de performance:
+LCP abaixo de 2s e CLS abaixo de 0,05; animação que derrubar isso sai.
+
+**Conteúdo.** Não entram no site nome de cliente, valor recuperado em caso real
+ou promessa de resultado. Casos de sucesso, se forem publicados, vão
+anonimizados por segmento.
+
+**Publicidade profissional.** Se a Abrão & Co for sociedade de advogados
+inscrita na OAB, aplica-se o Provimento 205/2021 do CFOAB: comunicação
+informativa, sem promessa de resultado, sem honorário exposto, sem depoimento
+de cliente, e com o número de inscrição da sociedade no rodapé. O texto atual
+já foi escrito nesse padrão mais restrito, que é válido nos dois cenários.
+
+## Pendências antes de publicar
+
+- [ ] Dados legais em `src/content/site.ts` (razão social, CNPJ, endereço, OAB)
+- [ ] Domínio definitivo em `src/content/site.ts` (`url`)
+- [ ] E-mail, telefone e WhatsApp comerciais
+- [ ] Logo em vetor substituindo `src/app/icon.svg` e o texto do cabeçalho
+- [ ] Paleta e tipografia oficiais em `globals.css`
+- [ ] Fotos de equipe e escritório
+- [ ] Bloco de sócios em `/quem-somos`
+- [ ] Revisão jurídica das minutas de privacidade e termos
+- [ ] Variáveis do Resend no Cloudflare
+- [ ] Imagem de compartilhamento (Open Graph)

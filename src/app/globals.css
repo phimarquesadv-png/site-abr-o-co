@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens — Abrão & Co
+   Proposta de marca. Trocar os valores aqui muda o site inteiro; nenhum
+   componente usa cor literal.
+   --------------------------------------------------------------------------- */
+@theme {
+  /* Base escura — hero, rodapé, blocos de destaque */
+  --color-ink: #0c1a24;
+  --color-ink-2: #14293a;
+  --color-ink-3: #1e3a4f;
+
+  /* Base clara — corpo do site */
+  --color-paper: #f7f5f1;
+  --color-paper-2: #efece6;
+  --color-paper-3: #e2ded6;
+
+  /* Acento — latão sóbrio, usado com parcimônia */
+  --color-brass: #b4884c;
+  --color-brass-bright: #cb9d5c;
+  --color-brass-dim: #8d6a3a;
+
+  /* Texto */
+  --color-body: #2b3a44;
+  --color-muted: #5f7280;
+  --color-on-dark: #e7eef3;
+  --color-on-dark-muted: #93a9b8;
+
+  --font-display: var(--font-display), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+
+  /* Curvas de animação do projeto */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-body);
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Foco visível de verdade — exigência de acessibilidade, não enfeite. */
+  :focus-visible {
+    outline: 2px solid var(--color-brass);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-brass);
+    color: #fff;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Acessibilidade: quem pediu menos movimento ao sistema recebe o site inteiro
+   sem animação. Regra do projeto, não opcional.
+   --------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Link "pular para o conteúdo" — visível só no foco por teclado. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+}
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
