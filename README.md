@@ -91,19 +91,22 @@ uma vez só. Toda animação respeita `prefers-reduced-motion` — o site inteir
 fica estático para quem pediu menos movimento ao sistema. Meta de performance:
 LCP abaixo de 2s e CLS abaixo de 0,05; animação que derrubar isso sai.
 
-**Conteúdo.** Não entram no site nome de cliente, valor recuperado em caso real
-ou promessa de resultado. Casos de sucesso, se forem publicados, vão
-anonimizados por segmento.
+**Conteúdo.** Não entram no site nome de cliente, valor de caso individual nem
+promessa de resultado. Casos de sucesso, se forem publicados, vão anonimizados
+por segmento. Os números agregados de histórico vêm do portfólio institucional
+e aparecem com a ressalva de que resultado passado não projeta resultado
+futuro.
 
-**Publicidade profissional.** Se a Abrão & Co for sociedade de advogados
-inscrita na OAB, aplica-se o Provimento 205/2021 do CFOAB: comunicação
-informativa, sem promessa de resultado, sem honorário exposto, sem depoimento
-de cliente, e com o número de inscrição da sociedade no rodapé. O texto atual
-já foi escrito nesse padrão mais restrito, que é válido nos dois cenários.
+**Publicidade.** O contrato social constitui uma sociedade empresária limitada,
+não uma sociedade de advogados — então não se aplica o Provimento 205/2021 do
+CFOAB, e não há inscrição de sociedade a exibir no rodapé. Vale a régua comum
+de publicidade (CDC e CONAR): nada de afirmação sem base documentada. O texto
+segue em tom informativo por escolha editorial, não por obrigação.
 
 ## Pendências antes de publicar
 
-- [ ] Dados legais em `src/content/site.ts` (razão social, CNPJ, OAB)
+- [x] Razão social (contrato social, 08/01/2026)
+- [ ] CNPJ — não consta do contrato de constituição; pegar no cartão CNPJ
 - [ ] Confirmar o domínio `abrao.co` (lido do timbrado) e registrá-lo
 - [ ] E-mail, telefone e WhatsApp comerciais
 - [ ] Licença de webfont da Gramatika (substitui a Figtree)

@@ -35,17 +35,31 @@ export const site = {
     {
       cidade: "Goiânia",
       uf: "GO",
-      linhas: ["Rua 87, nº 535"],
+      // Sede, conforme a Cláusula Segunda do contrato social.
+      linhas: ["Rua 87, nº 535, Qd. F27, Lt. 61, Sala 02", "Setor Sul · CEP 74.080-295"],
+      sede: true,
     },
   ],
 
+  /**
+   * Números do portfólio institucional. Reproduzidos exatamente como constam
+   * lá — sem arredondar, sem reescrever.
+   * PENDENTE: período de apuração e critério de cálculo, para a nota de rodapé.
+   */
+  historico: [
+    { valor: 500, sufixo: "M", legenda: "em Créditos Renegociados" },
+    { valor: 300, sufixo: "M", legenda: "de Débitos Recuperados" },
+  ],
+
   legal: {
-    // PENDENTE: razão social e CNPJ
-    razaoSocial: "",
+    // Contrato social de constituição, 08/01/2026. NIRE 52207400221.
+    razaoSocial: "Abrão & Co Escritório de Negócios e Participações Ltda",
+    // PENDENTE: o CNPJ não consta do contrato de constituição — ele é
+    // atribuído depois do registro na Junta. Pegar no cartão CNPJ.
     cnpj: "",
-    // PENDENTE: inscrição da sociedade na OAB, se aplicável.
-    // Obrigatória no rodapé pelo Provimento 205/2021 do CFOAB caso a
-    // Abrão & Co seja sociedade de advogados inscrita.
+    // Não se aplica: o contrato social constitui uma sociedade empresária
+    // limitada, não uma sociedade de advogados. Confirmado por Philipe em
+    // 2026-09-01 e pelo próprio contrato.
     oab: "",
   },
 

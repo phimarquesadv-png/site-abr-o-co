@@ -32,16 +32,16 @@ const etapas = [
 
 export default function Processo() {
   return (
-    <section className="relative overflow-hidden bg-azul py-24 text-white md:py-32">
+    <section className="relative overflow-hidden bg-ink py-24 text-on-dark md:py-32">
       <Container>
         <div className="grid gap-16 md:grid-cols-[0.8fr_1.2fr]">
           <div className="md:sticky md:top-32 md:self-start">
             <Reveal>
               <Rotulo claro>Como funciona</Rotulo>
-              <h2 className="mt-6 text-white text-[clamp(2rem,4vw,3rem)] leading-[1.1]">
+              <h2 className="mt-6 text-on-dark text-[clamp(2rem,4vw,3rem)] leading-[1.1]">
                 Do primeiro contato à operação.
               </h2>
-              <p className="mt-6 max-w-sm leading-relaxed text-on-azul-muted">
+              <p className="mt-6 max-w-sm leading-relaxed text-on-dark-muted">
                 O mesmo percurso em qualquer frente. O que muda é a matéria
                 analisada, não o método.
               </p>
@@ -51,14 +51,14 @@ export default function Processo() {
           <ol className="space-y-px">
             {etapas.map((e, i) => (
               <Reveal as="li" key={e.titulo} delay={i * 0.05}>
-                <div className="border-t border-white/20 py-8 md:py-10">
+                <div className="border-t border-on-dark/15 py-8 md:py-10">
                   <div className="flex gap-8">
-                    <span className="text-3xl leading-none text-white/60">
+                    <span className="text-3xl leading-none text-on-dark/50">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <div>
-                      <h3 className="text-xl text-white">{e.titulo}</h3>
-                      <p className="mt-3 max-w-lg leading-relaxed text-on-azul-muted">
+                      <h3 className="text-xl text-on-dark">{e.titulo}</h3>
+                      <p className="mt-3 max-w-lg leading-relaxed text-on-dark-muted">
                         {e.texto}
                       </p>
                     </div>

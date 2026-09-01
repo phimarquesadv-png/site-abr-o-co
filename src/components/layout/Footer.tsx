@@ -61,7 +61,14 @@ export default function Footer() {
         <div className="mt-16 grid gap-8 border-t border-on-dark/15 pt-10 sm:grid-cols-3">
           {site.escritorios.map((e) => (
             <address key={e.cidade} className="not-italic">
-              <p className="rotulo text-on-dark">{e.cidade}</p>
+              <p className="rotulo text-on-dark">
+                {e.cidade}
+                {"sede" in e && e.sede ? (
+                  <span className="ml-2 font-normal normal-case tracking-normal text-on-dark-muted">
+                    sede
+                  </span>
+                ) : null}
+              </p>
               <p className="mt-2.5 text-sm leading-relaxed text-on-dark-muted">
                 {e.linhas.join(", ")}
                 <br />
