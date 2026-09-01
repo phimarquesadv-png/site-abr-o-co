@@ -67,15 +67,17 @@ src/content/                 Textos e dados institucionais
 
 ## Regras do projeto
 
-**Marca.** Extraída do timbrado oficial (`.ai`), não inventada. A identidade é
-monocromática: um único preto quente, `#231F20`, sobre branco — sem cor de
-acento. A hierarquia vem do peso, da escala e dos filetes, como no papel.
-Nenhum componente usa cor literal: tudo passa pelos tokens do `@theme` em
-`src/app/globals.css`.
+**Marca.** Extraída dos arquivos oficiais, não inventada. São duas cores, as
+duas medidas em vetor: o preto quente `#231F20`, do timbrado, e o azul
+`#0024D7`, do portfólio. O azul é campo cheio com tipografia branca; o preto é
+texto e rodapé; não há terceira cor. Nenhum componente usa cor literal: tudo
+passa pelos tokens do `@theme` em `src/app/globals.css`.
 
 O logotipo em `src/components/ui/Logo.tsx` são os caminhos vetoriais do próprio
-timbrado, onde o texto já vinha convertido em curvas. Usa `currentColor`, então
-a mesma peça serve positivo e negativo.
+timbrado, onde o texto já vinha convertido em curvas. O monograma empilhado em
+`src/components/ui/Monograma.tsx` é composto das mesmas letras (A, &, C, O),
+com o espaçamento medido no arquivo. Ambos usam `currentColor`, então a mesma
+peça serve positivo e negativo.
 
 **Tipografia.** A fonte da marca é a **Gramatika** (Regular e Bold no
 timbrado). É comercial e exige licença de webfont à parte, que ainda não

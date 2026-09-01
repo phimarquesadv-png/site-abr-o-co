@@ -2,12 +2,14 @@
 
 /* ---------------------------------------------------------------------------
    Design tokens — Abrão & Co
-   Extraídos do timbrado oficial (.ai). A marca é monocromática: um único
-   preto quente, #231F20, sobre branco. Não há cor de acento — a hierarquia
-   sai do peso, da escala e dos filetes, como no papel.
+   Duas fontes: o timbrado oficial (.ai), que é preto e branco, e as peças
+   de apresentação, que usam um azul forte como campo de marca.
+
+   Os dois valores foram medidos nos arquivos vetoriais, não estimados:
+   #231F20 no timbrado e #0024D7 no portfólio.
    --------------------------------------------------------------------------- */
 @theme {
-  /* A cor da marca. Único valor cromático do sistema. */
+  /* Preto da marca, medido no timbrado. */
   --color-ink: #231f20;
   --color-ink-2: #3b3536;
   --color-ink-3: #57504f;
@@ -21,6 +23,11 @@
 
   --color-on-dark: #ffffff;
   --color-on-dark-muted: #aaa3a2;
+
+  /* Azul de marca — campo cheio com tipografia branca, como no portfólio. */
+  --color-azul: #0024d7;
+  --color-azul-escuro: #001ba8;
+  --color-on-azul-muted: #b3bef3;
 
   /* Gramatika é a fonte da marca, mas é comercial e exige licença de webfont.
      Figtree entra como substituta próxima até a licença existir — trocar aqui
@@ -43,10 +50,13 @@
     font-family: var(--font-sans);
   }
 
+  /* Títulos herdam a cor de quem os contém. Fixar a cor aqui faria o
+     título ficar escuro dentro de um campo azul ou preto, que é justamente
+     onde ele precisa ser branco. */
   h1, h2, h3, h4 {
     font-weight: 400;
     letter-spacing: -0.025em;
-    color: var(--color-ink);
+    color: inherit;
     text-wrap: balance;
   }
 

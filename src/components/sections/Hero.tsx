@@ -26,7 +26,7 @@ export default function Hero() {
         <TextReveal
           as="h1"
           delayInicial={0.15}
-          className="mt-8 max-w-4xl text-[clamp(2.8rem,8vw,6rem)] leading-[1.02] tracking-[-0.035em]"
+          className="mt-8 max-w-4xl text-ink text-[clamp(2.8rem,8vw,6rem)] leading-[1.02] tracking-[-0.035em]"
           linhas={["Negócio antes", "do tributo."]}
         />
 

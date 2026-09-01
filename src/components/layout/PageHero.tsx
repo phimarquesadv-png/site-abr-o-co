@@ -19,7 +19,7 @@ export default function PageHero({
         <TextReveal
           as="h1"
           delayInicial={0.1}
-          className="mt-7 max-w-4xl text-[clamp(2.4rem,6vw,4.4rem)] leading-[1.04] tracking-[-0.03em]"
+          className="mt-7 max-w-4xl text-ink text-[clamp(2.4rem,6vw,4.4rem)] leading-[1.04] tracking-[-0.03em]"
           linhas={titulo}
         />
         {descricao ? (
