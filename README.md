@@ -108,10 +108,12 @@ segue em tom informativo por escolha editorial, não por obrigação.
 - [x] Razão social (contrato social, 08/01/2026)
 - [x] CNPJ (cartão CNPJ, 09/01/2026)
 - [ ] Confirmar o domínio `abrao.co` (lido do timbrado) e registrá-lo
-- [ ] E-mail, telefone e WhatsApp comerciais
+- [x] E-mail e telefone (portfólio institucional, p. 20)
+- [ ] Caixa comercial própria (`contato@abrao.co`) no lugar do e-mail pessoal do sócio
 - [ ] Licença de webfont da Gramatika (substitui a Figtree)
+- [x] Fotos dos sócios (extraídas do portfólio, recortadas em 4:5)
 - [ ] Fotos de equipe e escritório
-- [ ] Bloco de sócios em `/quem-somos`
+
 - [ ] Revisão jurídica das minutas de privacidade e termos
 - [ ] Variáveis do Resend no Cloudflare
 - [ ] Imagem de compartilhamento (Open Graph)

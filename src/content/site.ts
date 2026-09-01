@@ -13,11 +13,13 @@ export const site = {
   url: "https://abrao.co",
 
   contato: {
-    // PENDENTE: e-mail comercial oficial
-    email: "",
-    // PENDENTE: telefone e WhatsApp Business
-    telefone: "",
-    whatsapp: "",
+    // Última página do portfólio institucional. É o contato direto do sócio
+    // fundador — quando existir uma caixa comercial (contato@abrao.co), vale
+    // trocar para não concentrar todo lead numa pessoa.
+    email: "andre.abrao@abrao.co",
+    telefone: "+55 (62) 98134-7394",
+    // Mesmo número; confirmar se atende como WhatsApp Business.
+    whatsapp: "5562981347394",
   },
 
   /** Endereços conforme o timbrado. */

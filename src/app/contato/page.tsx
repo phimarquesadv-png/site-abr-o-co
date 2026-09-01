@@ -47,19 +47,26 @@ export default function Contato() {
                   </li>
                 </ul>
 
-                {site.contato.email ? (
-                  <div className="mt-9 border-t border-paper-3 pt-6">
-                    <p className="rotulo text-muted">
-                      Ou escreva direto
-                    </p>
+                <div className="mt-9 space-y-5 border-t border-paper-3 pt-6">
+                  <div>
+                    <p className="rotulo text-muted">Ou escreva direto</p>
                     <a
                       href={`mailto:${site.contato.email}`}
-                      className="mt-3 inline-block text-ink underline underline-offset-4"
+                      className="mt-2.5 inline-block text-ink underline underline-offset-4"
                     >
                       {site.contato.email}
                     </a>
                   </div>
-                ) : null}
+                  <div>
+                    <p className="rotulo text-muted">Telefone</p>
+                    <a
+                      href={`tel:${site.contato.telefone.replace(/[^+\d]/g, "")}`}
+                      className="mt-2.5 inline-block text-ink underline underline-offset-4"
+                    >
+                      {site.contato.telefone}
+                    </a>
+                  </div>
+                </div>
               </aside>
             </Reveal>
           </div>

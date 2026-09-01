@@ -6,6 +6,7 @@ import Reveal from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { site } from "@/content/site";
 import ChamadaFinal from "@/components/sections/ChamadaFinal";
+import Socios from "@/components/sections/Socios";
 
 export const metadata: Metadata = {
   title: "Quem somos",
@@ -69,9 +70,6 @@ export default function QuemSomos() {
             </Stagger>
           </div>
 
-          {/* PENDENTE: bloco de sócios — depende das fotos e das bios,
-              e do número de inscrição na OAB quando aplicável. */}
-
           <div className="mt-24 border-t border-paper-3 pt-14">
             <Reveal>
               <Rotulo>Onde estamos</Rotulo>
@@ -93,6 +91,8 @@ export default function QuemSomos() {
           </div>
         </Container>
       </section>
+
+      <Socios />
 
       <ChamadaFinal />
     </>
