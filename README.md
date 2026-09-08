@@ -106,9 +106,19 @@ nameservers para o GoDaddy é o plano B.
 
 #### Sobre `abraoeco.com.br`
 
-Aparece nas páginas de rosto do portfólio, mas **não está registrado** —
-consulta de 2026-09-08 retorna domínio inexistente. Não há o que redirecionar.
-Se o escritório quiser o `.com.br`, é registro novo no Registro.br.
+Aparece nas páginas de rosto do portfólio, mas **não resolve**: consulta de
+2026-09-08 devolve NXDOMAIN tanto para A quanto para NS, no domínio e no `www`.
+
+Isso prova que ele não tem DNS publicado. Não prova que ninguém o registrou —
+um domínio pode estar registrado e ainda sem nameservers. A consulta de whois
+do Registro.br não roda deste ambiente; confirmar em
+`registro.br/busca-dominio`.
+
+De um jeito ou de outro, não há redirecionamento a fazer hoje: sem DNS, não há
+para onde apontar.
+
+> Não confundir com `abrao.co`, que **existe e está no ar** — é o domínio
+> oficial do site e serve hoje a página hospedada no Lovable.
 
 ## Estrutura
 
