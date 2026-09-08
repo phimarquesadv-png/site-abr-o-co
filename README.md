@@ -52,23 +52,63 @@ ter enviado perde lead sem ninguém perceber.
 
 **Oficial: `abrao.co`.** Decidido em 2026-09-08. É o que consta do timbrado e do
 e-mail do escritório, e é o que `src/content/site.ts` alimenta em metatags,
-sitemap e robots. `abraoeco.com.br`, que aparece nas páginas de rosto do
-portfólio, passa a ser redirecionamento.
+sitemap e robots.
 
-O domínio **já existe e já resolve** — hoje aponta para outro servidor. Então
-não é registro novo, é reapontamento:
+#### Como o domínio está hoje (levantado em 2026-09-08)
 
-1. Cloudflare Pages → Settings → Custom domains → adicionar `abrao.co` e
+| Registro | Valor | Serve para |
+|---|---|---|
+| Registrador | GoDaddy | — |
+| NS | `ns29.domaincontrol.com`, `ns30.domaincontrol.com` | DNS é gerido **no GoDaddy** |
+| A (apex) | `185.158.133.1` | Site atual, hospedado no **Lovable** |
+| `www` | **não existe** | `www.abrao.co` não resolve hoje |
+| MX (5 registros) | `aspmx.l.google.com` e alternativos | **E-mail em Google Workspace** |
+| TXT SPF | `v=spf1 include:dc-aa8e722993._spfm.abrao.co ~all` | Autorização de envio |
+| TXT `dc-aa8e722993._spfm` | `v=spf1 include:_spf.google.com ~all` | Alvo do include acima — **mora dentro da própria zona** |
+| TXT `google._domainkey` | chave DKIM | Assinatura das mensagens |
+| TXT `_dmarc` | `p=reject; adkim=s; aspf=s` | **Política estrita: mensagem que falhar é rejeitada, não vai para spam** |
+| TXT google-site-verification | — | Verificação de propriedade no Google |
+
+#### Por que a virada exige cuidado
+
+Duas coisas elevam o risco:
+
+1. **O DMARC está em `p=reject` com alinhamento estrito.** Se SPF ou DKIM
+   quebrarem, a mensagem não cai em spam: é recusada. O e-mail do escritório
+   para de sair.
+2. **O include do SPF aponta para um subdomínio do próprio `abrao.co`.**
+   Migrar a zona sem recriar `dc-aa8e722993._spfm` quebra a cadeia inteira do
+   SPF, mesmo com o registro principal correto.
+
+#### Caminho recomendado — mover a zona para o Cloudflare
+
+O apex (`abrao.co`, sem `www`) precisa disso: o GoDaddy não faz CNAME nem ALIAS
+na raiz, e o Cloudflare Pages só serve apex quando é ele quem responde pela
+zona.
+
+1. Cloudflare → Add a site → `abrao.co` (plano gratuito serve). Deixe o
+   scanner importar os registros.
+2. **Conferir um a um, antes de qualquer outra coisa**, se foram importados:
+   os 5 MX, o TXT do SPF, o TXT `dc-aa8e722993._spfm`, o
+   `google._domainkey`, o `_dmarc` e o google-site-verification. O que faltar,
+   criar à mão copiando o valor exato da tabela acima.
+3. Só então, no GoDaddy, trocar os nameservers pelos dois que o Cloudflare
+   indicar. A propagação leva de minutos a algumas horas.
+4. Cloudflare Pages → Settings → Custom domains → adicionar `abrao.co` e
    `www.abrao.co`.
-2. No painel onde o DNS de `abrao.co` é gerido hoje, trocar o registro do ápice
-   e do `www` pelos valores que o Cloudflare indicar.
-3. **Não tocar nos registros MX nem no TXT de SPF/DKIM.** O e-mail
-   `@abrao.co` está em uso; mexer neles derruba a caixa do escritório.
-4. Para `abraoeco.com.br`, criar um redirecionamento 301 para `abrao.co` — no
-   Cloudflare, uma Redirect Rule resolve, sem precisar hospedar nada.
+5. Depois de propagar, mandar um e-mail de teste de `@abrao.co` para uma caixa
+   externa (Gmail pessoal serve) e conferir no cabeçalho se SPF, DKIM e DMARC
+   passaram.
 
-Propagação costuma levar de minutos a algumas horas. Confira com
-`dig abrao.co` ou `nslookup abrao.co` até o IP mudar.
+**Não desligue o projeto no Lovable antes do passo 5 confirmar.** Enquanto o DNS
+não vira, ele continua sendo o site no ar; e se algo der errado, voltar os
+nameservers para o GoDaddy é o plano B.
+
+#### Sobre `abraoeco.com.br`
+
+Aparece nas páginas de rosto do portfólio, mas **não está registrado** —
+consulta de 2026-09-08 retorna domínio inexistente. Não há o que redirecionar.
+Se o escritório quiser o `.com.br`, é registro novo no Registro.br.
 
 ## Estrutura
 
