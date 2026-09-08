@@ -50,8 +50,25 @@ ter enviado perde lead sem ninguém perceber.
 
 ### Domínio
 
-Settings → Custom domains → adicionar o domínio e seguir os registros que o
-Cloudflare indicar. **Não mexer nos registros MX** — são o e-mail do escritório.
+**Oficial: `abrao.co`.** Decidido em 2026-09-08. É o que consta do timbrado e do
+e-mail do escritório, e é o que `src/content/site.ts` alimenta em metatags,
+sitemap e robots. `abraoeco.com.br`, que aparece nas páginas de rosto do
+portfólio, passa a ser redirecionamento.
+
+O domínio **já existe e já resolve** — hoje aponta para outro servidor. Então
+não é registro novo, é reapontamento:
+
+1. Cloudflare Pages → Settings → Custom domains → adicionar `abrao.co` e
+   `www.abrao.co`.
+2. No painel onde o DNS de `abrao.co` é gerido hoje, trocar o registro do ápice
+   e do `www` pelos valores que o Cloudflare indicar.
+3. **Não tocar nos registros MX nem no TXT de SPF/DKIM.** O e-mail
+   `@abrao.co` está em uso; mexer neles derruba a caixa do escritório.
+4. Para `abraoeco.com.br`, criar um redirecionamento 301 para `abrao.co` — no
+   Cloudflare, uma Redirect Rule resolve, sem precisar hospedar nada.
+
+Propagação costuma levar de minutos a algumas horas. Confira com
+`dig abrao.co` ou `nslookup abrao.co` até o IP mudar.
 
 ## Estrutura
 
@@ -115,13 +132,11 @@ segue em tom informativo por escolha editorial, não por obrigação.
 
 - [x] Razão social (contrato social, 08/01/2026)
 - [x] CNPJ (cartão CNPJ, 09/01/2026)
-- [ ] Confirmar o domínio `abrao.co` (lido do timbrado) e registrá-lo
 - [x] E-mail e telefone (portfólio institucional, p. 20)
 - [ ] Caixa comercial própria (`contato@abrao.co`) no lugar do e-mail pessoal do sócio
 - [ ] Licença de webfont da Gramatika (substitui a Figtree)
 - [x] Fotos dos sócios (extraídas do portfólio, recortadas em 4:5)
 - [ ] Fotos de equipe e escritório
-- [ ] Definir o domínio oficial entre `abrao.co` e `abraoeco.com.br`
 
 - [ ] Revisão jurídica das minutas de privacidade e termos
 - [ ] Variáveis do Resend no Cloudflare
