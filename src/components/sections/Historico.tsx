@@ -3,6 +3,7 @@ import Rotulo from "@/components/ui/Rotulo";
 import Reveal from "@/components/motion/Reveal";
 import Numero from "@/components/motion/Numero";
 import Monograma from "@/components/ui/Monograma";
+import Ambiente from "@/components/motion/Ambiente";
 import { site } from "@/content/site";
 
 /**
@@ -16,6 +17,17 @@ import { site } from "@/content/site";
 export default function Historico() {
   return (
     <section className="relative overflow-hidden bg-azul py-24 text-white md:py-32">
+      <Ambiente cor="rgba(255,255,255,0.075)" passo={72} segundos={48} />
+      {/* Halo frio no alto: dá profundidade ao campo chapado sem virar
+          gradiente decorativo. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(70% 55% at 70% 0%, rgba(255,255,255,0.14), transparent 65%)",
+        }}
+      />
       <Monograma
         aria-hidden
         className="pointer-events-none absolute -right-16 -bottom-16 hidden w-[26rem] text-white/[0.07] lg:block"

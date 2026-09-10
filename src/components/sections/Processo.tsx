@@ -1,6 +1,11 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useInView, useReducedMotion } from "motion/react";
 import Container from "@/components/ui/Container";
 import Rotulo from "@/components/ui/Rotulo";
 import Reveal from "@/components/motion/Reveal";
+import Ambiente from "@/components/motion/Ambiente";
 
 const etapas = [
   {
@@ -30,10 +35,64 @@ const etapas = [
   },
 ];
 
+/**
+ * Uma etapa do percurso.
+ *
+ * Acende quando entra na faixa central da tela e apaga quando sai. O efeito
+ * não é enfeite: com o título fixo à esquerda, é ele que diz em que ponto do
+ * percurso o leitor está — a mesma função que uma barra de progresso teria,
+ * sem ocupar espaço.
+ */
+function Etapa({
+  indice,
+  titulo,
+  texto,
+}: {
+  indice: number;
+  titulo: string;
+  texto: string;
+}) {
+  const ref = useRef<HTMLLIElement>(null);
+  const menosMovimento = useReducedMotion();
+  // Faixa estreita no meio da tela: só uma etapa fica acesa por vez.
+  const ativa = useInView(ref, { margin: "-42% 0px -42% 0px" });
+  const acesa = menosMovimento || ativa;
+
+  return (
+    <li ref={ref} className="border-t border-on-dark/15">
+      <motion.div
+        className="flex gap-8 py-9 md:py-11"
+        animate={{ opacity: acesa ? 1 : 0.38 }}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <div className="relative flex-none">
+          <span className="block font-medium text-3xl leading-none tabular-nums text-on-dark">
+            {String(indice + 1).padStart(2, "0")}
+          </span>
+          {/* Régua que preenche na etapa ativa — marca a posição no percurso. */}
+          <motion.span
+            aria-hidden
+            className="mt-4 block h-px w-10 origin-left bg-azul"
+            animate={{ scaleX: acesa ? 1 : 0.15 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          />
+        </div>
+        <div>
+          <h3 className="text-xl text-on-dark">{titulo}</h3>
+          <p className="mt-3 max-w-lg leading-relaxed text-on-dark-muted">
+            {texto}
+          </p>
+        </div>
+      </motion.div>
+    </li>
+  );
+}
+
 export default function Processo() {
   return (
     <section className="relative overflow-hidden bg-ink py-24 text-on-dark md:py-32">
-      <Container>
+      <Ambiente />
+      <Container className="relative">
         <div className="grid gap-16 md:grid-cols-[0.8fr_1.2fr]">
           <div className="md:sticky md:top-32 md:self-start">
             <Reveal>
@@ -48,23 +107,9 @@ export default function Processo() {
             </Reveal>
           </div>
 
-          <ol className="space-y-px">
+          <ol>
             {etapas.map((e, i) => (
-              <Reveal as="li" key={e.titulo} delay={i * 0.05}>
-                <div className="border-t border-on-dark/15 py-8 md:py-10">
-                  <div className="flex gap-8">
-                    <span className="text-3xl leading-none text-on-dark/50">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <div>
-                      <h3 className="text-xl text-on-dark">{e.titulo}</h3>
-                      <p className="mt-3 max-w-lg leading-relaxed text-on-dark-muted">
-                        {e.texto}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
+              <Etapa key={e.titulo} indice={i} {...e} />
             ))}
           </ol>
         </div>

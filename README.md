@@ -155,7 +155,13 @@ gratuitas — mesma classe de grotesca geométrica, altura de x alta, "a" de doi
 andares e "g" de um só. Comprada a licença, troca-se em `src/app/layout.tsx` e
 no comentário do `@theme`.
 
-**Motion.** Anima-se apenas `opacity` e `transform`. Entrada em scroll acontece
+**Motion.** Duas camadas, com papéis distintos. A de **atmosfera** roda sozinha
+e não depende de scroll: uma malha que deriva devagar ao fundo dos blocos
+escuros, em ciclo de 40 a 48 segundos, e um halo que dá profundidade ao campo
+azul. A de **conteúdo** responde ao leitor: revelação de título, entradas em
+scroll, contagem dos números e a etapa acesa no percurso.
+
+Anima-se apenas `opacity` e `transform`. Entrada em scroll acontece
 uma vez só. Toda animação respeita `prefers-reduced-motion` — o site inteiro
 fica estático para quem pediu menos movimento ao sistema. Meta de performance:
 LCP abaixo de 2s e CLS abaixo de 0,05; animação que derrubar isso sai.
