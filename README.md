@@ -40,13 +40,18 @@ Configurar em Settings → Environment variables, nos ambientes **Production** e
 
 | Variável | Para quê |
 |---|---|
-| `RESEND_API_KEY` | Chave da API do Resend, usada no envio do formulário |
+| `RESEND_API_KEY` | Chave da API do Resend, usada no registro do lead por e-mail |
 | `LEAD_EMAIL_TO` | Caixa do Comercial que recebe os leads |
 | `LEAD_EMAIL_FROM` | Remetente, em domínio verificado no Resend |
 
-Sem essas três variáveis o formulário responde com erro explícito e orienta o
-visitante a escrever pelo e-mail do rodapé. É proposital: formulário que finge
-ter enviado perde lead sem ninguém perceber.
+O caminho principal do formulário é o **WhatsApp**: ao enviar, o site abre uma
+conversa com a mensagem já escrita a partir dos campos preenchidos. Isso
+funciona sem nenhuma variável de ambiente.
+
+O e-mail é o registro secundário, disparado em segundo plano e sem `await` —
+se o Resend não estiver configurado, a pessoa não fica presa esperando. Sem as
+três variáveis, o lead ainda chega pelo WhatsApp; o que se perde é o registro
+escrito na caixa do Comercial.
 
 ### Domínio
 
@@ -196,4 +201,4 @@ segue em tom informativo por escolha editorial, não por obrigação.
 
 - [ ] Revisão jurídica das minutas de privacidade e termos
 - [ ] Variáveis do Resend no Cloudflare
-- [ ] Imagem de compartilhamento (Open Graph)
+- [x] Imagem de compartilhamento (Open Graph)

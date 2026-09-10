@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { frentes } from "@/content/atuacao";
+import { site } from "@/content/site";
 
 const campo =
   "w-full rounded-md border border-paper-3 bg-white px-4 py-3 text-ink outline-none transition-colors placeholder:text-muted/60 focus:border-ink motion-reduce:transition-none";
@@ -20,34 +21,55 @@ export default function FormularioContato() {
   // melhor dizer isso na hora do que depois de uma reunião marcada.
   const foraDoPerfil = regime === "presumido" || regime === "simples";
 
-  async function enviar(evento: React.FormEvent<HTMLFormElement>) {
+  const REGIMES: Record<string, string> = {
+    real: "Lucro Real",
+    presumido: "Lucro Presumido",
+    simples: "Simples Nacional",
+    "nao-sei": "não sei informar",
+  };
+
+  /** Monta a mensagem que já vai escrita na conversa do WhatsApp. */
+  function montarMensagem(d: Record<string, FormDataEntryValue>) {
+    const texto = (k: string) => (typeof d[k] === "string" ? d[k].trim() : "");
+    const frente = frentes.find((f) => f.slug === texto("assunto"));
+    const linhas = [
+      `Olá, sou ${texto("nome")}, da ${texto("empresa")}.`,
+      "",
+      `Regime: ${REGIMES[texto("regime")] ?? texto("regime")}`,
+      frente ? `Assunto: ${frente.nome}` : null,
+      texto("email") ? `E-mail: ${texto("email")}` : null,
+      texto("mensagem") ? `\n${texto("mensagem")}` : null,
+    ].filter(Boolean);
+    return linhas.join("\n");
+  }
+
+  function enviar(evento: React.FormEvent<HTMLFormElement>) {
     evento.preventDefault();
     setEstado("enviando");
     setErro("");
 
     const dados = Object.fromEntries(new FormData(evento.currentTarget));
 
-    try {
-      const resposta = await fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(dados),
-      });
+    // Registra o lead por e-mail em segundo plano. Sem `await`: se o Resend
+    // não estiver configurado, ou a rede falhar, a pessoa não pode ficar
+    // presa esperando — o WhatsApp é o caminho principal.
+    fetch("/api/lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(dados),
+    }).catch(() => {});
 
-      if (!resposta.ok) {
-        const corpo = await resposta.json().catch(() => ({}));
-        throw new Error(corpo.mensagem || "Falha no envio.");
-      }
+    const url = `https://wa.me/${site.contato.whatsapp}?text=${encodeURIComponent(
+      montarMensagem(dados),
+    )}`;
 
-      setEstado("ok");
-    } catch (e) {
-      setEstado("erro");
-      setErro(
-        e instanceof Error
-          ? e.message
-          : "Não foi possível enviar agora. Tente novamente.",
-      );
-    }
+    // Navegação no mesmo clique, não depois de um `await`: assim o navegador
+    // entende como ação do usuário e não bloqueia como pop-up.
+    window.location.href = url;
+
+    // Se o aparelho não tiver WhatsApp, a navegação não acontece e a pessoa
+    // fica olhando "Abrindo…". Este retorno devolve o controle.
+    window.setTimeout(() => setEstado("ok"), 1200);
   }
 
   if (estado === "ok") {
@@ -61,9 +83,15 @@ export default function FormularioContato() {
       >
         <h2 className="text-2xl text-ink">Recebido.</h2>
         <p className="mt-4 leading-relaxed text-muted">
-          A equipe comercial entra em contato para uma primeira conversa. Se
-          preferir adiantar, responda ao e-mail de confirmação com o regime e o
-          porte da empresa.
+          Se a conversa não abriu sozinha, o WhatsApp pode não estar instalado
+          neste aparelho. Escreva para{" "}
+          <a
+            href={`mailto:${site.contato.email}`}
+            className="text-ink underline underline-offset-4"
+          >
+            {site.contato.email}
+          </a>{" "}
+          que a equipe comercial responde.
         </p>
       </motion.div>
     );
@@ -174,6 +202,11 @@ export default function FormularioContato() {
         <input id="website" name="website" tabIndex={-1} autoComplete="off" />
       </div>
 
+      <p className="text-sm leading-relaxed text-muted">
+        Ao enviar, abrimos uma conversa no WhatsApp com a mensagem já escrita —
+        você confere antes de mandar.
+      </p>
+
       <label className="flex items-start gap-3 text-sm leading-relaxed text-muted">
         <input
           type="checkbox"
@@ -202,7 +235,7 @@ export default function FormularioContato() {
         disabled={estado === "enviando"}
         className="inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-medium text-white transition-colors hover:bg-ink-2 disabled:opacity-60 motion-reduce:transition-none"
       >
-        {estado === "enviando" ? "Enviando…" : "Enviar"}
+        {estado === "enviando" ? "Abrindo…" : "Enviar e abrir o WhatsApp"}
       </button>
     </form>
   );

@@ -68,6 +68,15 @@ export default function Header() {
                 />
               </Link>
             ))}
+
+            <a
+              href={`https://wa.me/${site.contato.whatsapp}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-ink/25 px-5 py-2 text-sm text-ink transition-colors hover:border-ink hover:bg-ink hover:text-paper motion-reduce:transition-none"
+            >
+              WhatsApp
+            </a>
           </nav>
 
           <button
@@ -118,6 +127,15 @@ export default function Header() {
                     {item.rotulo}
                   </Link>
                 ))}
+                <a
+                  href={`https://wa.me/${site.contato.whatsapp}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMenuAberto(false)}
+                  className="py-4 text-2xl tracking-tight text-azul"
+                >
+                  WhatsApp
+                </a>
               </nav>
             </Container>
           </motion.div>
