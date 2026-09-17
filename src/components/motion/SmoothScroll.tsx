@@ -51,9 +51,54 @@ export default function SmoothScroll() {
     };
   }, []);
 
-  // Troca de rota: topo imediato. `force` ignora a interpolação em curso.
+  // Onde a página deve estar depois de uma navegação: na âncora, se a URL
+  // tiver uma e ela existir; senão, no topo. `immediate` e `force` ignoram
+  // qualquer interpolação em curso — é exatamente ela que arrastava a página
+  // nova para o meio.
   useEffect(() => {
-    lenisRef.current?.scrollTo(0, { immediate: true, force: true });
+    const lenis = lenisRef.current;
+    if (!lenis) return;
+
+    // Posiciona por último e de forma determinística. Fazer a conta pelo
+    // Lenis dava errado: ele soma a posição do elemento à ideia interna de
+    // scroll, que na troca de rota ainda é a da página anterior, e o alvo
+    // estourava o limite. Deixar o navegador posicionar sozinho também não
+    // bastou: algo rolava depois até o topo exato do elemento, sem o
+    // scroll-margin.
+    //
+    // Dois quadros de espera: o primeiro deixa o Next terminar o próprio
+    // scroll da navegação, o segundo deixa o layout da página nova assentar.
+    let quadro = 0;
+    const irParaDestino = () => {
+      quadro = requestAnimationFrame(() => {
+        quadro = requestAnimationFrame(() => {
+          // Limites recalculados para a altura da página nova.
+          lenis.resize();
+          const alvo = window.location.hash
+            ? document.querySelector<HTMLElement>(window.location.hash)
+            : null;
+          // Alvo em número, a partir da posição real do elemento e do scroll
+          // real do navegador — nada de estado interno de ninguém. Os 96px
+          // compensam o cabeçalho fixo (mesmo valor do scroll-mt dos alvos).
+          const topo = alvo
+            ? Math.max(0, alvo.getBoundingClientRect().top + window.scrollY - 96)
+            : 0;
+          // Navegador e Lenis recebem o mesmo número, nesta ordem: assim o
+          // Lenis não encontra diferença entre o que ele acha e o que é.
+          window.scrollTo({ top: topo, behavior: "instant" });
+          lenis.scrollTo(topo, { immediate: true, force: true });
+        });
+      });
+    };
+
+    irParaDestino();
+
+    // Clique em âncora dentro da mesma página não troca a rota — só o hash.
+    window.addEventListener("hashchange", irParaDestino);
+    return () => {
+      cancelAnimationFrame(quadro);
+      window.removeEventListener("hashchange", irParaDestino);
+    };
   }, [rota]);
 
   return null;
