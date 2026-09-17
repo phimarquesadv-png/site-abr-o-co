@@ -157,21 +157,17 @@ src/content/socios.ts        Sócios
 
 ## Verificação e prévia
 
-Todo PR roda `typecheck`, `lint` e `build` no GitHub Actions
-(`.github/workflows/verificacao.yml`), e publica uma **prévia própria** no
-Cloudflare, cujo link aparece como comentário no próprio PR
-(`.github/workflows/previa.yml`).
+**Verificação.** Todo PR roda `typecheck`, `lint` e `build` no GitHub Actions
+(`.github/workflows/verificacao.yml`), e a `main` roda de novo depois do
+merge. Não precisa de segredo nenhum.
 
-A prévia usa `wrangler versions upload`: cria uma versão nova sem promovê-la
-para a rota principal, então não afeta o site em produção.
+**Prévia.** Quem constrói é o **Workers Builds**, a integração do Cloudflare
+com o GitHub — aparece como o check `Workers Builds: site-abr-o-co` em cada
+PR. Não há workflow para isso no repositório, de propósito: dois sistemas
+publicando a mesma prévia só criariam dúvida sobre qual URL é a boa.
 
-Os dois segredos abaixo precisam existir em Settings → Secrets and variables →
-Actions, senão o job de prévia falha:
-
-| Segredo | O que é |
-|---|---|
-| `CLOUDFLARE_API_TOKEN` | Token com permissão *Workers Scripts: Edit* |
-| `CLOUDFLARE_ACCOUNT_ID` | ID da conta, na barra lateral do painel do Cloudflare |
+A URL de prévia por versão é ligada no painel, em Workers & Pages →
+`site-abr-o-co` → Settings → Domains & Routes → **Preview URLs**.
 
 ## Regras do projeto
 

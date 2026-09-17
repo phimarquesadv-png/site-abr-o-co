@@ -53,9 +53,8 @@ npx wrangler dev   # site + /api/lead como no Cloudflare, em :8787
 ```
 
 Os três comandos de verificação passam em `main`, e agora rodam sozinhos em
-todo PR (`.github/workflows/verificacao.yml`). Cada PR também publica uma
-prévia própria no Cloudflare e recebe o link por comentário
-(`.github/workflows/previa.yml`) — ver os segredos necessários abaixo.
+todo PR (`.github/workflows/verificacao.yml`). A prévia de cada PR é
+construída pelo Workers Builds, a integração do Cloudflare com o GitHub.
 
 ## O que ainda falta antes de apontar o domínio
 
@@ -80,15 +79,11 @@ Técnico:
 - Abertura automática no NectarCRM: anotada como pendente em
   `worker/index.ts`, com o que precisa ser verificado antes.
 - ~~CI (typecheck + lint + build em PR)~~ — configurada em
-  `.github/workflows/verificacao.yml`.
-- **Prévia por PR** — configurada em `.github/workflows/previa.yml`, mas
-  **depende de dois segredos** que precisam ser criados em Settings →
-  Secrets and variables → Actions:
-  - `CLOUDFLARE_API_TOKEN` — token com permissão *Workers Scripts: Edit*
-  - `CLOUDFLARE_ACCOUNT_ID` — o ID da conta, que aparece na barra lateral do
-    painel do Cloudflare
-  Sem eles o job falha e o PR fica sem link de prévia; a verificação continua
-  rodando normalmente.
+  `.github/workflows/verificacao.yml`, sem necessidade de segredo.
+- **Prévia por PR** — quem constrói é o Workers Builds, que já estava ligado
+  (o check `Workers Builds: site-abr-o-co` roda em cada PR). Falta apenas
+  ligar a URL de prévia no painel: Workers & Pages → `site-abr-o-co` →
+  Settings → Domains & Routes → **Preview URLs**.
 
 ## O domínio — o que falta para concluir
 
