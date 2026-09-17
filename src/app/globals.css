@@ -41,7 +41,10 @@
   html {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    scroll-behavior: smooth;
+    /* Sem scroll-behavior: smooth aqui. O Lenis já anima o scroll; dois
+       sistemas animando o mesmo scroll brigam na troca de rota — o Next pede
+       o topo, o navegador anima devagar, o Lenis ainda mira a posição antiga
+       e a página assenta no meio. */
   }
 
   body {
@@ -89,10 +92,6 @@
    sem animação. Regra do projeto, não opcional.
    --------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
   *,
   *::before,
   *::after {
