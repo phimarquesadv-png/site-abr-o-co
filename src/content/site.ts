@@ -66,13 +66,15 @@ export const site = {
   /**
    * Encarregado pelo tratamento de dados (LGPD, art. 41). A lei exige indicar
    * um canal público; não exige que seja uma pessoa dedicada.
-   * PENDENTE: criar a caixa `privacidade@abrao.co` e trocar aqui. Enquanto
-   * não existir, o canal aponta para um e-mail que de fato é lido — política
-   * com endereço morto não cumpre a função.
+   *
+   * Aponta para a caixa comercial, confirmada por Philipe em 2026-09-17: é
+   * onde o pedido de titular de dados de fato será lido. O art. 41 pede canal
+   * de comunicação, não endereço exclusivo — e o site passa a ter um só
+   * e-mail, em vez de um comercial e um de privacidade.
    */
   encarregado: {
     nome: "André Abrão",
-    email: "andre.abrao@abrao.co",
+    email: "contato@abrao.co",
   },
 
   /** Data de vigência das políticas. Atualizar a cada revisão de texto. */
