@@ -133,9 +133,8 @@ export default function Privacidade() {
                 <strong className="font-medium text-ink">
                   Os que você informa.
                 </strong>{" "}
-                No formulário de contato: nome, empresa, e-mail, telefone,
-                regime tributário, o assunto escolhido e o texto que você
-                escrever. Nada além disso é pedido, e nenhum campo é preenchido
+                No formulário de contato: nome, empresa, e-mail, telefone, o
+                assunto escolhido e o texto que você escrever. Nada além disso é pedido, e nenhum campo é preenchido
                 por nós.
               </p>
               <p>

@@ -9,7 +9,7 @@ export const site = {
   nome: "Abrão & Co",
   assinatura: "Negócio antes do tributo.",
   descricao:
-    "Escritório de negócios com visão tributária, para empresas no Lucro Real. Revisão fiscal de cinco anos, créditos tributários e contencioso. São Paulo, Brasília e Goiânia.",
+    "Escritório de negócios com visão tributária. Revisão fiscal, créditos tributários e contencioso, em quatro frentes: Negócio, Tributário, Tecnologia e Agronegócio. São Paulo, Brasília e Goiânia.",
   url: "https://abrao.co",
 
   contato: {
@@ -57,10 +57,6 @@ export const site = {
     razaoSocial: "Abrão & Co Escritório de Negócios e Participações Ltda",
     // Cartão CNPJ emitido em 09/01/2026. Matriz, situação ativa.
     cnpj: "64.381.438/0001-40",
-    // Não se aplica: o contrato social constitui uma sociedade empresária
-    // limitada, não uma sociedade de advogados. Confirmado por Philipe em
-    // 2026-09-01 e pelo próprio contrato.
-    oab: "",
   },
 
   /**
@@ -82,7 +78,6 @@ export const site = {
 
   navegacao: [
     { href: "/atuacao/", rotulo: "Atuação" },
-    { href: "/transportes/", rotulo: "Transportes" },
     { href: "/quem-somos/", rotulo: "Quem somos" },
     { href: "/contato/", rotulo: "Contato" },
   ],

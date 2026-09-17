@@ -11,7 +11,7 @@ const etapas = [
   {
     titulo: "Contato inicial",
     texto:
-      "Uma conversa curta para entender o regime, o porte e o que motivou a busca. Serve para saber se há trabalho possível — e para dizer quando não há.",
+      "Uma conversa curta para entender a operação, o porte e o que motivou a busca. Serve para saber se há trabalho possível — e para dizer quando não há.",
   },
   {
     titulo: "Acesso e documentação",

@@ -5,7 +5,7 @@ import Rotulo from "@/components/ui/Rotulo";
 import Reveal from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import ChamadaFinal from "@/components/sections/ChamadaFinal";
-import { frentes, analise, teses } from "@/content/atuacao";
+import { frentes, analise, teses, segmentos } from "@/content/atuacao";
 
 export const metadata: Metadata = {
   title: "Atuação",
@@ -103,6 +103,35 @@ export default function Atuacao() {
               análise da documentação da empresa.
             </p>
           </Reveal>
+        </Container>
+      </section>
+
+      {/* Segmentos com base instalada. Ficavam numa aba própria, "Transportes",
+          que era pensamento de landing page; num site institucional, os três
+          cabem aqui, lado a lado, sem hierarquia entre eles. */}
+      <section className="bg-paper-2 py-20 md:py-28">
+        <Container>
+          <Reveal>
+            <Rotulo>Onde já atuamos</Rotulo>
+            <h2 className="mt-6 max-w-2xl text-ink text-[clamp(1.8rem,3.5vw,2.6rem)] leading-[1.12]">
+              Três segmentos com base instalada.
+            </h2>
+            <p className="mt-6 max-w-lg leading-relaxed text-muted">
+              A matéria tributária é a mesma. O que muda é onde ela aparece na
+              operação de cada um — e é isso que a leitura de negócio vai
+              buscar primeiro.
+            </p>
+          </Reveal>
+
+          <Stagger className="mt-14 grid gap-px overflow-hidden rounded-lg bg-paper-3 sm:grid-cols-3">
+            {segmentos.map((s) => (
+              <StaggerItem key={s.slug}>
+                <div className="flex h-full items-end bg-paper p-8 md:min-h-[9rem]">
+                  <p className="text-xl text-ink">{s.nome}</p>
+                </div>
+              </StaggerItem>
+            ))}
+          </Stagger>
         </Container>
       </section>
 

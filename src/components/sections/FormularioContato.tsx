@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence, useReducedMotion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { frentes } from "@/content/atuacao";
 import { site } from "@/content/site";
+import Monograma from "@/components/ui/Monograma";
 
 const campo =
   "w-full rounded-md border border-paper-3 bg-white px-4 py-3 text-ink outline-none transition-colors placeholder:text-muted/60 focus:border-ink motion-reduce:transition-none";
@@ -12,21 +13,9 @@ const rotulo = "block text-sm text-ink";
 type Estado = "parado" | "enviando" | "ok" | "erro";
 
 export default function FormularioContato() {
-  const [regime, setRegime] = useState("");
   const [estado, setEstado] = useState<Estado>("parado");
   const [erro, setErro] = useState("");
   const menosMovimento = useReducedMotion();
-
-  // Qualificação na origem: fora do Lucro Real não há trabalho possível, e é
-  // melhor dizer isso na hora do que depois de uma reunião marcada.
-  const foraDoPerfil = regime === "presumido" || regime === "simples";
-
-  const REGIMES: Record<string, string> = {
-    real: "Lucro Real",
-    presumido: "Lucro Presumido",
-    simples: "Simples Nacional",
-    "nao-sei": "não sei informar",
-  };
 
   /** Monta a mensagem que já vai escrita na conversa do WhatsApp. */
   function montarMensagem(d: Record<string, FormDataEntryValue>) {
@@ -35,7 +24,6 @@ export default function FormularioContato() {
     const linhas = [
       `Olá, sou ${texto("nome")}, da ${texto("empresa")}.`,
       "",
-      `Regime: ${REGIMES[texto("regime")] ?? texto("regime")}`,
       frente ? `Assunto: ${frente.nome}` : null,
       texto("email") ? `E-mail: ${texto("email")}` : null,
       texto("telefone") ? `Telefone: ${texto("telefone")}` : null,
@@ -84,11 +72,15 @@ export default function FormularioContato() {
         initial={menosMovimento ? false : { opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="rounded-lg bg-paper-2 p-10"
+        className="relative overflow-hidden rounded-lg bg-paper-2 p-10"
         role="status"
       >
-        <h2 className="text-2xl text-ink">Recebido.</h2>
-        <p className="mt-4 leading-relaxed text-muted">
+        <Monograma
+          aria-hidden
+          className="pointer-events-none absolute -right-6 -bottom-8 w-40 text-paper-3"
+        />
+        <h2 className="relative text-2xl text-ink">Recebido.</h2>
+        <p className="relative mt-4 leading-relaxed text-muted">
           Se a conversa não abriu sozinha, o WhatsApp pode não estar instalado
           neste aparelho. Escreva para{" "}
           <a
@@ -139,42 +131,6 @@ export default function FormularioContato() {
       </div>
 
       <div className="space-y-2">
-        <label htmlFor="regime" className={rotulo}>
-          Regime tributário
-        </label>
-        <select
-          id="regime"
-          name="regime"
-          required
-          value={regime}
-          onChange={(e) => setRegime(e.target.value)}
-          className={campo}
-        >
-          <option value="">Selecione</option>
-          <option value="real">Lucro Real</option>
-          <option value="presumido">Lucro Presumido</option>
-          <option value="simples">Simples Nacional</option>
-          <option value="nao-sei">Não sei informar</option>
-        </select>
-      </div>
-
-      <AnimatePresence>
-        {foraDoPerfil && (
-          <motion.p
-            initial={menosMovimento ? false : { opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={menosMovimento ? undefined : { opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="overflow-hidden rounded-md bg-paper-2 px-4 py-3 text-sm leading-relaxed text-muted"
-          >
-            Nossa atuação é restrita ao regime de Lucro Real. Você pode enviar a
-            mensagem mesmo assim, mas provavelmente não teremos um trabalho a
-            propor neste momento.
-          </motion.p>
-        )}
-      </AnimatePresence>
-
-      <div className="space-y-2">
         <label htmlFor="assunto" className={rotulo}>
           Assunto
         </label>
@@ -197,7 +153,7 @@ export default function FormularioContato() {
           name="mensagem"
           rows={5}
           className={campo}
-          placeholder="Débitos em aberto, autuação recebida, parcelamento em curso, setor de atuação…"
+          placeholder="Conte em poucas linhas o que motivou o contato."
         />
       </div>
 
