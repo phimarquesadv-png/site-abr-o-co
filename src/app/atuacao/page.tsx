@@ -28,7 +28,12 @@ export default function Atuacao() {
           <Stagger className="grid gap-px overflow-hidden rounded-lg bg-paper-3 md:grid-cols-2">
             {frentes.map((f) => (
               <StaggerItem key={f.slug}>
-                <div className="flex h-full flex-col bg-paper p-8 md:p-10">
+                {/* id para o rodapé chegar direto na frente; scroll-mt
+                    compensa o cabeçalho fixo quando o navegador rola sozinho. */}
+                <div
+                  id={f.slug}
+                  className="flex h-full scroll-mt-24 flex-col bg-paper p-8 md:p-10"
+                >
                   <span className="rotulo text-azul">{f.nome}</span>
                   <p className="mt-5 leading-relaxed text-muted">
                     {f.descricao}

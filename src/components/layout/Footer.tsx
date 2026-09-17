@@ -30,12 +30,17 @@ export default function Footer() {
             <ul className="mt-5 space-y-3">
               {frentes.map((f) => (
                 <li key={f.slug}>
-                  <Link
-                    href="/atuacao/"
+                  {/* <a> comum, não <Link>, de propósito. Na mesma página o
+                      navegador faz navegação de fragmento e dispara hashchange,
+                      que o SmoothScroll escuta para posicionar. O <Link> troca
+                      o hash por pushState, sem evento, e rola por conta própria
+                      em hora imprevisível — dava corrida com o Lenis. */}
+                  <a
+                    href={`/atuacao/#${f.slug}`}
                     className="text-sm text-on-dark-muted transition-colors hover:text-on-dark motion-reduce:transition-none"
                   >
                     {f.nome}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>
