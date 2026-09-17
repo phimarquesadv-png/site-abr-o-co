@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import Logo from "@/components/ui/Logo";
+import Monograma from "@/components/ui/Monograma";
 import { site } from "@/content/site";
 import { frentes } from "@/content/atuacao";
 
@@ -8,8 +9,14 @@ export default function Footer() {
   const ano = new Date().getFullYear();
 
   return (
-    <footer className="bg-ink text-on-dark">
-      <Container className="py-20">
+    <footer className="relative overflow-hidden bg-ink text-on-dark">
+      {/* Monograma como marca-d'água, no mesmo espírito do campo azul do
+          histórico: presença de marca sem competir com a navegação. */}
+      <Monograma
+        aria-hidden
+        className="pointer-events-none absolute -right-16 -bottom-20 hidden w-[26rem] text-white/[0.04] lg:block"
+      />
+      <Container className="relative py-20">
         <div className="grid gap-14 md:grid-cols-[1.3fr_1fr_1fr]">
           <div>
             <Logo className="h-4 w-auto" />
@@ -39,7 +46,6 @@ export default function Footer() {
             <ul className="mt-5 space-y-3">
               {[
                 { href: "/quem-somos/", rotulo: "Quem somos" },
-                { href: "/transportes/", rotulo: "Transportes" },
                 { href: "/contato/", rotulo: "Contato" },
                 { href: "/privacidade/", rotulo: "Política de privacidade" },
                 { href: "/termos/", rotulo: "Termos de uso" },
@@ -58,7 +64,7 @@ export default function Footer() {
         </div>
 
         {/* As três praças, na mesma ordem e no mesmo recorte do timbrado. */}
-        <div className="mt-16 grid gap-8 border-t border-on-dark/15 pt-10 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-16 grid gap-8 border-t border-on-dark/15 pt-10 sm:grid-cols-3">
           {site.escritorios.map((e) => (
             <address key={e.cidade} className="not-italic">
               <p className="rotulo text-on-dark">
@@ -69,16 +75,11 @@ export default function Footer() {
                   </span>
                 ) : null}
               </p>
-              {/* Tocantins consta como praça no portfólio, mas ainda sem
-                  endereço. Melhor listar a praça sem linha nenhuma do que
-                  repetir a sigla embaixo do próprio nome. */}
-              {e.linhas.length > 0 ? (
-                <p className="mt-2.5 text-sm leading-relaxed text-on-dark-muted">
-                  {e.linhas.join(", ")}
-                  <br />
-                  {e.cidade} — {e.uf}
-                </p>
-              ) : null}
+              <p className="mt-2.5 text-sm leading-relaxed text-on-dark-muted">
+                {e.linhas.join(", ")}
+                <br />
+                {e.cidade} — {e.uf}
+              </p>
             </address>
           ))}
         </div>
@@ -88,9 +89,6 @@ export default function Footer() {
             © {ano} {site.legal.razaoSocial || site.nome}
             {site.legal.cnpj ? ` · CNPJ ${site.legal.cnpj}` : ""}
           </p>
-          {/* Se a sociedade for inscrita na OAB, o número aparece aqui —
-              exigência do Provimento 205/2021 do CFOAB. */}
-          {site.legal.oab ? <p>{site.legal.oab}</p> : null}
         </div>
       </Container>
     </footer>

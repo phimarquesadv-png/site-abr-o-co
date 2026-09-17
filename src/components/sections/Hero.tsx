@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import Container from "@/components/ui/Container";
 import Botao from "@/components/ui/Botao";
+import Monograma from "@/components/ui/Monograma";
 import TextReveal from "@/components/motion/TextReveal";
 import { site } from "@/content/site";
 
@@ -10,15 +11,28 @@ export default function Hero() {
   const menosMovimento = useReducedMotion();
 
   return (
-    <section className="bg-paper">
-      <Container className="pt-40 pb-20 md:pt-52 md:pb-28">
+    <section className="relative overflow-hidden bg-paper">
+      {/* O monograma como presença de marca na primeira tela. Muito claro e
+          parcialmente cortado pela borda: é textura, não competição com o
+          título. Só em telas largas — no celular ele cairia em cima do texto. */}
+      <motion.div
+        aria-hidden
+        initial={menosMovimento ? false : { opacity: 0, x: 24 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        className="pointer-events-none absolute -right-10 top-32 hidden w-[24rem] text-paper-2 lg:block"
+      >
+        <Monograma className="w-full" />
+      </motion.div>
+
+      <Container className="relative pt-40 pb-20 md:pt-52 md:pb-28">
         <motion.p
           initial={menosMovimento ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
           className="rotulo text-muted"
         >
-          Consultoria tributária · Lucro Real
+          Escritório de negócios · Visão tributária
         </motion.p>
 
         {/* A assinatura da marca é o próprio título. Está no timbrado e resume
@@ -37,22 +51,22 @@ export default function Hero() {
           className="mt-12 max-w-xl"
         >
           <p className="text-lg leading-relaxed text-muted">
-            Atuamos exclusivamente com empresas no regime de Lucro Real, em duas
-            frentes: o passivo que já existe e os créditos que ainda não foram
-            aproveitados.
+            Lemos a operação antes de ler o tributo. É essa ordem que permite
+            enxergar onde a carga pesa sem precisar pesar — e transformar isso
+            em resultado que aparece no caixa.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">
-            <Botao href="/contato/">Solicitar diagnóstico</Botao>
-            <Botao href="/atuacao/" variante="contorno">
-              Conhecer a atuação
+            <Botao href="/atuacao/">Conhecer a atuação</Botao>
+            <Botao href="/contato/" variante="contorno">
+              Fale conosco
             </Botao>
           </div>
         </motion.div>
       </Container>
 
       {/* Filete com as três praças, como no rodapé do timbrado. */}
-      <Container>
+      <Container className="relative">
         <motion.div
           initial={menosMovimento ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}

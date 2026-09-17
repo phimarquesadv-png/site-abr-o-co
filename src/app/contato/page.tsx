@@ -9,7 +9,7 @@ import { site } from "@/content/site";
 export const metadata: Metadata = {
   title: "Contato",
   description:
-    "Solicite uma primeira conversa com a Abrão & Co. Atuação restrita a empresas no regime de Lucro Real.",
+    "Fale com a Abrão & Co por formulário, WhatsApp, e-mail ou telefone. Escritórios em São Paulo, Brasília e Goiânia.",
 };
 
 export default function Contato() {
@@ -17,8 +17,8 @@ export default function Contato() {
     <>
       <PageHero
         rotulo="Contato"
-        titulo={["Comece por uma", "primeira conversa."]}
-        descricao="Vinte minutos costumam bastar para saber se há trabalho possível. Quando não há, dizemos ali mesmo."
+        titulo={["Fale com a gente."]}
+        descricao="Pelo formulário, pelo WhatsApp ou pelos canais ao lado. O primeiro contato serve para ouvir o caso e dizer se há trabalho a fazer."
       />
 
       <section className="bg-paper py-20 md:py-28">
@@ -33,13 +33,13 @@ export default function Contato() {
                 <Rotulo>Antes de enviar</Rotulo>
                 <ul className="mt-6 space-y-4 text-sm leading-relaxed text-muted">
                   <li>
-                    Nossa atuação é restrita a empresas no regime de{" "}
-                    <strong className="font-medium text-ink">Lucro Real</strong>.
-                  </li>
-                  <li>
                     Não fazemos estimativa de valor sem acesso à documentação. A
                     primeira conversa serve para entender o caso, não para
                     projetar resultado.
+                  </li>
+                  <li>
+                    Não envie documento fiscal nem dado de terceiros por aqui.
+                    Se o contato avançar, combinamos o canal adequado.
                   </li>
                   <li>
                     Os dados enviados são usados apenas para o contato comercial

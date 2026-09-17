@@ -11,7 +11,7 @@ import Socios from "@/components/sections/Socios";
 export const metadata: Metadata = {
   title: "Quem somos",
   description:
-    "A estrutura da Abrão & Co: quatro áreas dedicadas a empresas no regime de Lucro Real.",
+    "A estrutura da Abrão & Co: quatro áreas, três praças e os sócios que respondem pelo trabalho.",
 };
 
 const areas = [
@@ -28,7 +28,7 @@ const areas = [
   {
     nome: "Comercial",
     texto:
-      "Primeiro contato, qualificação e acompanhamento do relacionamento ao longo do trabalho.",
+      "Primeiro contato, proposta e acompanhamento do relacionamento ao longo do trabalho.",
   },
   {
     nome: "Administrativo",
@@ -42,8 +42,8 @@ export default function QuemSomos() {
     <>
       <PageHero
         rotulo="Quem somos"
-        titulo={["Uma equipe organizada", "em torno de um regime."]}
-        descricao="Cerca de vinte profissionais distribuídos em quatro áreas, em três praças, dedicados a empresas no Lucro Real."
+        titulo={["Uma equipe organizada", "em torno do caso."]}
+        descricao="Cerca de vinte profissionais distribuídos em quatro áreas e três praças. Cada caso passa por quem precisa passar, e por ninguém a mais."
       />
 
       <section className="bg-paper py-20 md:py-28">

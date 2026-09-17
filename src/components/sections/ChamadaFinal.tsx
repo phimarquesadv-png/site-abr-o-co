@@ -16,15 +16,15 @@ export default function ChamadaFinal() {
       <Container className="relative">
         <Reveal className="max-w-2xl">
           <h2 className="text-ink text-[clamp(2rem,4.5vw,3.4rem)] leading-[1.06] tracking-[-0.03em]">
-            Vale uma conversa de vinte minutos.
+            Quer entender como isso se aplica à sua empresa?
           </h2>
           <p className="mt-7 max-w-xl leading-relaxed text-muted">
-            Se a sua empresa está no Lucro Real, o contato inicial já é
-            suficiente para saber se existe trabalho possível — e, quando não
-            existe, dizemos isso na primeira conversa.
+            O primeiro contato serve para ouvir o caso e dizer, com franqueza,
+            se há trabalho a fazer. Sem estimativa antes de ver a documentação,
+            sem promessa antes de conhecer a operação.
           </p>
           <div className="mt-10">
-            <Botao href="/contato/">Falar com a Abrão &amp; Co</Botao>
+            <Botao href="/contato/">Fale conosco</Botao>
           </div>
         </Reveal>
       </Container>
