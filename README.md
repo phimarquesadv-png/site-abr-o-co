@@ -155,6 +155,24 @@ src/content/atuacao.ts       Frentes, Análise 360º, teses e segmentos
 src/content/socios.ts        Sócios
 ```
 
+## Verificação e prévia
+
+Todo PR roda `typecheck`, `lint` e `build` no GitHub Actions
+(`.github/workflows/verificacao.yml`), e publica uma **prévia própria** no
+Cloudflare, cujo link aparece como comentário no próprio PR
+(`.github/workflows/previa.yml`).
+
+A prévia usa `wrangler versions upload`: cria uma versão nova sem promovê-la
+para a rota principal, então não afeta o site em produção.
+
+Os dois segredos abaixo precisam existir em Settings → Secrets and variables →
+Actions, senão o job de prévia falha:
+
+| Segredo | O que é |
+|---|---|
+| `CLOUDFLARE_API_TOKEN` | Token com permissão *Workers Scripts: Edit* |
+| `CLOUDFLARE_ACCOUNT_ID` | ID da conta, na barra lateral do painel do Cloudflare |
+
 ## Regras do projeto
 
 **Marca.** Extraída dos arquivos oficiais, não inventada. São duas cores, as
