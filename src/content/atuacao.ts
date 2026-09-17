@@ -37,7 +37,7 @@ export const frentes: Frente[] = [
     slug: "agronegocio",
     nome: "Agronegócio",
     descricao:
-      "Solução tributária desenhada para o agro no cenário posterior à Reforma Tributária.",
+      "Solução tributária desenhada para o agronegócio, visando a tributação mais benéfica para o produtor rural.",
   },
 ];
 
@@ -45,7 +45,7 @@ export const frentes: Frente[] = [
 export const analise = {
   nome: "Análise 360º",
   resumo:
-    "Revisão detalhada dos últimos cinco anos da parte fiscal — PIS/COFINS, IRPJ, ICMS, ICMS-ST, INSS, débitos e parcelamentos estaduais e federais — somada à leitura dos impactos operacionais da Reforma Tributária. Ao final, as oportunidades encontradas vêm com os valores a recuperar apontados.",
+    "Revisão detalhada da parte fiscal de créditos e débitos, estaduais e federais — somada à leitura dos impactos operacionais da Reforma Tributária. Ao final, as oportunidades encontradas vêm com os valores a recuperar apontados.",
   pilares: [
     {
       titulo: "Segurança",
