@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Container from "@/components/ui/Container";
 import Rotulo from "@/components/ui/Rotulo";
 import Botao from "@/components/ui/Botao";

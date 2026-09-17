@@ -5,7 +5,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "typecheck": "tsc --noEmit"
   },
   "repository": {
@@ -30,8 +30,13 @@
     "@types/node": "^26.4.0",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.5",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.4",
     "tailwindcss": "^4.3.3",
-    "typescript": "^7.0.2"
+    "typescript": "npm:@typescript/typescript6@^6.0.2"
   },
-  "private": true
+  "private": true,
+  "engines": {
+    "node": ">=20.9"
+  }
 }
