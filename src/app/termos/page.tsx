@@ -116,7 +116,7 @@ export default function Termos() {
 
             <Item numero={4} titulo="Propriedade intelectual">
               <p>
-                O logotipo, o nome, a assinatura "Negócio antes do tributo", os
+                O logotipo, o nome, a assinatura “Negócio antes do tributo”, os
                 textos, as fotografias e o desenho deste site pertencem à Abrão
                 &amp; Co ou são usados sob licença. Você pode ler, citar com
                 referência e compartilhar o endereço das páginas. Não pode
