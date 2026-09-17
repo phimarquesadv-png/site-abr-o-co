@@ -1,0 +1,10 @@
+# Cabeçalhos servidos pelo Cloudflare Pages para todo o site.
+# Sem CSP de propósito: o export estático do Next injeta scripts inline sem
+# nonce, e uma CSP restritiva quebraria a página. HSTS sem includeSubDomains
+# para não alcançar subdomínios que não são web (e-mail, verificação).
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=31536000

@@ -6,3 +6,7 @@ out/
 *.tsbuildinfo
 next-env.d.ts
 .DS_Store
+
+# Gerados pelo `next dev` (agentRules); não fazem parte do projeto.
+AGENTS.md
+CLAUDE.md

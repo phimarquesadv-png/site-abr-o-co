@@ -10,9 +10,17 @@ Build estático, publicado no Cloudflare Pages.
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000
-npm run build    # gera a pasta out/
+npm run dev        # http://localhost:3000
+npm run build      # gera a pasta out/
+npm run typecheck  # tsc --noEmit
+npm run lint       # eslint .
 ```
+
+Node 20.9 ou superior (`engines` no `package.json`; `.node-version` fixa 22).
+
+> O `typescript` do projeto é um alias para `@typescript/typescript6`, como a
+> Microsoft recomenda enquanto o `typescript-eslint` não suporta o compilador
+> nativo (TS 7). Quando suportar, basta voltar a dependência para `typescript@^7`.
 
 ## Publicação no Cloudflare Pages
 
@@ -28,7 +36,7 @@ em produção.
 | Build command | `npm run build` |
 | Build output directory | `out` |
 | Root directory | *(vazio)* |
-| Node version | 20 ou superior |
+| Node version | lido do `.node-version` (22) |
 
 Cada `push` na branch `main` publica em produção. Cada Pull Request ganha uma
 URL de preview própria para aprovação antes do merge.

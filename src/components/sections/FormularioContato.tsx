@@ -38,6 +38,7 @@ export default function FormularioContato() {
       `Regime: ${REGIMES[texto("regime")] ?? texto("regime")}`,
       frente ? `Assunto: ${frente.nome}` : null,
       texto("email") ? `E-mail: ${texto("email")}` : null,
+      texto("telefone") ? `Telefone: ${texto("telefone")}` : null,
       texto("mensagem") ? `\n${texto("mensagem")}` : null,
     ].filter(Boolean);
     return linhas.join("\n");
@@ -53,10 +54,15 @@ export default function FormularioContato() {
     // Registra o lead por e-mail em segundo plano. Sem `await`: se o Resend
     // não estiver configurado, ou a rede falhar, a pessoa não pode ficar
     // presa esperando — o WhatsApp é o caminho principal.
+    //
+    // `keepalive` garante que a requisição sobreviva à navegação para o
+    // WhatsApp logo abaixo — sem isso o navegador pode abortá-la em voo,
+    // e o registro escrito nunca chegaria.
     fetch("/api/lead", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(dados),
+      keepalive: true,
     }).catch(() => {});
 
     const url = `https://wa.me/${site.contato.whatsapp}?text=${encodeURIComponent(

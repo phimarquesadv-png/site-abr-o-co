@@ -31,8 +31,13 @@ export default function Numero({
 
   // Zera só enquanto o número ainda está fora de tela. Se ele já estiver
   // visível na carga, fica no valor final em vez de piscar de 500 para 0.
+  //
+  // O setState aqui é proposital: o HTML servido precisa trazer o valor
+  // cheio, e a zeragem só pode acontecer depois da hidratação. Fazer isso
+  // no render quebraria a igualdade entre servidor e cliente.
   useEffect(() => {
     if (menosMovimento || naTela) return;
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setAtual(0);
   }, [menosMovimento, naTela]);
 
