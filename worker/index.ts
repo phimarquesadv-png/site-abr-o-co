@@ -21,23 +21,47 @@ type Env = {
   ASSETS: { fetch: (request: Request) => Promise<Response> };
 };
 
-const REGIMES: Record<string, string> = {
-  real: "Lucro Real",
-  presumido: "Lucro Presumido",
-  simples: "Simples Nacional",
-  "nao-sei": "Não sabe informar",
-};
-
 const texto = (v: unknown, max = 2000) =>
   typeof v === "string" ? v.trim().slice(0, max) : "";
 
-const responder = (status: number, corpo: Record<string, unknown>) =>
+const responder = (
+  status: number,
+  corpo: Record<string, unknown>,
+  extras: Record<string, string> = {},
+) =>
   new Response(JSON.stringify(corpo), {
     status,
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      // Resposta de API nunca é para ser guardada por navegador nem CDN.
+      "Cache-Control": "no-store",
+      ...extras,
+    },
   });
 
+/**
+ * A requisição veio do próprio site?
+ *
+ * Sem isto, qualquer script em qualquer página da internet — ou um `curl` —
+ * consegue chamar a API e queimar a cota do Resend. A armadilha anti-robô do
+ * formulário pega robô que preenche formulário, não quem chama a rota direto.
+ *
+ * Navegador manda `Origin` em todo POST via fetch, então comparar com a
+ * origem da própria requisição resolve sem lista fixa de domínios — funciona
+ * igual em abrao.co e nas prévias do workers.dev, porque cada um compara
+ * consigo mesmo. `Sec-Fetch-Site` é o mesmo sinal, dito de outro jeito.
+ */
+function mesmaOrigem(request: Request): boolean {
+  const origem = request.headers.get("Origin");
+  if (origem) return origem === new URL(request.url).origin;
+  return request.headers.get("Sec-Fetch-Site") === "same-origin";
+}
+
 async function receberLead(request: Request, env: Env): Promise<Response> {
+  if (!mesmaOrigem(request)) {
+    return responder(403, { mensagem: "Origem não permitida." });
+  }
+
   let dados: Record<string, unknown>;
 
   try {
@@ -56,11 +80,10 @@ async function receberLead(request: Request, env: Env): Promise<Response> {
   const empresa = texto(dados.empresa, 160);
   const email = texto(dados.email, 160);
   const telefone = texto(dados.telefone, 40);
-  const regime = texto(dados.regime, 20);
   const assunto = texto(dados.assunto, 60);
   const mensagem = texto(dados.mensagem, 4000);
 
-  if (!nome || !empresa || !email || !regime) {
+  if (!nome || !empresa || !email) {
     return responder(400, { mensagem: "Preencha os campos obrigatórios." });
   }
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
@@ -87,7 +110,6 @@ async function receberLead(request: Request, env: Env): Promise<Response> {
     `Empresa: ${empresa}`,
     `E-mail: ${email}`,
     telefone ? `Telefone: ${telefone}` : null,
-    `Regime: ${REGIMES[regime] ?? regime}`,
     assunto ? `Assunto: ${assunto}` : null,
     "",
     mensagem || "(sem contexto adicional)",
@@ -103,7 +125,7 @@ async function receberLead(request: Request, env: Env): Promise<Response> {
       from: env.LEAD_EMAIL_FROM,
       to: [env.LEAD_EMAIL_TO],
       reply_to: email,
-      subject: `Site — ${empresa} (${REGIMES[regime] ?? regime})`,
+      subject: `Site — ${empresa}`,
       text: linhas.join("\n"),
     }),
   });
@@ -137,7 +159,7 @@ const worker = {
     // Aceita com e sem barra final: o site é exportado com trailingSlash.
     if (pathname.replace(/\/$/, "") === "/api/lead") {
       if (request.method !== "POST") {
-        return responder(405, { mensagem: "Método não permitido." });
+        return responder(405, { mensagem: "Método não permitido." }, { Allow: "POST" });
       }
       return receberLead(request, env);
     }
