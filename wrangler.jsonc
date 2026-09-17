@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "site-abr-o-co",
+  "main": "worker/index.ts",
+  "compatibility_date": "2026-08-01",
+  "assets": {
+    // Pasta gerada por `npm run build` (output: "export" no next.config.ts).
+    "directory": "./out",
+    "binding": "ASSETS",
+    // Rota desconhecida devolve o 404.html do Next, com status 404.
+    "not_found_handling": "404-page",
+    // Só a API passa pelo Worker; o resto sai direto do CDN.
+    "run_worker_first": ["/api/*"]
+  },
+  "observability": { "enabled": true }
+}
