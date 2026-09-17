@@ -199,6 +199,8 @@ segue em tom informativo por escolha editorial, não por obrigação.
 - [x] Fotos dos sócios (extraídas do portfólio, recortadas em 4:5)
 - [ ] Fotos de equipe e escritório
 
-- [ ] Revisão jurídica das minutas de privacidade e termos
+- [x] Política de privacidade escrita a partir dos fluxos reais do site
+- [ ] Revisão jurídica da política de privacidade e da minuta de termos
+- [ ] Criar a caixa `privacidade@abrao.co` e apontar o encarregado para ela
 - [ ] Variáveis do Resend no Cloudflare
 - [x] Imagem de compartilhamento (Open Graph)

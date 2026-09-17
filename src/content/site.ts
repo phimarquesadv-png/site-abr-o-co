@@ -64,6 +64,21 @@ export const site = {
     oab: "",
   },
 
+  /**
+   * Encarregado pelo tratamento de dados (LGPD, art. 41). A lei exige indicar
+   * um canal público; não exige que seja uma pessoa dedicada.
+   * PENDENTE: criar a caixa `privacidade@abrao.co` e trocar aqui. Enquanto
+   * não existir, o canal aponta para um e-mail que de fato é lido — política
+   * com endereço morto não cumpre a função.
+   */
+  encarregado: {
+    nome: "André Abrão",
+    email: "andre.abrao@abrao.co",
+  },
+
+  /** Data de vigência das políticas. Atualizar a cada revisão de texto. */
+  politicasAtualizadasEm: "17 de setembro de 2026",
+
   navegacao: [
     { href: "/atuacao/", rotulo: "Atuação" },
     { href: "/transportes/", rotulo: "Transportes" },
