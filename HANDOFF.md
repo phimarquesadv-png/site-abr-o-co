@@ -79,20 +79,32 @@ Técnico:
   `worker/index.ts`, com o que precisa ser verificado antes.
 - CI (typecheck + lint + build em PR), se quiserem.
 
-## O domínio
+## O domínio — o que falta para concluir
 
-É o passo que exige mais cuidado, e o README (seção *Domínio*) descreve o
-levantamento e o checklist. Em resumo:
+Para o site novo virar o `abrao.co`, são dois passos, nesta ordem:
 
-- `abrao.co` é domínio raiz sem `www`. O Cloudflare só serve o apex quando
-  a **zona DNS está nele**, e o GoDaddy não faz CNAME/ALIAS na raiz.
-- O e-mail corporativo está no Google Workspace com **DMARC `p=reject`** e um
-  SPF cujo include mora dentro da própria zona. Migrar a zona sem recriar
-  cada registro derruba o e-mail — não para o spam, para a recusa.
-- A alternativa que não mexe em nameservers é hospedar em provedor com IP
-  fixo (Vercel/Netlify) e trocar só o registro A no GoDaddy; custa portar o
-  Worker.
+**1. Migrar a zona DNS do GoDaddy para o Cloudflare.** Não é transferir o
+domínio: o GoDaddy continua como registrador. O que muda são os nameservers,
+e a gestão dos registros passa para o painel do Cloudflare. É obrigatório —
+domínio customizado em Workers só funciona com a zona no Cloudflare, e
+`abrao.co` é raiz sem `www`, que o GoDaddy não consegue apontar por CNAME.
 
-Seja qual for o caminho: homologar tudo na URL do Workers antes, deixar o
-Lovable no ar até o e-mail ser testado depois da virada, e manter os
-nameservers antigos como rollback.
+Antes de trocar os nameservers, **todos os registros precisam existir no
+Cloudflare**, conferidos um a um: os 5 MX do Google Workspace, o TXT do SPF,
+o TXT `dc-aa8e722993._spfm` (include do SPF, que mora dentro da própria
+zona), o DKIM `google._domainkey`, o `_dmarc` e o google-site-verification.
+O DMARC está em `p=reject`: registro esquecido não manda e-mail para o spam,
+faz o e-mail ser recusado. O checklist completo está no README, seção
+*Domínio*.
+
+Depois da propagação, mandar um e-mail de `@abrao.co` para uma caixa externa
+e conferir no cabeçalho se SPF, DKIM e DMARC passaram. Só então adicionar
+`abrao.co` e `www.abrao.co` em Workers → o projeto → Settings → Domains &
+Routes.
+
+Rollback: voltar os nameservers no GoDaddy. A zona antiga fica lá intacta
+enquanto ninguém apagar.
+
+**2. Desativar o Lovable.** Só depois do passo 1 confirmado — site no ar no
+domínio e e-mail testado. Enquanto o DNS não vira, o Lovable é o site em
+produção e é o plano B.
