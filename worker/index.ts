@@ -1,12 +1,12 @@
 /**
- * Cloudflare Pages Function — recebe o formulário de contato.
+ * Worker do Cloudflare — serve o site estático e recebe o formulário.
  *
- * Roda no edge do Cloudflare, ao lado do site estático. Não faz parte do build
- * do Next: o Pages detecta a pasta `functions/` sozinho e publica esta rota em
- * `/api/lead`.
+ * O site é a pasta `out/` (export do Next), entregue como static assets.
+ * Este código só roda para `/api/*` (ver `run_worker_first` no
+ * wrangler.jsonc); todo o resto é servido direto do CDN sem passar por aqui.
  *
- * Variáveis de ambiente (Cloudflare Pages → Settings → Environment variables):
- *   RESEND_API_KEY   obrigatória — chave da API do Resend
+ * Variáveis (Cloudflare → Workers → o projeto → Settings → Variables):
+ *   RESEND_API_KEY   obrigatória — chave da API do Resend (como Secret)
  *   LEAD_EMAIL_TO    obrigatória — caixa do Comercial que recebe o lead
  *   LEAD_EMAIL_FROM  obrigatória — remetente em domínio verificado no Resend
  *
@@ -17,11 +17,8 @@ type Env = {
   RESEND_API_KEY?: string;
   LEAD_EMAIL_TO?: string;
   LEAD_EMAIL_FROM?: string;
-};
-
-type Contexto = {
-  request: Request;
-  env: Env;
+  /** Binding dos static assets, declarado no wrangler.jsonc. */
+  ASSETS: { fetch: (request: Request) => Promise<Response> };
 };
 
 const REGIMES: Record<string, string> = {
@@ -40,7 +37,7 @@ const responder = (status: number, corpo: Record<string, unknown>) =>
     headers: { "Content-Type": "application/json" },
   });
 
-export async function onRequestPost({ request, env }: Contexto) {
+async function receberLead(request: Request, env: Env): Promise<Response> {
   let dados: Record<string, unknown>;
 
   try {
@@ -132,3 +129,21 @@ export async function onRequestPost({ request, env }: Contexto) {
 
   return responder(200, { ok: true });
 }
+
+const worker = {
+  async fetch(request: Request, env: Env): Promise<Response> {
+    const { pathname } = new URL(request.url);
+
+    // Aceita com e sem barra final: o site é exportado com trailingSlash.
+    if (pathname.replace(/\/$/, "") === "/api/lead") {
+      if (request.method !== "POST") {
+        return responder(405, { mensagem: "Método não permitido." });
+      }
+      return receberLead(request, env);
+    }
+
+    return env.ASSETS.fetch(request);
+  },
+};
+
+export default worker;

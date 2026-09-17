@@ -4,7 +4,7 @@ Site institucional da Abrão & Co — consultoria tributária para empresas no
 regime de Lucro Real.
 
 Next.js 16 (App Router) · React 19 · Tailwind CSS 4 · Motion · Lenis.
-Build estático, publicado no Cloudflare Pages.
+Build estático, publicado no Cloudflare Workers (static assets).
 
 ## Rodar local
 
@@ -22,33 +22,40 @@ Node 20.9 ou superior (`engines` no `package.json`; `.node-version` fixa 22).
 > Microsoft recomenda enquanto o `typescript-eslint` não suporta o compilador
 > nativo (TS 7). Quando suportar, basta voltar a dependência para `typescript@^7`.
 
-## Publicação no Cloudflare Pages
+## Publicação no Cloudflare Workers
 
 O projeto é exportado como site estático (`output: "export"` em
-`next.config.ts`), então o Pages serve arquivos prontos — não há servidor Node
-em produção.
+`next.config.ts`) e entregue pelo Cloudflare Workers como *static assets* — a
+pasta `out/` vai para o CDN e o código em `worker/index.ts` só roda para
+`/api/*`. A configuração está em `wrangler.jsonc`.
 
-**Configuração no painel** (Workers & Pages → o projeto → Settings → Build):
+**Configuração no painel** (Workers & Pages → Create → Import a repository):
 
 | Campo | Valor |
 |---|---|
-| Framework preset | None |
+| Project name | `site-abr-o-co` (igual ao `name` do `wrangler.jsonc`) |
 | Build command | `npm run build` |
-| Build output directory | `out` |
+| Deploy command | `npx wrangler deploy` |
 | Root directory | *(vazio)* |
-| Node version | lido do `.node-version` (22) |
+| Builds for non-production branches | ligado — cada PR ganha URL de preview |
 
-Cada `push` na branch `main` publica em produção. Cada Pull Request ganha uma
-URL de preview própria para aprovação antes do merge.
+Node vem do `.node-version`. Cada `push` na branch `main` publica em produção.
+
+Para testar o Worker localmente, igual ao que roda no Cloudflare:
+
+```bash
+npm run build
+npx wrangler dev   # http://localhost:8787
+```
 
 ### Variáveis de ambiente
 
-Configurar em Settings → Environment variables, nos ambientes **Production** e
-**Preview**. Nenhuma delas entra no repositório — este repo é público.
+Configurar em Workers → o projeto → Settings → Variables and Secrets (a
+`RESEND_API_KEY` como *Secret*). Nenhuma delas entra no repositório — este repo é público.
 
 | Variável | Para quê |
 |---|---|
-| `RESEND_API_KEY` | Chave da API do Resend, usada no registro do lead por e-mail |
+| `RESEND_API_KEY` | Chave da API do Resend, usada no registro do lead por e-mail (Secret) |
 | `LEAD_EMAIL_TO` | Caixa do Comercial que recebe os leads |
 | `LEAD_EMAIL_FROM` | Remetente, em domínio verificado no Resend |
 
@@ -96,7 +103,7 @@ Duas coisas elevam o risco:
 #### Caminho recomendado — mover a zona para o Cloudflare
 
 O apex (`abrao.co`, sem `www`) precisa disso: o GoDaddy não faz CNAME nem ALIAS
-na raiz, e o Cloudflare Pages só serve apex quando é ele quem responde pela
+na raiz, e o Cloudflare só serve o apex quando é ele quem responde pela
 zona.
 
 1. Cloudflare → Add a site → `abrao.co` (plano gratuito serve). Deixe o
@@ -107,7 +114,7 @@ zona.
    criar à mão copiando o valor exato da tabela acima.
 3. Só então, no GoDaddy, trocar os nameservers pelos dois que o Cloudflare
    indicar. A propagação leva de minutos a algumas horas.
-4. Cloudflare Pages → Settings → Custom domains → adicionar `abrao.co` e
+4. Workers → o projeto → Settings → Domains & Routes → adicionar `abrao.co` e
    `www.abrao.co`.
 5. Depois de propagar, mandar um e-mail de teste de `@abrao.co` para uma caixa
    externa (Gmail pessoal serve) e conferir no cabeçalho se SPF, DKIM e DMARC
@@ -136,7 +143,8 @@ para onde apontar.
 ## Estrutura
 
 ```
-functions/api/lead.ts        Function do Cloudflare que recebe o formulário
+worker/index.ts              Worker do Cloudflare: serve o site e recebe o formulário
+wrangler.jsonc               Configuração do Worker (assets, binding, rotas)
 src/app/                     Rotas (App Router)
 src/components/motion/       Primitivas de animação
 src/components/layout/       Cabeçalho, rodapé, topo das páginas internas
@@ -210,5 +218,5 @@ segue em tom informativo por escolha editorial, não por obrigação.
 - [x] Política de privacidade escrita a partir dos fluxos reais do site
 - [ ] Revisão jurídica da política de privacidade e da minuta de termos
 - [ ] Criar a caixa `privacidade@abrao.co` e apontar o encarregado para ela
-- [ ] Variáveis do Resend no Cloudflare
+- [ ] Variáveis do Resend no Worker
 - [x] Imagem de compartilhamento (Open Graph)
