@@ -52,8 +52,9 @@ npm run build      # gera out/
 npx wrangler dev   # site + /api/lead como no Cloudflare, em :8787
 ```
 
-Os três comandos de verificação passam em `main`. Vale rodá-los antes de
-cada PR — não há CI configurada.
+Os três comandos de verificação passam em `main`, e agora rodam sozinhos em
+todo PR (`.github/workflows/verificacao.yml`). A prévia de cada PR é
+construída pelo Workers Builds, a integração do Cloudflare com o GitHub.
 
 ## O que ainda falta antes de apontar o domínio
 
@@ -77,7 +78,12 @@ Técnico:
   `RESEND_API_KEY` entra como Secret no painel do Worker.
 - Abertura automática no NectarCRM: anotada como pendente em
   `worker/index.ts`, com o que precisa ser verificado antes.
-- CI (typecheck + lint + build em PR), se quiserem.
+- ~~CI (typecheck + lint + build em PR)~~ — configurada em
+  `.github/workflows/verificacao.yml`, sem necessidade de segredo.
+- **Prévia por PR** — quem constrói é o Workers Builds, que já estava ligado
+  (o check `Workers Builds: site-abr-o-co` roda em cada PR). Falta apenas
+  ligar a URL de prévia no painel: Workers & Pages → `site-abr-o-co` →
+  Settings → Domains & Routes → **Preview URLs**.
 
 ## O domínio — o que falta para concluir
 

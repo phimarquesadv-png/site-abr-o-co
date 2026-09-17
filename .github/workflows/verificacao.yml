@@ -1,0 +1,41 @@
+name: Verificação
+
+# Roda nos PRs, antes do merge, e também na `main` depois dele — assim uma
+# quebra que passe por merge direto não fica invisível.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+# Um PR atualizado cancela a execução anterior: o que importa é o último commit.
+concurrency:
+  group: verificacao-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verificar:
+    name: Tipos, lint e build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          # Lê o .node-version do repositório, para não divergir do local.
+          node-version-file: .node-version
+          cache: npm
+
+      # `npm ci` em vez de `npm install`: instala exatamente o que está no
+      # package-lock.json e falha se os dois estiverem fora de sincronia.
+      - run: npm ci
+
+      - name: Tipos
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build

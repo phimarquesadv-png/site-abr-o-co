@@ -155,6 +155,20 @@ src/content/atuacao.ts       Frentes, Análise 360º, teses e segmentos
 src/content/socios.ts        Sócios
 ```
 
+## Verificação e prévia
+
+**Verificação.** Todo PR roda `typecheck`, `lint` e `build` no GitHub Actions
+(`.github/workflows/verificacao.yml`), e a `main` roda de novo depois do
+merge. Não precisa de segredo nenhum.
+
+**Prévia.** Quem constrói é o **Workers Builds**, a integração do Cloudflare
+com o GitHub — aparece como o check `Workers Builds: site-abr-o-co` em cada
+PR. Não há workflow para isso no repositório, de propósito: dois sistemas
+publicando a mesma prévia só criariam dúvida sobre qual URL é a boa.
+
+A URL de prévia por versão é ligada no painel, em Workers & Pages →
+`site-abr-o-co` → Settings → Domains & Routes → **Preview URLs**.
+
 ## Regras do projeto
 
 **Marca.** Extraída dos arquivos oficiais, não inventada. São duas cores, as
