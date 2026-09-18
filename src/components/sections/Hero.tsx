@@ -12,24 +12,19 @@ export default function Hero() {
 
   return (
     <section className="relative overflow-hidden bg-paper">
-      {/* O monograma animado da marca (vídeo institucional) como presença na
-          primeira tela. O fundo do vídeo é branco; `mix-blend-multiply` faz
-          esse branco sumir sobre o papel e deixa só o azul em movimento.
-          Só em telas largas — no celular ele cairia em cima do texto. */}
-      <motion.div
-        aria-hidden
-        initial={menosMovimento ? false : { opacity: 0, x: 24 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1.2, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className="pointer-events-none absolute right-0 top-28 hidden w-[26rem] mix-blend-multiply lg:block"
-      >
+      {/* Vídeo do projeto da sede como fundo. Um véu de papel por cima mantém
+          o texto legível: quase opaco no celular, gradiente da esquerda para a
+          direita em telas largas — o prédio aparece onde o texto não está. */}
+      <div aria-hidden className="pointer-events-none absolute inset-0">
         <VideoSede
-          src="/marca/monograma.mp4"
-          poster="/marca/monograma.jpg"
-          className="aspect-square w-full"
+          src="/sede/hero.mp4"
+          poster="/sede/projeto.jpg"
+          className="h-full w-full"
           prioridade
         />
-      </motion.div>
+        <div className="absolute inset-0 bg-paper/85 md:bg-linear-to-r md:from-paper md:via-paper/85 md:to-paper/15" />
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-t from-paper to-transparent" />
+      </div>
 
       <Container className="relative pt-40 pb-20 md:pt-52 md:pb-28">
         <motion.p
