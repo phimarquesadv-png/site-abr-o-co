@@ -1,17 +1,24 @@
 import Container from "@/components/ui/Container";
 import Botao from "@/components/ui/Botao";
 import Reveal from "@/components/motion/Reveal";
-import Monograma from "@/components/ui/Monograma";
+import VideoSede from "@/components/ui/VideoSede";
 
 export default function ChamadaFinal() {
   return (
     <section className="relative overflow-hidden bg-paper py-24 md:py-36">
-      {/* Marca-d'água do monograma, como nas peças de apresentação.
-          Muito clara de propósito: é textura, não informação. */}
-      <Monograma
+      {/* O monograma animado da marca, nítido, à direita do texto. O fundo do
+          vídeo é branco; `mix-blend-multiply` faz esse branco sumir sobre o
+          papel e deixa só o azul em movimento. */}
+      <div
         aria-hidden
-        className="pointer-events-none absolute -right-8 top-1/2 hidden w-[22rem] -translate-y-1/2 text-paper-2 md:block"
-      />
+        className="pointer-events-none absolute -right-8 top-1/2 hidden w-[24rem] -translate-y-1/2 mix-blend-multiply md:block"
+      >
+        <VideoSede
+          src="/marca/monograma.mp4"
+          poster="/marca/monograma.jpg"
+          className="aspect-square w-full"
+        />
+      </div>
 
       <Container className="relative">
         <Reveal className="max-w-2xl">
