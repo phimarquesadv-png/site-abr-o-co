@@ -81,26 +81,15 @@ export default function QuemSomos() {
         </Container>
       </section>
 
-      {/* Projeto arquitetônico da matriz. É projeto, não obra pronta — o
-          texto diz isso com todas as letras para não prometer o que não está
-          de pé. */}
+      {/* Projeto arquitetônico da matriz. O rótulo já diz que é projeto. */}
       <section className="bg-paper-2 py-20 md:py-28">
         <Container>
-          <div className="grid gap-10 md:grid-cols-[0.8fr_1.2fr] md:items-end">
-            <Reveal>
-              <Rotulo>Projeto da Matriz</Rotulo>
-              <h2 className="mt-6 text-[clamp(1.8rem,3.5vw,2.6rem)] leading-[1.12] text-ink">
-                A matriz, em Goiânia.
-              </h2>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <p className="max-w-xl leading-relaxed text-muted">
-                Projeto arquitetônico da matriz da Abrão &amp; Co, no Setor Sul,
-                em Goiânia: fachada em ripas onduladas sobre a entrada em vidro.
-                As imagens são do projeto.
-              </p>
-            </Reveal>
-          </div>
+          <Reveal>
+            <Rotulo>Projeto da Matriz</Rotulo>
+            <h2 className="mt-6 text-[clamp(1.8rem,3.5vw,2.6rem)] leading-[1.12] text-ink">
+              A matriz, em Goiânia.
+            </h2>
+          </Reveal>
 
           <Reveal className="mt-12" delay={0.15}>
             <VideoSede
