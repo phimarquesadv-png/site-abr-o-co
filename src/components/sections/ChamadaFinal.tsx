@@ -6,13 +6,12 @@ import VideoSede from "@/components/ui/VideoSede";
 export default function ChamadaFinal() {
   return (
     <section className="relative overflow-hidden bg-paper py-24 md:py-36">
-      {/* Marca-d'água: o monograma animado da marca, bem suave. O fundo do
+      {/* O monograma animado da marca, nítido, à direita do texto. O fundo do
           vídeo é branco; `mix-blend-multiply` faz esse branco sumir sobre o
-          papel, e a opacidade baixa deixa só um azul discreto em movimento.
-          É textura, não informação. */}
+          papel e deixa só o azul em movimento. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -right-8 top-1/2 hidden w-[24rem] -translate-y-1/2 opacity-25 mix-blend-multiply md:block"
+        className="pointer-events-none absolute -right-8 top-1/2 hidden w-[24rem] -translate-y-1/2 mix-blend-multiply md:block"
       >
         <VideoSede
           src="/marca/monograma.mp4"
