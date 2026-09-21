@@ -53,8 +53,8 @@ export default function Hero() {
         >
           <p className="text-lg leading-relaxed text-muted">
             Lemos a operação antes de ler o tributo. É essa ordem que permite
-            enxergar onde a carga pesa sem precisar pesar — e transformar isso
-            em resultado que aparece no caixa.
+            enxergar onde a carga pesa sem precisar pesar, e transformar isso em
+            resultado que aparece no caixa.
           </p>
 
           <div className="mt-10 flex flex-wrap gap-3">

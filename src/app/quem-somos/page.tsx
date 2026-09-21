@@ -41,7 +41,7 @@ export default function QuemSomos() {
               <p>
                 Antes de olhar o tributo, olhamos como a empresa compra, produz,
                 vende e transporta. É essa leitura que mostra onde a carga pesa
-                mais do que deveria — e o que dá para fazer a respeito dentro da
+                mais do que deveria, e o que dá para fazer a respeito dentro da
                 lei.
               </p>
               <p>
@@ -71,7 +71,7 @@ export default function QuemSomos() {
                     <p className="mt-3 leading-relaxed text-muted">
                       {e.linhas.join(", ")}
                       <br />
-                      {e.cidade} — {e.uf}
+                      {e.cidade}/{e.uf}
                     </p>
                   </address>
                 </StaggerItem>

@@ -165,8 +165,8 @@ export default function FormularioContato() {
       </div>
 
       <p className="text-sm leading-relaxed text-muted">
-        Ao enviar, abrimos uma conversa no WhatsApp com a mensagem já escrita —
-        você confere antes de mandar.
+        Ao enviar, abrimos uma conversa no WhatsApp com a mensagem já escrita.
+        Você confere antes de mandar.
       </p>
 
       <label className="flex items-start gap-3 text-sm leading-relaxed text-muted">

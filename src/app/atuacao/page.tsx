@@ -10,7 +10,7 @@ import { frentes, analise, teses, segmentos } from "@/content/atuacao";
 export const metadata: Metadata = {
   title: "Atuação",
   description:
-    "Quatro frentes — Negócio, Tributário, Tecnologia e Agronegócio — e a Análise 360º: revisão de cinco anos da parte fiscal, com as teses que a sustentam.",
+    "Quatro frentes (Negócio, Tributário, Tecnologia e Agronegócio) e a Análise 360º: revisão de cinco anos da parte fiscal, com as teses que a sustentam.",
 };
 
 export default function Atuacao() {
@@ -123,8 +123,8 @@ export default function Atuacao() {
             </h2>
             <p className="mt-6 max-w-lg leading-relaxed text-muted">
               A matéria tributária é a mesma. O que muda é onde ela aparece na
-              operação de cada um — e é isso que a leitura de negócio vai
-              buscar primeiro.
+              operação de cada um. É isso que a leitura de negócio vai buscar
+              primeiro.
             </p>
           </Reveal>
 
