@@ -71,26 +71,25 @@ export default function QuemSomos() {
 
       <Socios />
 
-      {/* Vídeo vertical do encontro "Moments 2025". Fundo escuro porque a
-          gravação é noturna: sobre papel branco ela viraria um buraco preto. */}
+      {/* Compilação de 28 s com a equipe: apresentação, visita à obra e as
+          assinaturas no concreto. Fundo escuro para os trechos noturnos não
+          virarem um buraco preto sobre o papel. */}
       <section className="bg-ink py-20 text-on-dark md:py-28">
         <Container>
-          <div className="grid items-center gap-12 md:grid-cols-[1fr_20rem] md:gap-20 lg:grid-cols-[1fr_24rem]">
-            <Reveal>
-              <Rotulo claro>Momentos</Rotulo>
-              <h2 className="mt-6 text-[clamp(1.8rem,3.5vw,2.6rem)] leading-[1.12] text-on-dark">
-                Moments 2025.
-              </h2>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <VideoSede
-                src="/marca/momentos.mp4"
-                poster="/marca/momentos.jpg"
-                descricao="Registro do encontro Moments 2025 da Abrão & Co: equipe reunida, palco com a marca no telão e DJ."
-                className="mx-auto aspect-[9/16] w-full max-w-xs rounded-lg md:max-w-none"
-              />
-            </Reveal>
-          </div>
+          <Reveal>
+            <Rotulo claro>Momentos</Rotulo>
+            <h2 className="mt-6 text-[clamp(1.8rem,3.5vw,2.6rem)] leading-[1.12] text-on-dark">
+              A equipe, fora da mesa.
+            </h2>
+          </Reveal>
+          <Reveal className="mt-12" delay={0.1}>
+            <VideoSede
+              src="/marca/equipe.mp4"
+              poster="/marca/equipe.jpg"
+              descricao="Compilação com a equipe da Abrão & Co: apresentação em auditório, visita à obra com capacetes da marca e assinaturas no concreto."
+              className="aspect-video w-full rounded-lg"
+            />
+          </Reveal>
         </Container>
       </section>
 
