@@ -71,7 +71,7 @@ export default function QuemSomos() {
 
       <Socios />
 
-      {/* Compilação de 28 s com a equipe: apresentação, visita à obra e as
+      {/* Compilação de 26 s com a equipe: apresentação, visita à obra e as
           assinaturas no concreto. Fundo escuro para os trechos noturnos não
           virarem um buraco preto sobre o papel. */}
       <section className="bg-ink py-20 text-on-dark md:py-28">
