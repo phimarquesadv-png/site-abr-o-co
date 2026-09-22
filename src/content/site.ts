@@ -17,8 +17,8 @@ export const site = {
     // e-mail pessoal do sócio fundador que constava do portfólio.
     email: "contato@abrao.co",
     // Número confirmado por Daniel em 2026-09-17.
-    telefone: "+55 (62) 98134-7394",
-    whatsapp: "5562981347394",
+    telefone: "+55 (62) 99924-2307",
+    whatsapp: "5562999242307",
   },
 
   /** Endereços conforme o timbrado. */
