@@ -5,7 +5,6 @@ import Container from "@/components/ui/Container";
 import Botao from "@/components/ui/Botao";
 import VideoSede from "@/components/ui/VideoSede";
 import TextReveal from "@/components/motion/TextReveal";
-import { site } from "@/content/site";
 
 export default function Hero() {
   const menosMovimento = useReducedMotion();
@@ -18,8 +17,8 @@ export default function Hero() {
       <div aria-hidden className="pointer-events-none absolute inset-0">
         <VideoSede
           src="/sede/hero.mp4"
-          poster="/sede/projeto.jpg"
-          className="h-full w-full"
+          poster="/sede/hero.jpg"
+          className="h-full w-full opacity-90"
           prioridade
         />
         <div className="absolute inset-0 bg-paper/85 md:bg-linear-to-r md:from-paper md:via-paper/85 md:to-paper/15" />
@@ -63,22 +62,6 @@ export default function Hero() {
               Fale conosco
             </Botao>
           </div>
-        </motion.div>
-      </Container>
-
-      {/* Filete com as três praças, como no rodapé do timbrado. */}
-      <Container className="relative">
-        <motion.div
-          initial={menosMovimento ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.9 }}
-          className="flex flex-wrap gap-x-10 gap-y-2 border-t border-paper-3 pt-6"
-        >
-          {site.escritorios.map((e) => (
-            <span key={e.cidade} className="rotulo text-muted">
-              {e.cidade}
-            </span>
-          ))}
         </motion.div>
       </Container>
     </section>

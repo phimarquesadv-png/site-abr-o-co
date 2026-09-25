@@ -3,7 +3,6 @@ import Rotulo from "@/components/ui/Rotulo";
 import Reveal from "@/components/motion/Reveal";
 import Numero from "@/components/motion/Numero";
 import Monograma from "@/components/ui/Monograma";
-import Ambiente from "@/components/motion/Ambiente";
 import { site } from "@/content/site";
 
 /**
@@ -17,7 +16,6 @@ import { site } from "@/content/site";
 export default function Historico() {
   return (
     <section className="relative overflow-hidden bg-azul py-24 text-white md:py-32">
-      <Ambiente cor="rgba(255,255,255,0.075)" passo={72} segundos={48} />
       {/* Halo frio no alto: dá profundidade ao campo chapado sem virar
           gradiente decorativo. */}
       <div

@@ -5,7 +5,6 @@ import { motion, useInView, useReducedMotion } from "motion/react";
 import Container from "@/components/ui/Container";
 import Rotulo from "@/components/ui/Rotulo";
 import Reveal from "@/components/motion/Reveal";
-import Ambiente from "@/components/motion/Ambiente";
 
 const etapas = [
   {
@@ -91,7 +90,6 @@ function Etapa({
 export default function Processo() {
   return (
     <section className="relative overflow-hidden bg-ink py-24 text-on-dark md:py-32">
-      <Ambiente />
       <Container className="relative">
         <div className="grid gap-16 md:grid-cols-[0.8fr_1.2fr]">
           <div className="md:sticky md:top-32 md:self-start">
