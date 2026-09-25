@@ -37,7 +37,7 @@ mensagem do WhatsApp.
 propósito: o export estático injeta scripts inline sem nonce.
 
 **Contato.** Confirmados em 17/09/2026 e centralizados em
-`src/content/site.ts`: WhatsApp `+55 62 98134-7394` e caixa comercial
+`src/content/site.ts`: WhatsApp `+55 62 99924-2307` e caixa comercial
 `contato@abrao.co`. O encarregado LGPD (`site.encarregado`) continua sendo o
 sócio fundador — decisão de vocês.
 

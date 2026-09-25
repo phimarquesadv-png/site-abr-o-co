@@ -183,6 +183,16 @@ timbrado, onde o texto já vinha convertido em curvas. O monograma empilhado em
 com o espaçamento medido no arquivo. Ambos usam `currentColor`, então a mesma
 peça serve positivo e negativo.
 
+**Vídeos.** Três peças institucionais, todas sem som, em loop e servidas por
+`src/components/ui/VideoSede.tsx`: o `<video>` só é montado quando entra na
+tela, e com `prefers-reduced-motion` ou economia de dados ativa fica só a
+capa (imagem). Em `public/sede/`, dois cortes do render do projeto da matriz
+(`hero.mp4`, fundo do Hero, e `projeto.mp4`, seção "Projeto da Matriz" em Quem
+somos). Em `public/marca/`, `monograma.mp4`, o monograma animado que aparece na
+chamada final com `mix-blend-multiply`, para o fundo branco do vídeo sumir sobre
+o papel. Os originais (70 MB e 1,5 MB) foram cortados e comprimidos para
+1280×720 e 640×640 em H.264; nenhum arquivo passa de 2,5 MB.
+
 **Tipografia.** A fonte da marca é a **Gramatika** (Regular e Bold no
 timbrado). É comercial e exige licença de webfont à parte, que ainda não
 existe. Até lá o site usa **Figtree**, a substituta mais próxima entre as

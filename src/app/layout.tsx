@@ -23,7 +23,7 @@ const sans = Figtree({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.nome} — ${site.assinatura}`,
+    default: `${site.nome} | ${site.assinatura}`,
     template: `%s · ${site.nome}`,
   },
   description: site.descricao,
@@ -31,13 +31,15 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     siteName: site.nome,
-    title: `${site.nome} — ${site.assinatura}`,
+    title: `${site.nome} | ${site.assinatura}`,
     description: site.descricao,
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: site.assinatura }],
+    images: [
+      { url: "/og.jpg", width: 1200, height: 630, alt: site.assinatura },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.nome} — ${site.assinatura}`,
+    title: `${site.nome} | ${site.assinatura}`,
     description: site.descricao,
     images: ["/og.jpg"],
   },

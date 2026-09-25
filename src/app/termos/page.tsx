@@ -58,10 +58,15 @@ export default function Termos() {
           <div className="max-w-3xl space-y-12">
             <Item numero={1} titulo="Quem responde por este site">
               <p>
-                O site <strong className="font-medium text-ink">{site.url.replace("https://", "")}</strong>{" "}
+                O site{" "}
+                <strong className="font-medium text-ink">
+                  {site.url.replace("https://", "")}
+                </strong>{" "}
                 é mantido por {site.legal.razaoSocial}, inscrita no CNPJ sob o
                 nº {site.legal.cnpj}, com sede em{" "}
-                {sede ? `${sede.linhas.join(", ")}, ${sede.cidade} — ${sede.uf}` : ""}
+                {sede
+                  ? `${sede.linhas.join(", ")}, ${sede.cidade}/${sede.uf}`
+                  : ""}
                 . Ao navegar, você concorda com estes termos. Se não concordar,
                 a alternativa é não usar o site.
               </p>
@@ -69,19 +74,18 @@ export default function Termos() {
 
             <Item numero={2} titulo="O que este site é, e o que não é">
               <p>
-                É um site institucional. Apresenta a Abrão &amp; Co, suas frentes
-                de atuação, sua equipe e seus canais de contato.
+                É um site institucional. Apresenta a Abrão &amp; Co, suas
+                frentes de atuação, sua equipe e seus canais de contato.
               </p>
               <p>
                 <strong className="font-medium text-ink">
                   Não é orientação técnica.
                 </strong>{" "}
-                Nada aqui — descrição de tese, de método ou de resultado
-                anterior — constitui parecer, recomendação ou análise aplicável
-                a um caso concreto. Cada situação depende da documentação, do
-                histórico fiscal da empresa e da decisão dos órgãos
-                competentes, e só pode ser avaliada mediante análise própria,
-                sob contrato.
+                Nada aqui, seja descrição de tese, de método ou de resultado
+                anterior, constitui parecer, recomendação ou análise aplicável a
+                um caso concreto. Cada situação depende da documentação, do
+                histórico fiscal da empresa e da decisão dos órgãos competentes,
+                e só pode ser avaliada mediante análise própria, sob contrato.
               </p>
               <p>
                 <strong className="font-medium text-ink">
@@ -103,9 +107,9 @@ export default function Termos() {
                 só existe depois de proposta aceita e contrato assinado.
               </p>
               <p>
-                Por isso, não envie informação sigilosa, documento fiscal ou dado
-                de terceiros pelo formulário. Se o contato avançar, o canal e o
-                momento adequados para isso serão combinados.
+                Por isso, não envie informação sigilosa, documento fiscal ou
+                dado de terceiros pelo formulário. Se o contato avançar, o canal
+                e o momento adequados para isso serão combinados.
               </p>
               <p>
                 Ao usar o botão que abre o WhatsApp, a conversa passa a correr
@@ -149,13 +153,16 @@ export default function Termos() {
 
             <Item numero={7} titulo="Links para fora">
               <p>
-                O site pode apontar para páginas de terceiros — WhatsApp,
-                órgãos públicos, veículos de imprensa. Não respondemos pelo
+                O site pode apontar para páginas de terceiros, como WhatsApp,
+                órgãos públicos e veículos de imprensa. Não respondemos pelo
                 conteúdo, pela disponibilidade nem pelas práticas desses sites.
               </p>
             </Item>
 
-            <Item numero={8} titulo="Disponibilidade e limites de responsabilidade">
+            <Item
+              numero={8}
+              titulo="Disponibilidade e limites de responsabilidade"
+            >
               <p>
                 Procuramos manter o site no ar e atualizado, mas ele é oferecido
                 como está. Pode sair do ar para manutenção, mudar de conteúdo ou
@@ -183,7 +190,7 @@ export default function Termos() {
               <p>
                 Aplica-se a legislação brasileira. Para qualquer questão
                 decorrente do uso deste site, fica eleito o foro da comarca de{" "}
-                {sede ? `${sede.cidade} — ${sede.uf}` : "Goiânia — GO"}, com
+                {sede ? `${sede.cidade}/${sede.uf}` : "Goiânia/GO"}, com
                 renúncia a qualquer outro, ressalvadas as hipóteses em que a lei
                 assegure foro diverso.
               </p>

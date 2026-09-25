@@ -17,8 +17,8 @@ export const site = {
     // e-mail pessoal do sócio fundador que constava do portfólio.
     email: "contato@abrao.co",
     // Número confirmado por Daniel em 2026-09-17.
-    telefone: "+55 (62) 98134-7394",
-    whatsapp: "5562981347394",
+    telefone: "+55 (62) 99924-2307",
+    whatsapp: "5562999242307",
   },
 
   /** Endereços conforme o timbrado. */
@@ -43,13 +43,15 @@ export const site = {
   ],
 
   /**
-   * Números do portfólio institucional. Reproduzidos exatamente como constam
-   * lá — sem arredondar, sem reescrever.
+   * Números do histórico. Vieram do portfólio institucional (500M / 300M) e
+   * foram atualizados e corrigidos pelo Philipe em 2026-09-22: valores
+   * exatos e legendas na ordem certa (créditos recuperados, débitos
+   * renegociados).
    * PENDENTE: período de apuração e critério de cálculo, para a nota de rodapé.
    */
   historico: [
-    { valor: 500, sufixo: "M", legenda: "em Créditos Renegociados" },
-    { valor: 300, sufixo: "M", legenda: "de Débitos Recuperados" },
+    { valor: 517, sufixo: "M", legenda: "em Créditos Recuperados" },
+    { valor: 309, sufixo: "M", legenda: "de Débitos Renegociados" },
   ],
 
   legal: {

@@ -19,7 +19,7 @@ export const frentes: Frente[] = [
     slug: "negocio",
     nome: "Negócio",
     descricao:
-      "O ponto de partida das outras três. Ler a operação antes de ler o tributo — entender como a empresa ganha dinheiro para então enxergar onde a carga pesa sem precisar pesar.",
+      "O ponto de partida das outras três. Ler a operação antes de ler o tributo: entender como a empresa ganha dinheiro para então enxergar onde a carga pesa sem precisar pesar.",
   },
   {
     slug: "tributario",
@@ -45,7 +45,7 @@ export const frentes: Frente[] = [
 export const analise = {
   nome: "Análise 360º",
   resumo:
-    "Revisão detalhada da parte fiscal de créditos e débitos, estaduais e federais — somada à leitura dos impactos operacionais da Reforma Tributária. Ao final, as oportunidades encontradas vêm com os valores a recuperar apontados.",
+    "Revisão detalhada da parte fiscal de créditos e débitos, estaduais e federais, somada à leitura dos impactos operacionais da Reforma Tributária. Ao final, as oportunidades encontradas vêm com os valores a recuperar apontados.",
   pilares: [
     {
       titulo: "Segurança",

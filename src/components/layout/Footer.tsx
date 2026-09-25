@@ -83,7 +83,7 @@ export default function Footer() {
               <p className="mt-2.5 text-sm leading-relaxed text-on-dark-muted">
                 {e.linhas.join(", ")}
                 <br />
-                {e.cidade} — {e.uf}
+                {e.cidade}/{e.uf}
               </p>
             </address>
           ))}

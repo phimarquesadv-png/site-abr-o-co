@@ -48,7 +48,7 @@ export default function Header() {
         <div className="flex h-20 items-center justify-between">
           <Link
             href="/"
-            aria-label="Abrão & Co — início"
+            aria-label="Abrão & Co, página inicial"
             onClick={() => setMenuAberto(false)}
           >
             <Logo className="h-[15px] w-auto md:h-4" />
