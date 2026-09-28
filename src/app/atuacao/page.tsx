@@ -6,12 +6,12 @@ import Reveal from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import Percurso from "@/components/sections/Percurso";
 import ChamadaFinal from "@/components/sections/ChamadaFinal";
-import { frentes, analise, teses, segmentos } from "@/content/atuacao";
+import { frentes, analise, segmentos } from "@/content/atuacao";
 
 export const metadata: Metadata = {
   title: "Atuação",
   description:
-    "Quatro frentes (Negócio, Tributário, Tecnologia e Agronegócio) e a Análise 360º: revisão de cinco anos da parte fiscal, com as teses que a sustentam.",
+    "Quatro frentes (Negócio, Tributário, Tecnologia e Agronegócio) e a Análise 360º: revisão detalhada da parte fiscal, com os valores a recuperar apontados.",
 };
 
 export default function Atuacao() {
@@ -69,37 +69,6 @@ export default function Atuacao() {
               </Stagger>
             </div>
           </div>
-        </Container>
-      </section>
-
-      {/* Teses */}
-      <section className="bg-paper py-20 md:py-28">
-        <Container>
-          <Reveal>
-            <Rotulo>Teses</Rotulo>
-            <h2 className="mt-6 max-w-2xl text-ink text-[clamp(1.8rem,3.5vw,2.6rem)] leading-[1.12]">
-              O que sustenta cada oportunidade apontada.
-            </h2>
-          </Reveal>
-
-          <Stagger className="mt-14 grid gap-x-10 gap-y-12 md:grid-cols-2">
-            {teses.map((t) => (
-              <StaggerItem key={t.nome}>
-                <div className="border-t border-paper-3 pt-7">
-                  <h3 className="text-xl text-ink">{t.nome}</h3>
-                  <p className="mt-3 leading-relaxed text-muted">{t.texto}</p>
-                </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
-
-          <Reveal delay={0.15}>
-            <p className="mt-16 max-w-xl border-t border-paper-3 pt-6 text-sm leading-relaxed text-muted">
-              A aplicação de cada tese depende da apuração do caso concreto.
-              Nada aqui constitui orientação técnica nem indica cabimento sem a
-              análise da documentação da empresa.
-            </p>
-          </Reveal>
         </Container>
       </section>
 
