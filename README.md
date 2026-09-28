@@ -153,7 +153,39 @@ src/components/ui/           Botão, container, rótulo
 src/content/site.ts          Dados institucionais, praças e contatos
 src/content/atuacao.ts       Frentes, Análise 360º, teses e segmentos
 src/content/socios.ts        Sócios
+src/lib/blog.ts              Leitura dos textos do blog (Markdown → HTML)
+content/blog/                Textos do blog, um `.md` por post
+public/admin/                Painel privado do blog (Decap CMS)
 ```
+
+## Blog e painel
+
+**Textos.** Cada post é um arquivo `content/blog/<slug>.md` com título, data,
+resumo, autor, capa (opcional) e a marcação `rascunho`. O site gera
+`/blog/` e `/blog/<slug>/` no build; rascunho não aparece. Imagens vão em
+`public/blog/`.
+
+**Painel.** `/admin/` carrega o Decap CMS com backend GitHub: quem tem acesso
+de escrita ao repositório entra com a conta do GitHub e escreve, revisa e
+publica sem tocar em código. Cada publicação vira um commit em `content/blog/`
+(ou um PR, no fluxo editorial, que é o padrão) e o Workers Builds reconstrói o
+site em um ou dois minutos.
+
+**Login.** O Decap precisa de um OAuth App do GitHub e de um intermediário
+que troque o código pelo token; o intermediário é o próprio Worker
+(`/api/auth` e `/api/callback`). Para ligar:
+
+1. GitHub → Settings → Developer settings → OAuth Apps → New OAuth App.
+   Homepage: `https://abrao.co`. Authorization callback URL:
+   `https://abrao.co/api/callback` (para testar na prévia, use a URL do
+   workers.dev no lugar). Gere um client secret.
+2. Cloudflare → Workers → `site-abr-o-co` → Settings → Variables and Secrets:
+   `GITHUB_OAUTH_ID` (o Client ID) e `GITHUB_OAUTH_SECRET` (como Secret).
+3. Convide quem vai escrever como colaborador do repositório, com permissão
+   de escrita. É o GitHub que controla quem publica.
+
+Sem as duas variáveis, `/admin/` abre mas o botão de login avisa que o
+painel não está configurado. Nada disso vai para o repositório.
 
 ## Verificação e prévia
 
@@ -243,4 +275,5 @@ segue em tom informativo por escolha editorial, não por obrigação.
 - [ ] Revisão jurídica da política de privacidade e da minuta de termos
 - [ ] Criar a caixa `privacidade@abrao.co` e apontar o encarregado para ela
 - [ ] Variáveis do Resend no Worker
+- [ ] OAuth App do GitHub e variáveis `GITHUB_OAUTH_ID` / `GITHUB_OAUTH_SECRET` no Worker (login do painel do blog)
 - [x] Imagem de compartilhamento (Open Graph)

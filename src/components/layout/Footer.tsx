@@ -46,6 +46,7 @@ export default function Footer() {
             <ul className="mt-5 space-y-3">
               {[
                 { href: "/quem-somos/", rotulo: "Quem somos" },
+                { href: "/blog/", rotulo: "Blog" },
                 { href: "/contato/", rotulo: "Contato" },
                 { href: "/privacidade/", rotulo: "Política de privacidade" },
                 { href: "/termos/", rotulo: "Termos de uso" },

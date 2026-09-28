@@ -98,6 +98,7 @@ export const site = {
   navegacao: [
     { href: "/quem-somos/", rotulo: "Quem somos" },
     { href: "/atuacao/", rotulo: "Atuação" },
+    { href: "/blog/", rotulo: "Blog" },
     { href: "/contato/", rotulo: "Contato" },
   ],
 } as const;
