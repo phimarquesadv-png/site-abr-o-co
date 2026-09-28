@@ -9,7 +9,7 @@ type Props = {
 };
 
 const base =
-  "group inline-flex items-center gap-2.5 rounded-full px-6 py-3 text-sm transition-colors duration-300 motion-reduce:transition-none";
+  "inline-flex items-center rounded-full px-6 py-3 text-sm transition-colors duration-300 motion-reduce:transition-none";
 
 const variantes = {
   solido: "bg-azul text-white hover:bg-azul-escuro",
@@ -28,12 +28,6 @@ export default function Botao({
   return (
     <Link href={href} className={`${base} ${variantes[variante]} ${className}`}>
       {children}
-      <span
-        aria-hidden
-        className="transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
-      >
-        →
-      </span>
     </Link>
   );
 }

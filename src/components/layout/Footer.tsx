@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import Logo from "@/components/ui/Logo";
-import Monograma from "@/components/ui/Monograma";
 import { site } from "@/content/site";
 import { frentes } from "@/content/atuacao";
 
@@ -10,12 +9,6 @@ export default function Footer() {
 
   return (
     <footer className="relative overflow-hidden bg-ink text-on-dark">
-      {/* Monograma como marca-d'água, no mesmo espírito do campo azul do
-          histórico: presença de marca sem competir com a navegação. */}
-      <Monograma
-        aria-hidden
-        className="pointer-events-none absolute -right-16 -bottom-20 hidden w-[26rem] text-white/[0.04] lg:block"
-      />
       <Container className="relative py-20">
         <div className="grid gap-14 md:grid-cols-[1.3fr_1fr_1fr]">
           <div>

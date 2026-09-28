@@ -2,7 +2,6 @@ import Container from "@/components/ui/Container";
 import Rotulo from "@/components/ui/Rotulo";
 import Reveal from "@/components/motion/Reveal";
 import Numero from "@/components/motion/Numero";
-import Monograma from "@/components/ui/Monograma";
 import { site } from "@/content/site";
 
 /**
@@ -26,11 +25,6 @@ export default function Historico() {
             "radial-gradient(70% 55% at 70% 0%, rgba(255,255,255,0.14), transparent 65%)",
         }}
       />
-      <Monograma
-        aria-hidden
-        className="pointer-events-none absolute -right-16 -bottom-16 hidden w-[26rem] text-white/[0.07] lg:block"
-      />
-
       <Container className="relative">
         <Reveal>
           <Rotulo claro>Nosso histórico</Rotulo>
