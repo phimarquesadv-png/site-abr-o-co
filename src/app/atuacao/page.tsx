@@ -4,6 +4,7 @@ import Container from "@/components/ui/Container";
 import Rotulo from "@/components/ui/Rotulo";
 import Reveal from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
+import Percurso from "@/components/sections/Percurso";
 import ChamadaFinal from "@/components/sections/ChamadaFinal";
 import { frentes, analise, teses, segmentos } from "@/content/atuacao";
 
@@ -22,28 +23,19 @@ export default function Atuacao() {
         descricao="Somos um escritório de negócios com visão tributária. A ordem importa: primeiro entender como a empresa ganha dinheiro, depois onde a carga pesa."
       />
 
-      {/* As quatro frentes */}
-      <section className="bg-paper pb-20 md:pb-28">
-        <Container>
-          <Stagger className="grid gap-px overflow-hidden rounded-lg bg-paper-3 md:grid-cols-2">
-            {frentes.map((f) => (
-              <StaggerItem key={f.slug}>
-                {/* id para o rodapé chegar direto na frente; scroll-mt
-                    compensa o cabeçalho fixo quando o navegador rola sozinho. */}
-                <div
-                  id={f.slug}
-                  className="flex h-full scroll-mt-24 flex-col bg-paper p-8 md:p-10"
-                >
-                  <span className="rotulo text-azul">{f.nome}</span>
-                  <p className="mt-5 leading-relaxed text-muted">
-                    {f.descricao}
-                  </p>
-                </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </Container>
-      </section>
+      {/* As quatro frentes, no mesmo passo a passo de "Como funciona". Os ids
+          vêm do slug para o rodapé chegar direto em cada frente. */}
+      <Percurso
+        tema="claro"
+        rotulo="As frentes"
+        titulo="Negócio vem primeiro."
+        descricao="As outras três existem para sustentar a leitura que ele abre."
+        itens={frentes.map((f) => ({
+          id: f.slug,
+          titulo: f.nome,
+          texto: f.descricao,
+        }))}
+      />
 
       {/* Análise 360º — o produto central */}
       <section className="bg-paper-2 py-20 md:py-28">
