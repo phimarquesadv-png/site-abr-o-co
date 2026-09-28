@@ -14,7 +14,7 @@ import { clientes } from "@/content/clientes";
 export default function Clientes() {
   const trilha = [...clientes, ...clientes];
   return (
-    <section className="overflow-hidden bg-paper py-16 md:py-20">
+    <section className="overflow-hidden border-t border-paper-3 bg-paper py-16 md:py-20">
       <Container>
         <Reveal>
           <Rotulo>Empresas atendidas</Rotulo>

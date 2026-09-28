@@ -9,8 +9,8 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Historico />
       <Clientes />
+      <Historico />
       <Processo />
       <OQueFazemos />
       <ChamadaFinal />
