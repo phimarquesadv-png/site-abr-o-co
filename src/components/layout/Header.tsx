@@ -38,10 +38,12 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 text-ink transition-[background-color,box-shadow] duration-500 motion-reduce:transition-none ${
-        rolou || menuAberto
-          ? "bg-paper/92 shadow-[0_1px_0_rgba(35,31,32,0.08)] backdrop-blur-md"
-          : "bg-transparent"
+      className={`fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,color] duration-500 motion-reduce:transition-none ${
+        menuAberto
+          ? "bg-azul text-white"
+          : rolou
+            ? "bg-paper/92 text-ink shadow-[0_1px_0_rgba(35,31,32,0.08)] backdrop-blur-md"
+            : "bg-transparent text-ink"
       }`}
     >
       <Container>
@@ -90,13 +92,13 @@ export default function Header() {
             <span className="relative block h-3 w-6">
               <span
                 aria-hidden
-                className={`absolute left-0 block h-px w-6 bg-ink transition-transform duration-300 motion-reduce:transition-none ${
+                className={`absolute left-0 block h-px w-6 bg-current transition-transform duration-300 motion-reduce:transition-none ${
                   menuAberto ? "top-1.5 rotate-45" : "top-0"
                 }`}
               />
               <span
                 aria-hidden
-                className={`absolute left-0 block h-px w-6 bg-ink transition-transform duration-300 motion-reduce:transition-none ${
+                className={`absolute left-0 block h-px w-6 bg-current transition-transform duration-300 motion-reduce:transition-none ${
                   menuAberto ? "top-1.5 -rotate-45" : "top-3"
                 }`}
               />
@@ -109,34 +111,51 @@ export default function Header() {
         {menuAberto && (
           <motion.div
             id="menu-mobile"
-            className="overflow-hidden bg-paper md:hidden"
-            initial={menosMovimento ? false : { height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={menosMovimento ? undefined : { height: 0, opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-x-0 top-20 bottom-0 overflow-y-auto bg-azul text-white md:hidden"
+            initial={menosMovimento ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={menosMovimento ? undefined : { opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           >
-            <Container>
-              <nav className="flex flex-col border-t border-paper-3 py-4">
-                {site.navegacao.map((item) => (
-                  <Link
+            <Container className="flex min-h-full flex-col justify-between pt-6 pb-10">
+              <nav className="flex flex-col">
+                {site.navegacao.map((item, i) => (
+                  <motion.div
                     key={item.href}
-                    href={item.href}
-                    onClick={() => setMenuAberto(false)}
-                    className="border-b border-paper-3 py-4 text-2xl tracking-tight text-ink last:border-b-0"
+                    initial={menosMovimento ? false : { opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.4,
+                      delay: 0.08 + i * 0.06,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
                   >
-                    {item.rotulo}
-                  </Link>
+                    <Link
+                      href={item.href}
+                      onClick={() => setMenuAberto(false)}
+                      className="block border-b border-white/15 py-5 text-4xl tracking-tight"
+                    >
+                      {item.rotulo}
+                    </Link>
+                  </motion.div>
                 ))}
-                <a
-                  href={`https://wa.me/${site.contato.whatsapp}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setMenuAberto(false)}
-                  className="py-4 text-2xl tracking-tight text-azul"
-                >
-                  WhatsApp
-                </a>
               </nav>
+              <motion.a
+                href={`https://wa.me/${site.contato.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setMenuAberto(false)}
+                initial={menosMovimento ? false : { opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.4,
+                  delay: 0.3,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="mt-10 inline-flex w-fit items-center rounded-full border border-white/50 px-6 py-3 text-base transition-colors hover:bg-white hover:text-azul motion-reduce:transition-none"
+              >
+                WhatsApp
+              </motion.a>
             </Container>
           </motion.div>
         )}
