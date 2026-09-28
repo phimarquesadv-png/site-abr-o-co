@@ -5,10 +5,7 @@ import Reveal from "@/components/motion/Reveal";
 import { clientes } from "@/content/clientes";
 
 /**
- * Tarja rolante com as empresas atendidas, sobre o azul da marca.
- *
- * Os logos vão em silhueta branca (fundo transparente + filtro) e voltam à
- * cor original ao passar o mouse.
+ * Tarja rolante com as empresas atendidas.
  *
  * A trilha é duplicada e desliza metade do próprio comprimento em loop, o
  * que fecha o ciclo sem emenda visível. Para quem pede menos movimento, o
@@ -17,10 +14,10 @@ import { clientes } from "@/content/clientes";
 export default function Clientes() {
   const trilha = [...clientes, ...clientes];
   return (
-    <section className="overflow-hidden bg-azul py-16 text-white md:py-20">
+    <section className="overflow-hidden border-t border-paper-3 bg-paper py-16 md:py-20">
       <Container>
         <Reveal>
-          <Rotulo claro>Empresas atendidas</Rotulo>
+          <Rotulo>Empresas atendidas</Rotulo>
         </Reveal>
       </Container>
 
@@ -43,7 +40,7 @@ export default function Clientes() {
                 loading={i < clientes.length ? "eager" : "lazy"}
                 width={c.largura}
                 height={c.altura}
-                className="h-9 w-auto opacity-85 brightness-0 invert transition-[filter,opacity] duration-300 hover:opacity-100 hover:brightness-100 hover:invert-0 motion-reduce:transition-none md:h-11"
+                className="h-9 w-auto opacity-80 grayscale transition-[filter,opacity] duration-300 hover:opacity-100 hover:grayscale-0 motion-reduce:transition-none md:h-11"
               />
             </li>
           ))}
