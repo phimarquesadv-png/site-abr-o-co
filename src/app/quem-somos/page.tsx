@@ -63,6 +63,7 @@ export default function QuemSomos() {
               poster="/sede/projeto.jpg"
               descricao="Fachada do projeto da matriz da Abrão & Co em Goiânia: ripas verticais onduladas sobre a entrada em vidro, com o letreiro da marca."
               className="aspect-video w-full"
+              zoom
             />
           </Reveal>
         </Container>
@@ -87,6 +88,7 @@ export default function QuemSomos() {
               poster="/marca/equipe.jpg"
               descricao="Compilação com a equipe da Abrão & Co: apresentação em auditório, visita à obra com capacetes da marca e assinaturas no concreto."
               className="aspect-video w-full rounded-lg"
+              zoom
             />
           </Reveal>
         </Container>

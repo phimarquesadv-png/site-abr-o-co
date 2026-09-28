@@ -16,8 +16,7 @@ import TextReveal from "@/components/motion/TextReveal";
  * Primeira tela: rótulo, assinatura da marca e dois botões. Nada mais.
  *
  * Ao rolar, o vídeo desce mais devagar que a página (parallax curto) e o
- * texto se dissolve, entregando a tela para a tarja de empresas. Um traço
- * no rodapé da seção convida a rolar. Com menos movimento, tudo fica parado.
+ * texto se dissolve, entregando a tela para a tarja de empresas. Com menos movimento, tudo fica parado.
  */
 export default function Hero() {
   const menosMovimento = useReducedMotion();
@@ -51,7 +50,7 @@ export default function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-48 bg-linear-to-t from-paper to-transparent" />
       </motion.div>
 
-      <Container className="relative pt-40 pb-24 md:pt-56 md:pb-32">
+      <Container className="relative pt-40 pb-28 md:pt-56 md:pb-40">
         <motion.div
           style={
             menosMovimento ? estatico : { opacity: opacidadeTexto, y: yTexto }
@@ -90,28 +89,6 @@ export default function Hero() {
               Fale conosco
             </Botao>
           </motion.div>
-        </motion.div>
-
-        {/* Convite a rolar: um traço fino que desce e some, em ciclo. */}
-        <motion.div
-          aria-hidden
-          initial={menosMovimento ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          className="mt-20 flex items-center gap-4 md:mt-28"
-        >
-          <span className="relative block h-12 w-px overflow-hidden bg-ink/15">
-            <motion.span
-              className="absolute inset-x-0 top-0 h-1/2 bg-azul"
-              animate={menosMovimento ? undefined : { y: ["-100%", "200%"] }}
-              transition={{
-                duration: 1.8,
-                repeat: Infinity,
-                ease: [0.45, 0, 0.55, 1],
-              }}
-            />
-          </span>
-          <span className="rotulo text-muted">Role</span>
         </motion.div>
       </Container>
     </section>
