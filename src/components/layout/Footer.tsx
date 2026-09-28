@@ -2,7 +2,7 @@ import Link from "next/link";
 import Container from "@/components/ui/Container";
 import Redes from "@/components/ui/Redes";
 import Logo from "@/components/ui/Logo";
-import { site, linkMapa } from "@/content/site";
+import { site, linkMapa, linkWaze } from "@/content/site";
 import { frentes } from "@/content/atuacao";
 
 export default function Footer() {
@@ -80,14 +80,25 @@ export default function Footer() {
                 <br />
                 {e.cidade}/{e.uf}
               </p>
-              <a
-                href={linkMapa(e)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3 inline-block text-sm text-on-dark-muted underline underline-offset-4 transition-colors hover:text-on-dark motion-reduce:transition-none"
-              >
-                Ver no mapa
-              </a>
+              <p className="mt-3 flex items-center gap-3 text-sm text-on-dark-muted">
+                <a
+                  href={linkMapa(e)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-4 transition-colors hover:text-on-dark motion-reduce:transition-none"
+                >
+                  Google Maps
+                </a>
+                <span aria-hidden>·</span>
+                <a
+                  href={linkWaze(e)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-4 transition-colors hover:text-on-dark motion-reduce:transition-none"
+                >
+                  Waze
+                </a>
+              </p>
             </address>
           ))}
         </div>

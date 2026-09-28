@@ -110,11 +110,13 @@ export const site = {
  * A busca usa rua, número, quadra, bairro e cidade: andar, sala e lote
  * confundem o geocodificador e não mudam o ponto no mapa.
  */
-export function linkMapa(e: {
+type Escritorio = {
   cidade: string;
   uf: string;
   linhas: readonly string[];
-}) {
+};
+
+function enderecoParaBusca(e: Escritorio) {
   const ruaNumero = e.linhas[0]
     .split(",")
     .map((t) => t.trim())
@@ -122,8 +124,16 @@ export function linkMapa(e: {
     .join(", ");
   const bairro = (e.linhas[1] ?? "").split("·")[0].trim();
   const bairroLimpo = /andar/i.test(bairro) ? "" : bairro;
-  const endereco = [ruaNumero, bairroLimpo, `${e.cidade} - ${e.uf}`]
+  return [ruaNumero, bairroLimpo, `${e.cidade} - ${e.uf}`]
     .filter(Boolean)
     .join(", ");
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(endereco)}`;
+}
+
+export function linkMapa(e: Escritorio) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(enderecoParaBusca(e))}`;
+}
+
+/** Link universal do Waze: abre o aplicativo já em modo de navegação. */
+export function linkWaze(e: Escritorio) {
+  return `https://waze.com/ul?q=${encodeURIComponent(enderecoParaBusca(e))}&navigate=yes`;
 }

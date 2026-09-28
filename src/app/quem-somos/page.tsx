@@ -4,7 +4,7 @@ import Container from "@/components/ui/Container";
 import Rotulo from "@/components/ui/Rotulo";
 import Reveal from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
-import { site, linkMapa } from "@/content/site";
+import { site, linkMapa, linkWaze } from "@/content/site";
 import Socios from "@/components/sections/Socios";
 import VideoSede from "@/components/ui/VideoSede";
 
@@ -39,14 +39,27 @@ export default function QuemSomos() {
                       <br />
                       {e.cidade}/{e.uf}
                     </p>
-                    <a
-                      href={linkMapa(e)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-4 inline-block text-sm text-azul underline underline-offset-4 transition-colors hover:text-azul-escuro motion-reduce:transition-none"
-                    >
-                      Ver no mapa
-                    </a>
+                    <p className="mt-4 flex items-center gap-3 text-sm text-azul">
+                      <a
+                        href={linkMapa(e)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline underline-offset-4 transition-colors hover:text-azul-escuro motion-reduce:transition-none"
+                      >
+                        Google Maps
+                      </a>
+                      <span aria-hidden className="text-muted">
+                        ·
+                      </span>
+                      <a
+                        href={linkWaze(e)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline underline-offset-4 transition-colors hover:text-azul-escuro motion-reduce:transition-none"
+                      >
+                        Waze
+                      </a>
+                    </p>
                   </address>
                 </StaggerItem>
               ))}
