@@ -14,7 +14,7 @@ export default function PageHero({
 }) {
   return (
     <section className="bg-paper">
-      <Container className="pt-36 pb-16 md:pt-44 md:pb-20">
+      <Container className="pt-32 pb-8 md:pt-40 md:pb-10">
         <Rotulo>{rotulo}</Rotulo>
         <TextReveal
           as="h1"

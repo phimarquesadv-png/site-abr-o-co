@@ -22,7 +22,7 @@ export default function Contato() {
         descricao="Pelo formulário, pelo WhatsApp ou pelos canais ao lado. O primeiro contato serve para ouvir o caso e dizer se há trabalho a fazer."
       />
 
-      <section className="bg-paper py-20 md:py-28">
+      <section className="bg-paper py-12 md:py-16">
         <Container>
           <div className="grid gap-16 md:grid-cols-[1.15fr_0.85fr]">
             <Reveal>

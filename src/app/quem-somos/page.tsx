@@ -24,7 +24,7 @@ export default function QuemSomos() {
         descricao="Cerca de vinte profissionais em três praças. Cada caso passa por quem precisa passar, e por ninguém a mais."
       />
 
-      <section className="bg-paper py-20 md:py-28">
+      <section className="bg-paper py-12 md:py-16">
         <Container>
           <div>
             <Reveal>
@@ -49,7 +49,7 @@ export default function QuemSomos() {
       </section>
 
       {/* Projeto arquitetônico da matriz. O rótulo já diz que é projeto. */}
-      <section className="bg-paper-2 py-20 md:py-28">
+      <section className="bg-paper-2 py-12 md:py-16">
         <Container>
           <Reveal>
             <Rotulo>Projeto da Matriz</Rotulo>
@@ -58,7 +58,7 @@ export default function QuemSomos() {
             </h2>
           </Reveal>
 
-          <Reveal className="mt-12" delay={0.15}>
+          <Reveal className="mt-8" delay={0.15}>
             <VideoSede
               src="/sede/projeto.mp4"
               poster="/sede/projeto.jpg"
@@ -82,7 +82,7 @@ export default function QuemSomos() {
               A equipe, fora da mesa.
             </h2>
           </Reveal>
-          <Reveal className="mt-12" delay={0.1}>
+          <Reveal className="mt-8" delay={0.1}>
             <VideoSede
               src="/marca/equipe.mp4"
               poster="/marca/equipe.jpg"

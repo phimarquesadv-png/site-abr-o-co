@@ -38,7 +38,7 @@ export default function Atuacao() {
       />
 
       {/* Análise 360º — o produto central */}
-      <section className="bg-paper-2 py-20 md:py-28">
+      <section className="bg-paper-2 py-12 md:py-16">
         <Container>
           <div className="grid gap-14 md:grid-cols-[0.85fr_1.15fr]">
             <Reveal>
@@ -75,7 +75,7 @@ export default function Atuacao() {
       {/* Segmentos com base instalada. Ficavam numa aba própria, "Transportes",
           que era pensamento de landing page; num site institucional, os três
           cabem aqui, lado a lado, sem hierarquia entre eles. */}
-      <section className="bg-paper-2 py-20 md:py-28">
+      <section className="bg-paper-2 py-12 md:py-16">
         <Container>
           <Reveal>
             <Rotulo>Onde já atuamos</Rotulo>

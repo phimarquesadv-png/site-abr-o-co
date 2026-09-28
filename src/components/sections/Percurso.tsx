@@ -112,7 +112,7 @@ export default function Percurso({
 }) {
   const t = temas[tema];
   return (
-    <section className={`relative overflow-hidden py-24 md:py-32 ${t.secao}`}>
+    <section className={`relative overflow-hidden py-14 md:py-20 ${t.secao}`}>
       <Container className="relative">
         <div className="grid gap-16 md:grid-cols-[0.8fr_1.2fr]">
           <div className="md:sticky md:top-32 md:self-start">

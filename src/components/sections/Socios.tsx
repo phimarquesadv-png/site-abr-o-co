@@ -6,7 +6,7 @@ import { socios } from "@/content/socios";
 
 export default function Socios() {
   return (
-    <section className="border-t border-paper-3 bg-paper py-20 md:py-28">
+    <section className="border-t border-paper-3 bg-paper py-12 md:py-16">
       <Container>
         <Reveal>
           <Rotulo>Sócios</Rotulo>
@@ -15,7 +15,7 @@ export default function Socios() {
           </h2>
         </Reveal>
 
-        <div className="mt-16 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {socios.map((s, i) => (
             <Reveal key={s.slug} delay={(i % 3) * 0.06}>
               <article>
