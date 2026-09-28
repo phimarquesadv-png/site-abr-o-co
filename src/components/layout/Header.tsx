@@ -90,6 +90,7 @@ export default function Header() {
             >
               WhatsApp
             </a>
+            <Redes className="ml-1" />
           </nav>
 
           <button
