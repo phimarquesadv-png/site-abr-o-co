@@ -26,7 +26,7 @@ export default function Atuacao() {
       {/* As quatro frentes, no mesmo passo a passo de "Como funciona". Os ids
           vêm do slug para o rodapé chegar direto em cada frente. */}
       <Percurso
-        tema="claro"
+        tema="escuro"
         rotulo="As frentes"
         titulo="Negócio vem primeiro."
         descricao="As outras três existem para sustentar a leitura que ele abre."
