@@ -106,12 +106,24 @@ export const site = {
  * Link universal do Google Maps para um escritório: no celular abre o
  * aplicativo de mapas, no computador abre o site, sempre com o endereço já
  * pesquisado para a pessoa traçar a rota.
+ *
+ * A busca usa só rua, número, bairro e cidade: andar, sala, quadra e lote
+ * confundem o geocodificador e não mudam o ponto no mapa.
  */
 export function linkMapa(e: {
   cidade: string;
   uf: string;
   linhas: readonly string[];
 }) {
-  const endereco = [...e.linhas, `${e.cidade} - ${e.uf}`].join(", ");
+  const ruaNumero = e.linhas[0]
+    .split(",")
+    .map((t) => t.trim())
+    .filter((t) => !/^(Qd\.|Lt\.|Sala|\d+º andar)/i.test(t))
+    .join(", ");
+  const bairro = (e.linhas[1] ?? "").split("·")[0].trim();
+  const bairroLimpo = /andar/i.test(bairro) ? "" : bairro;
+  const endereco = [ruaNumero, bairroLimpo, `${e.cidade} - ${e.uf}`]
+    .filter(Boolean)
+    .join(", ");
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(endereco)}`;
 }
