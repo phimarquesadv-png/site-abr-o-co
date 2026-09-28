@@ -5,7 +5,10 @@ import Reveal from "@/components/motion/Reveal";
 import { clientes } from "@/content/clientes";
 
 /**
- * Tarja rolante com as empresas atendidas.
+ * Tarja rolante com as empresas atendidas, sobre o azul da marca.
+ *
+ * Cada logo vai num cartão branco, como nas pranchas do portfólio: os
+ * arquivos têm fundo branco e, soltos sobre o azul, virariam caixas.
  *
  * A trilha é duplicada e desliza metade do próprio comprimento em loop, o
  * que fecha o ciclo sem emenda visível. Para quem pede menos movimento, o
@@ -14,10 +17,10 @@ import { clientes } from "@/content/clientes";
 export default function Clientes() {
   const trilha = [...clientes, ...clientes];
   return (
-    <section className="overflow-hidden border-t border-paper-3 bg-paper py-16 md:py-20">
+    <section className="overflow-hidden bg-azul py-16 text-white md:py-20">
       <Container>
         <Reveal>
-          <Rotulo>Empresas atendidas</Rotulo>
+          <Rotulo claro>Empresas atendidas</Rotulo>
         </Reveal>
       </Container>
 
@@ -26,13 +29,13 @@ export default function Clientes() {
         role="list"
         aria-label="Empresas atendidas"
       >
-        <ul className="tarja flex w-max items-center gap-14 pr-14 group-hover:[animation-play-state:paused] md:gap-20 md:pr-20">
+        <ul className="tarja flex w-max items-center gap-4 pr-4 group-hover:[animation-play-state:paused] md:gap-5 md:pr-5">
           {trilha.map((c, i) => (
             <li
               key={`${c.slug}-${i}`}
               role="listitem"
               aria-hidden={i >= clientes.length}
-              className="flex-none"
+              className="flex h-20 flex-none items-center rounded-lg bg-white px-7 md:h-24 md:px-9"
             >
               <Image
                 src={`/clientes/${c.slug}.webp`}
