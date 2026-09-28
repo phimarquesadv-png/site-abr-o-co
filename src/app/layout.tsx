@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Figtree } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -8,16 +8,21 @@ import PageTransition from "@/components/motion/PageTransition";
 import { site } from "@/content/site";
 
 /**
- * A fonte da marca é a Gramatika (consta no timbrado, em Regular e Bold).
- * É comercial e exige licença de webfont à parte, que ainda não existe.
- * Figtree é a substituta mais próxima entre as gratuitas — mesma classe de
- * grotesca geométrica, altura de x alta, "a" de dois andares e "g" de um só.
- * Quando a licença sair, troca-se aqui e no `globals.css`.
+ * Gramatika, a fonte da marca (consta no timbrado). Arquivos entregues pelo
+ * Philipe em 2026-09-28, em Regular e Bold; a licença de web fica por conta
+ * da Abrão & Co. Hospedada aqui mesmo, sem serviço externo.
+ *
+ * Não há peso Medium: onde o site pede 500, o navegador usa o Regular.
+ * O "º" não existe na fonte e cai na reserva do sistema.
  */
-const sans = Figtree({
-  subsets: ["latin"],
+const sans = localFont({
+  src: [
+    { path: "./fonts/Gramatika-Regular.woff2", weight: "400", style: "normal" },
+    { path: "./fonts/Gramatika-Bold.woff2", weight: "700", style: "normal" },
+  ],
   variable: "--font-sans",
   display: "swap",
+  fallback: ["Figtree", "ui-sans-serif", "system-ui", "sans-serif"],
 });
 
 export const metadata: Metadata = {

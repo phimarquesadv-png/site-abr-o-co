@@ -59,7 +59,7 @@ export default function Termos() {
             <Item numero={1} titulo="Quem responde por este site">
               <p>
                 O site{" "}
-                <strong className="font-medium text-ink">
+                <strong className="font-bold text-ink">
                   {site.url.replace("https://", "")}
                 </strong>{" "}
                 é mantido por {site.legal.razaoSocial}, inscrita no CNPJ sob o
@@ -78,7 +78,7 @@ export default function Termos() {
                 frentes de atuação, sua equipe e seus canais de contato.
               </p>
               <p>
-                <strong className="font-medium text-ink">
+                <strong className="font-bold text-ink">
                   Não é orientação técnica.
                 </strong>{" "}
                 Nada aqui, seja descrição de tese, de método ou de resultado
@@ -88,7 +88,7 @@ export default function Termos() {
                 e só pode ser avaliada mediante análise própria, sob contrato.
               </p>
               <p>
-                <strong className="font-medium text-ink">
+                <strong className="font-bold text-ink">
                   Não é promessa de resultado.
                 </strong>{" "}
                 Os números de histórico publicados são valores acumulados de
@@ -100,7 +100,7 @@ export default function Termos() {
             <Item numero={3} titulo="Formulário e canais de contato">
               <p>
                 Enviar mensagem pelo formulário, pelo WhatsApp ou por e-mail{" "}
-                <strong className="font-medium text-ink">
+                <strong className="font-bold text-ink">
                   não cria vínculo contratual
                 </strong>{" "}
                 nem obrigação de atendimento. A relação de prestação de serviços

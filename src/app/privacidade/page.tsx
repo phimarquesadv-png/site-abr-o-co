@@ -110,7 +110,7 @@ export default function Privacidade() {
                   ? `${sede.linhas.join(", ")}, ${sede.cidade}/${sede.uf}`
                   : ""}
                 , é a{" "}
-                <strong className="font-medium text-ink">controladora</strong>{" "}
+                <strong className="font-bold text-ink">controladora</strong>{" "}
                 dos dados pessoais coletados neste site. Controladora é quem
                 decide por que e como esses dados são tratados.
               </p>
@@ -133,7 +133,7 @@ export default function Privacidade() {
 
             <Item numero={3} titulo="Que dados coletamos">
               <p>
-                <strong className="font-medium text-ink">
+                <strong className="font-bold text-ink">
                   Os que você informa.
                 </strong>{" "}
                 No formulário de contato: nome, empresa, e-mail, telefone, o
@@ -141,7 +141,7 @@ export default function Privacidade() {
                 pedido, e nenhum campo é preenchido por nós.
               </p>
               <p>
-                <strong className="font-medium text-ink">
+                <strong className="font-bold text-ink">
                   Os que o navegador envia sozinho.
                 </strong>{" "}
                 Como qualquer site, o nosso registra endereço IP, data e hora do
@@ -150,7 +150,7 @@ export default function Privacidade() {
                 Marco Civil da Internet.
               </p>
               <p>
-                <strong className="font-medium text-ink">
+                <strong className="font-bold text-ink">
                   O que não coletamos.
                 </strong>{" "}
                 Não pedimos CPF, dados bancários, documentos fiscais nem
@@ -294,7 +294,7 @@ export default function Privacidade() {
             <Item numero={10} titulo="Cookies">
               <p>
                 Este site{" "}
-                <strong className="font-medium text-ink">não usa</strong>{" "}
+                <strong className="font-bold text-ink">não usa</strong>{" "}
                 cookies de publicidade, de rastreamento entre sites nem
                 ferramenta de medição de audiência. Não há banner de cookies
                 porque não há o que consentir. Se isso mudar, esta política é

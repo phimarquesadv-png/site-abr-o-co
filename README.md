@@ -193,12 +193,12 @@ chamada final com `mix-blend-multiply`, para o fundo branco do vídeo sumir sobr
 o papel. Os originais (70 MB e 1,5 MB) foram cortados e comprimidos para
 1280×720 e 640×640 em H.264; nenhum arquivo passa de 2,5 MB.
 
-**Tipografia.** A fonte da marca é a **Gramatika** (Regular e Bold no
-timbrado). É comercial e exige licença de webfont à parte, que ainda não
-existe. Até lá o site usa **Figtree**, a substituta mais próxima entre as
-gratuitas — mesma classe de grotesca geométrica, altura de x alta, "a" de dois
-andares e "g" de um só. Comprada a licença, troca-se em `src/app/layout.tsx` e
-no comentário do `@theme`.
+**Tipografia.** A fonte da marca é a **Gramatika** (Regular e Bold, como no
+timbrado), hospedada no próprio site em `src/app/fonts/` (WOFF2, ~54 KB cada)
+e carregada por `next/font/local` em `src/app/layout.tsx`. Os arquivos foram
+entregues pelo Philipe em 2026-09-28; a licença de web é responsabilidade da
+Abrão & Co. Não há peso Medium: onde o site pede 500, o navegador usa o
+Regular. O "º" não existe na fonte e cai na reserva do sistema.
 
 **Motion.** Duas camadas, com papéis distintos. A de **atmosfera** roda sozinha
 e não depende de scroll: uma malha que deriva devagar ao fundo dos blocos
@@ -235,7 +235,7 @@ segue em tom informativo por escolha editorial, não por obrigação.
 - [x] CNPJ (cartão CNPJ, 09/01/2026)
 - [x] E-mail e telefone (portfólio institucional, p. 20)
 - [x] Caixa comercial própria (`contato@abrao.co`) no lugar do e-mail pessoal do sócio
-- [ ] Licença de webfont da Gramatika (substitui a Figtree)
+- [ ] Guardar o comprovante da licença de web da Gramatika (os arquivos já estão no site)
 - [x] Fotos dos sócios (extraídas do portfólio, recortadas em 4:5)
 - [ ] Fotos de equipe e escritório
 
