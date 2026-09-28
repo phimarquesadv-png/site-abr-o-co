@@ -6,12 +6,12 @@ import Reveal from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import Percurso from "@/components/sections/Percurso";
 import ChamadaFinal from "@/components/sections/ChamadaFinal";
-import { frentes, analise, segmentos } from "@/content/atuacao";
+import { frentes, segmentos } from "@/content/atuacao";
 
 export const metadata: Metadata = {
   title: "Atuação",
   description:
-    "Quatro frentes (Negócio, Tributário, Tecnologia e Agronegócio) e a Análise 360º: revisão detalhada da parte fiscal, com os valores a recuperar apontados.",
+    "Quatro frentes: Negócio, Tributário, Tecnologia e Agronegócio. Segmentos com base instalada: atacadistas e alimentos, transporte, indústria e comércio.",
 };
 
 export default function Atuacao() {
@@ -35,41 +35,6 @@ export default function Atuacao() {
           texto: f.descricao,
         }))}
       />
-
-      {/* Análise 360º — o produto central */}
-      <section className="bg-paper-2 py-12 md:py-16">
-        <Container>
-          <div className="grid gap-14 md:grid-cols-[0.85fr_1.15fr]">
-            <Reveal>
-              <Rotulo>O trabalho</Rotulo>
-              <h2 className="mt-6 text-ink text-[clamp(2rem,4vw,3rem)] leading-[1.1]">
-                {analise.nome}
-              </h2>
-            </Reveal>
-
-            <div>
-              <Reveal delay={0.06}>
-                <p className="text-lg leading-relaxed text-muted">
-                  {analise.resumo}
-                </p>
-              </Reveal>
-
-              <Stagger className="mt-12 space-y-px">
-                {analise.pilares.map((p) => (
-                  <StaggerItem key={p.titulo}>
-                    <div className="border-t border-paper-3 py-7">
-                      <h3 className="text-lg text-ink">{p.titulo}</h3>
-                      <p className="mt-2.5 max-w-xl leading-relaxed text-muted">
-                        {p.texto}
-                      </p>
-                    </div>
-                  </StaggerItem>
-                ))}
-              </Stagger>
-            </div>
-          </div>
-        </Container>
-      </section>
 
       {/* Segmentos com base instalada. Ficavam numa aba própria, "Transportes",
           que era pensamento de landing page; num site institucional, os três
