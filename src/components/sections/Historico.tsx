@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Rotulo from "@/components/ui/Rotulo";
 import Reveal from "@/components/motion/Reveal";
@@ -15,16 +16,19 @@ import { site } from "@/content/site";
 export default function Historico() {
   return (
     <section className="relative overflow-hidden bg-azul py-24 text-white md:py-32">
-      {/* Halo frio no alto: dá profundidade ao campo chapado sem virar
-          gradiente decorativo. */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(70% 55% at 70% 0%, rgba(255,255,255,0.14), transparent 65%)",
-        }}
-      />
+      {/* Grafismo da marca: textura abstrata azul do material oficial, com um
+          véu do azul da marca por cima para unificar a cor e manter o branco
+          legível. */}
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <Image
+          src="/grafismo/abstrato.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-azul/40" />
+      </div>
       <Container className="relative">
         <Reveal>
           <Rotulo claro>Nosso histórico</Rotulo>

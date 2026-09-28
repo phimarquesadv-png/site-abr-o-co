@@ -7,6 +7,7 @@ import {
   useScroll,
   useTransform,
 } from "motion/react";
+import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Rotulo from "@/components/ui/Rotulo";
 import TextReveal from "@/components/motion/TextReveal";
@@ -32,10 +33,27 @@ export default function PageHero({
   });
   const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
   const y = useTransform(scrollYProgress, [0, 0.7], [0, -32]);
+  const yGrafismo = useTransform(scrollYProgress, [0, 1], [0, 80]);
 
   return (
-    <section ref={ref} className="bg-paper">
-      <Container className="pt-32 pb-8 md:pt-40 md:pb-10">
+    <section ref={ref} className="relative overflow-hidden bg-paper">
+      {/* Grafismo da marca: as ripas da fachada em render branco, à direita,
+          esmaecendo para o texto. Fundo branco do arquivo some sobre o papel
+          por `mix-blend-multiply`. */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] mix-blend-multiply lg:block"
+        style={menosMovimento ? undefined : { y: yGrafismo }}
+      >
+        <Image
+          src="/grafismo/ripas-3d.webp"
+          alt=""
+          fill
+          sizes="60vw"
+          className="grafismo-mascara object-cover object-left"
+        />
+      </motion.div>
+      <Container className="relative pt-32 pb-8 md:pt-40 md:pb-10">
         <motion.div style={menosMovimento ? undefined : { opacity, y }}>
           <Rotulo>{rotulo}</Rotulo>
           <TextReveal

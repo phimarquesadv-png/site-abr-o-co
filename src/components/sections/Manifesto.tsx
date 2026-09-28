@@ -8,6 +8,7 @@ import {
   useTransform,
   type MotionValue,
 } from "motion/react";
+import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Rotulo from "@/components/ui/Rotulo";
 import Reveal from "@/components/motion/Reveal";
@@ -53,6 +54,7 @@ export default function Manifesto() {
     target: ref,
     offset: ["start 95%", "end 20%"],
   });
+  const yGrafismo = useTransform(scrollYProgress, [0, 1], [60, -60]);
   const n = linhas.reduce((t, l) => t + l.split(" ").length, 0);
   const antes = linhas.map((_, li) =>
     linhas.slice(0, li).reduce((t, l) => t + l.split(" ").length, 0),
@@ -60,7 +62,22 @@ export default function Manifesto() {
 
   return (
     <section className="relative overflow-hidden bg-ink py-24 text-on-dark md:py-36">
-      <Container>
+      {/* Grafismo da marca em traço: as ripas em linha branca sobre o
+          escuro (`mix-blend-screen` some com o preto do arquivo). */}
+      <motion.div
+        aria-hidden
+        className="pointer-events-none absolute -right-16 top-0 hidden h-full w-[50%] opacity-30 mix-blend-screen lg:block"
+        style={menosMovimento ? undefined : { y: yGrafismo }}
+      >
+        <Image
+          src="/grafismo/ripas-2d-branco.webp"
+          alt=""
+          fill
+          sizes="60vw"
+          className="object-contain object-right-top"
+        />
+      </motion.div>
+      <Container className="relative">
         <Reveal>
           <Rotulo claro>Como trabalhamos</Rotulo>
         </Reveal>

@@ -142,3 +142,8 @@
     transparent
   );
 }
+
+/* Grafismo do topo das páginas internas: some em direção ao texto. */
+.grafismo-mascara {
+  mask-image: linear-gradient(to right, transparent, black 45%);
+}
