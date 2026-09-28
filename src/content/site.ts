@@ -101,3 +101,17 @@ export const site = {
     { href: "/contato/", rotulo: "Contato" },
   ],
 } as const;
+
+/**
+ * Link universal do Google Maps para um escritório: no celular abre o
+ * aplicativo de mapas, no computador abre o site, sempre com o endereço já
+ * pesquisado para a pessoa traçar a rota.
+ */
+export function linkMapa(e: {
+  cidade: string;
+  uf: string;
+  linhas: readonly string[];
+}) {
+  const endereco = [...e.linhas, `${e.cidade} - ${e.uf}`].join(", ");
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(endereco)}`;
+}
