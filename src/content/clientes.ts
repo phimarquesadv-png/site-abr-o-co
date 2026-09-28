@@ -1,8 +1,13 @@
 /**
  * Empresas atendidas, na ordem das pranchas 14 a 16 do portfólio
  * institucional (Atacadistas & Alimentos, Transporte, Indústria & Comércio).
- * Logos recortados das pranchas, em `public/clientes/` (WebP, 128 px de altura).
- * Publicação autorizada pelo Philipe em 2026-09-28.
+ * Logos recortados das pranchas, sem o fundo branco, em `public/clientes/`
+ * (WebP com transparência, 128 px de altura). Publicação autorizada pelo
+ * Philipe em 2026-09-28.
+ *
+ * Fora, a pedido do Philipe: oito marcas de forma cheia (Super União,
+ * Guaraná Mineiro, Daus, AGT-LOG, Setceg, Perfinasa, Boi Brasil e Bon), que
+ * em silhueta branca viravam mancha.
  */
 export const clientes = [
   {
@@ -12,28 +17,15 @@ export const clientes = [
     altura: 128,
   },
   {
-    slug: "super-uniao",
-    nome: "Super União Supermercados",
-    largura: 140,
-    altura: 128,
-  },
-  {
     slug: "superbox",
     nome: "Superbox Supermercados",
     largura: 185,
     altura: 128,
   },
   { slug: "brasal", nome: "Brasal Refrigerantes", largura: 99, altura: 128 },
-  {
-    slug: "guarana-mineiro",
-    nome: "Guaraná Mineiro",
-    largura: 179,
-    altura: 128,
-  },
   { slug: "bonasa", nome: "Bonasa", largura: 392, altura: 128 },
   { slug: "dez", nome: "Dez", largura: 312, altura: 128 },
   { slug: "cicopal", nome: "Cicopal", largura: 214, altura: 128 },
-  { slug: "daus", nome: "Daus", largura: 303, altura: 128 },
   { slug: "roan", nome: "Roan Alimentos", largura: 183, altura: 128 },
   {
     slug: "conquista",
@@ -41,7 +33,6 @@ export const clientes = [
     largura: 371,
     altura: 128,
   },
-  { slug: "bon", nome: "Bon Atacarejo", largura: 283, altura: 128 },
   {
     slug: "transcol",
     nome: "Transcol Transportes e Logística",
@@ -59,12 +50,6 @@ export const clientes = [
     slug: "mahnic",
     nome: "Mahnic Operadora Logística",
     largura: 229,
-    altura: 128,
-  },
-  {
-    slug: "agt-log",
-    nome: "AGT-LOG Logística e Cargas",
-    largura: 375,
     altura: 128,
   },
   { slug: "dalastra", nome: "Dalastra", largura: 835, altura: 128 },
@@ -88,13 +73,10 @@ export const clientes = [
     altura: 128,
   },
   { slug: "fenatac", nome: "Fenatac", largura: 193, altura: 128 },
-  { slug: "setceg", nome: "Setceg", largura: 424, altura: 128 },
   { slug: "agromass", nome: "Agromass Brasil", largura: 393, altura: 128 },
-  { slug: "boi-brasil", nome: "Boi Brasil", largura: 242, altura: 128 },
   { slug: "frigoias", nome: "Frigoiás", largura: 508, altura: 128 },
   { slug: "navesa", nome: "Grupo Navesa", largura: 465, altura: 128 },
   { slug: "dtc", nome: "DTC", largura: 360, altura: 128 },
-  { slug: "perfinasa", nome: "Perfinasa", largura: 458, altura: 128 },
   { slug: "unitintas", nome: "Unitintas", largura: 394, altura: 128 },
   {
     slug: "sementes-sao-mateus",
