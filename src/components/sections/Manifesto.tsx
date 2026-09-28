@@ -11,12 +11,10 @@ import {
 import Container from "@/components/ui/Container";
 import Rotulo from "@/components/ui/Rotulo";
 import Reveal from "@/components/motion/Reveal";
-import { Stagger, StaggerItem } from "@/components/motion/Stagger";
-import { analise } from "@/content/atuacao";
 
 /**
- * Três afirmações curtas, uma por pilar da Análise 360º. O texto de cada
- * pilar (de `atuacao.ts`) aparece embaixo, na íntegra.
+ * Três afirmações curtas, uma por pilar da Análise 360º. O texto completo
+ * de cada pilar fica em Atuação.
  */
 const linhas = [
   "Segurança na tese.",
@@ -93,17 +91,6 @@ export default function Manifesto() {
             </p>
           ))}
         </div>
-
-        <Stagger className="mt-20 grid gap-10 border-t border-on-dark/15 pt-10 md:grid-cols-3 md:gap-12">
-          {analise.pilares.map((p) => (
-            <StaggerItem key={p.titulo}>
-              <h3 className="text-lg text-on-dark">{p.titulo}</h3>
-              <p className="mt-3 leading-relaxed text-on-dark-muted">
-                {p.texto}
-              </p>
-            </StaggerItem>
-          ))}
-        </Stagger>
       </Container>
     </section>
   );

@@ -5,7 +5,6 @@ import Rotulo from "@/components/ui/Rotulo";
 import Reveal from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import Percurso from "@/components/sections/Percurso";
-import ChamadaFinal from "@/components/sections/ChamadaFinal";
 import { frentes, analise, segmentos } from "@/content/atuacao";
 
 export const metadata: Metadata = {
@@ -29,7 +28,6 @@ export default function Atuacao() {
         tema="escuro"
         rotulo="As frentes"
         titulo="Negócio vem primeiro."
-        descricao="As outras três existem para sustentar a leitura que ele abre."
         itens={frentes.map((f) => ({
           id: f.slug,
           titulo: f.nome,
@@ -82,11 +80,6 @@ export default function Atuacao() {
             <h2 className="mt-6 max-w-2xl text-ink text-[clamp(1.8rem,3.5vw,2.6rem)] leading-[1.12]">
               Três segmentos com base instalada.
             </h2>
-            <p className="mt-6 max-w-lg leading-relaxed text-muted">
-              A matéria tributária é a mesma. O que muda é onde ela aparece na
-              operação de cada um. É isso que a leitura de negócio vai buscar
-              primeiro.
-            </p>
           </Reveal>
 
           <Stagger className="mt-14 grid gap-px overflow-hidden rounded-lg bg-paper-3 sm:grid-cols-3">
@@ -100,8 +93,6 @@ export default function Atuacao() {
           </Stagger>
         </Container>
       </section>
-
-      <ChamadaFinal />
     </>
   );
 }

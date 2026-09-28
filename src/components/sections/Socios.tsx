@@ -3,6 +3,7 @@ import Container from "@/components/ui/Container";
 import Rotulo from "@/components/ui/Rotulo";
 import Reveal from "@/components/motion/Reveal";
 import { socios } from "@/content/socios";
+import BioSocio from "@/components/ui/BioSocio";
 
 export default function Socios() {
   return (
@@ -30,9 +31,7 @@ export default function Socios() {
                 </div>
                 <h3 className="mt-6 text-xl text-ink">{s.nome}</h3>
                 <p className="rotulo mt-2 text-muted">{s.cargo}</p>
-                {s.bio ? (
-                  <p className="mt-4 leading-relaxed text-muted">{s.bio}</p>
-                ) : null}
+                {s.bio ? <BioSocio bio={s.bio} /> : null}
               </article>
             </Reveal>
           ))}

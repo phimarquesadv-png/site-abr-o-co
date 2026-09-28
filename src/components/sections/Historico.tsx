@@ -47,11 +47,9 @@ export default function Historico() {
         </div>
 
         <Reveal delay={0.2}>
-          <p className="mt-16 max-w-xl border-t border-white/20 pt-6 text-sm leading-relaxed text-on-azul-muted">
-            Valores acumulados em operações conduzidas pela Abrão &amp; Co.
-            Resultado obtido no passado não representa promessa nem projeção de
-            resultado futuro: cada caso depende da documentação, da situação
-            fiscal da empresa e da decisão dos órgãos competentes.
+          <p className="mt-14 max-w-xl border-t border-white/20 pt-5 text-xs leading-relaxed text-on-azul-muted">
+            Valores acumulados. Resultado passado não é promessa nem projeção de
+            resultado futuro.
           </p>
         </Reveal>
       </Container>

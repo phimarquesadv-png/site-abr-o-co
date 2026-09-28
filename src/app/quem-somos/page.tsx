@@ -5,7 +5,6 @@ import Rotulo from "@/components/ui/Rotulo";
 import Reveal from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { site } from "@/content/site";
-import ChamadaFinal from "@/components/sections/ChamadaFinal";
 import Socios from "@/components/sections/Socios";
 import VideoSede from "@/components/ui/VideoSede";
 
@@ -92,8 +91,6 @@ export default function QuemSomos() {
           </Reveal>
         </Container>
       </section>
-
-      <ChamadaFinal />
     </>
   );
 }
