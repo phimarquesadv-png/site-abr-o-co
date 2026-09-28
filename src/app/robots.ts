@@ -7,7 +7,7 @@ export default function robots(): MetadataRoute.Robots {
   return {
     // Privacidade e termos ficam indexáveis de propósito: são as páginas
     // que alguém procura quando quer saber como a empresa trata dados.
-    rules: { userAgent: "*", allow: "/" },
+    rules: { userAgent: "*", allow: "/", disallow: ["/admin/", "/api/"] },
     sitemap: `${site.url}/sitemap.xml`,
   };
 }

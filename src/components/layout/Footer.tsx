@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Container from "@/components/ui/Container";
+import Redes from "@/components/ui/Redes";
 import Logo from "@/components/ui/Logo";
-import Monograma from "@/components/ui/Monograma";
-import { site } from "@/content/site";
+import { site, linkMapa, linkWaze } from "@/content/site";
 import { frentes } from "@/content/atuacao";
 
 export default function Footer() {
@@ -10,12 +10,6 @@ export default function Footer() {
 
   return (
     <footer className="relative overflow-hidden bg-ink text-on-dark">
-      {/* Monograma como marca-d'água, no mesmo espírito do campo azul do
-          histórico: presença de marca sem competir com a navegação. */}
-      <Monograma
-        aria-hidden
-        className="pointer-events-none absolute -right-16 -bottom-20 hidden w-[26rem] text-white/[0.04] lg:block"
-      />
       <Container className="relative py-20">
         <div className="grid gap-14 md:grid-cols-[1.3fr_1fr_1fr]">
           <div>
@@ -23,6 +17,7 @@ export default function Footer() {
             <p className="mt-6 max-w-xs leading-relaxed text-on-dark-muted">
               {site.assinatura}
             </p>
+            <Redes tom="escuro" className="mt-7" />
           </div>
 
           <nav aria-label="Atuação">
@@ -51,6 +46,7 @@ export default function Footer() {
             <ul className="mt-5 space-y-3">
               {[
                 { href: "/quem-somos/", rotulo: "Quem somos" },
+                { href: "/blog/", rotulo: "Blog" },
                 { href: "/contato/", rotulo: "Contato" },
                 { href: "/privacidade/", rotulo: "Política de privacidade" },
                 { href: "/termos/", rotulo: "Termos de uso" },
@@ -83,7 +79,26 @@ export default function Footer() {
               <p className="mt-2.5 text-sm leading-relaxed text-on-dark-muted">
                 {e.linhas.join(", ")}
                 <br />
-                {e.cidade} — {e.uf}
+                {e.cidade}/{e.uf}
+              </p>
+              <p className="mt-3 flex items-center gap-3 text-sm text-on-dark-muted">
+                <a
+                  href={linkMapa(e)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-4 transition-colors hover:text-on-dark motion-reduce:transition-none"
+                >
+                  Google Maps
+                </a>
+                <span aria-hidden>·</span>
+                <a
+                  href={linkWaze(e)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-4 transition-colors hover:text-on-dark motion-reduce:transition-none"
+                >
+                  Waze
+                </a>
               </p>
             </address>
           ))}

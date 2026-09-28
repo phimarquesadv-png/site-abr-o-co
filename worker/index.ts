@@ -9,6 +9,8 @@
  *   RESEND_API_KEY   obrigatória — chave da API do Resend (como Secret)
  *   LEAD_EMAIL_TO    obrigatória — caixa do Comercial que recebe o lead
  *   LEAD_EMAIL_FROM  obrigatória — remetente em domínio verificado no Resend
+ *   GITHUB_OAUTH_ID      login do painel do blog — Client ID do OAuth App
+ *   GITHUB_OAUTH_SECRET  login do painel do blog — Client Secret (Secret)
  *
  * Nenhuma delas vai para o repositório. O repo é público.
  */
@@ -17,6 +19,8 @@ type Env = {
   RESEND_API_KEY?: string;
   LEAD_EMAIL_TO?: string;
   LEAD_EMAIL_FROM?: string;
+  GITHUB_OAUTH_ID?: string;
+  GITHUB_OAUTH_SECRET?: string;
   /** Binding dos static assets, declarado no wrangler.jsonc. */
   ASSETS: { fetch: (request: Request) => Promise<Response> };
 };
@@ -131,7 +135,11 @@ async function receberLead(request: Request, env: Env): Promise<Response> {
   });
 
   if (!resposta.ok) {
-    console.error("lead: falha no envio", resposta.status, await resposta.text());
+    console.error(
+      "lead: falha no envio",
+      resposta.status,
+      await resposta.text(),
+    );
     return responder(502, {
       mensagem: "Não conseguimos enviar agora. Tente novamente em instantes.",
     });
@@ -152,14 +160,121 @@ async function receberLead(request: Request, env: Env): Promise<Response> {
   return responder(200, { ok: true });
 }
 
+/**
+ * Login do painel do blog (/admin/) — troca de código por token do GitHub.
+ *
+ * O Decap CMS abre /api/auth num popup; o GitHub devolve em /api/callback
+ * com um código; este Worker troca o código pelo token usando o segredo do
+ * OAuth App (que nunca vai ao navegador) e entrega o token ao painel pelo
+ * protocolo de `postMessage` que o Decap espera. Só quem tem acesso de
+ * escrita ao repositório consegue publicar: quem controla isso é o GitHub.
+ */
+const htmlAuth = (corpo: string) =>
+  new Response(`<!doctype html><meta charset="utf-8"><body>${corpo}</body>`, {
+    headers: {
+      "Content-Type": "text/html; charset=utf-8",
+      "Cache-Control": "no-store",
+    },
+  });
+
+function iniciarLogin(request: Request, env: Env): Response {
+  if (!env.GITHUB_OAUTH_ID || !env.GITHUB_OAUTH_SECRET) {
+    return htmlAuth(
+      "<p>Login do painel não configurado. Faltam GITHUB_OAUTH_ID e GITHUB_OAUTH_SECRET no Worker.</p>",
+    );
+  }
+  const origem = new URL(request.url).origin;
+  const estado = crypto.randomUUID();
+  const url = new URL("https://github.com/login/oauth/authorize");
+  url.searchParams.set("client_id", env.GITHUB_OAUTH_ID);
+  url.searchParams.set("redirect_uri", `${origem}/api/callback`);
+  url.searchParams.set("scope", "repo,user");
+  url.searchParams.set("state", estado);
+  return new Response(null, {
+    status: 302,
+    headers: {
+      Location: url.toString(),
+      "Set-Cookie": `oauth_state=${estado}; Path=/api; HttpOnly; Secure; SameSite=Lax; Max-Age=600`,
+      "Cache-Control": "no-store",
+    },
+  });
+}
+
+async function concluirLogin(request: Request, env: Env): Promise<Response> {
+  const url = new URL(request.url);
+  const codigo = url.searchParams.get("code");
+  const estado = url.searchParams.get("state");
+  const cookie = request.headers.get("Cookie") ?? "";
+  const estadoCookie = /(?:^|;\s*)oauth_state=([^;]+)/.exec(cookie)?.[1];
+  if (!codigo || !estado || estado !== estadoCookie) {
+    return htmlAuth(
+      "<p>Login inválido ou expirado. Feche esta janela e tente de novo.</p>",
+    );
+  }
+  if (!env.GITHUB_OAUTH_ID || !env.GITHUB_OAUTH_SECRET) {
+    return htmlAuth("<p>Login do painel não configurado.</p>");
+  }
+  const resposta = await fetch("https://github.com/login/oauth/access_token", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    body: JSON.stringify({
+      client_id: env.GITHUB_OAUTH_ID,
+      client_secret: env.GITHUB_OAUTH_SECRET,
+      code: codigo,
+      redirect_uri: `${url.origin}/api/callback`,
+    }),
+  });
+  const dados = (await resposta.json()) as {
+    access_token?: string;
+    error?: string;
+  };
+  const token = dados.access_token;
+  const conteudo = token
+    ? `authorization:github:success:${JSON.stringify({ token, provider: "github" })}`
+    : `authorization:github:error:${JSON.stringify({ message: dados.error ?? "sem token" })}`;
+  // Protocolo do Decap: avisa que vai autorizar, espera o painel responder e
+  // então manda o resultado. A origem é a do próprio site, nunca "*".
+  const script = `
+    (function () {
+      var origem = ${JSON.stringify(url.origin)};
+      function entregar() {
+        window.opener.postMessage(${JSON.stringify(conteudo)}, origem);
+      }
+      window.addEventListener("message", function (e) {
+        if (e.origin === origem && e.data === "authorizing:github") entregar();
+      }, false);
+      window.opener.postMessage("authorizing:github", origem);
+    })();
+  `;
+  return new Response(
+    `<!doctype html><meta charset="utf-8"><body><p>Concluindo o login...</p><script>${script}</script></body>`,
+    {
+      headers: {
+        "Content-Type": "text/html; charset=utf-8",
+        "Cache-Control": "no-store",
+        "Set-Cookie":
+          "oauth_state=; Path=/api; HttpOnly; Secure; SameSite=Lax; Max-Age=0",
+      },
+    },
+  );
+}
+
 const worker = {
   async fetch(request: Request, env: Env): Promise<Response> {
     const { pathname } = new URL(request.url);
+    const rota = pathname.replace(/\/$/, "");
+
+    if (rota === "/api/auth") return iniciarLogin(request, env);
+    if (rota === "/api/callback") return concluirLogin(request, env);
 
     // Aceita com e sem barra final: o site é exportado com trailingSlash.
     if (pathname.replace(/\/$/, "") === "/api/lead") {
       if (request.method !== "POST") {
-        return responder(405, { mensagem: "Método não permitido." }, { Allow: "POST" });
+        return responder(
+          405,
+          { mensagem: "Método não permitido." },
+          { Allow: "POST" },
+        );
       }
       return receberLead(request, env);
     }

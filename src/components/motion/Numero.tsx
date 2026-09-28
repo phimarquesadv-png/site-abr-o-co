@@ -12,9 +12,10 @@ type Props = {
 };
 
 /**
- * Contagem de 0 até o valor, disparada quando o número entra em tela.
+ * Contagem de 0 até o valor, disparada toda vez que o número entra em tela.
  *
- * Roda uma vez só. O valor final já vai no HTML servido, então quem chega com
+ * Ao sair da tela o número volta a zero, e reconta quando reaparece (pedido
+ * do Philipe, 2026-09-28). O valor final já vai no HTML servido, então quem chega com
  * JavaScript desligado, ou com menos movimento pedido ao sistema, lê o número
  * inteiro do mesmo jeito — a animação é enfeite, não é o conteúdo.
  */
@@ -25,12 +26,13 @@ export default function Numero({
   className,
 }: Props) {
   const ref = useRef<HTMLSpanElement>(null);
-  const naTela = useInView(ref, { once: true, margin: "0px 0px -15% 0px" });
+  const naTela = useInView(ref, { once: false, margin: "0px 0px -15% 0px" });
   const menosMovimento = useReducedMotion();
   const [atual, setAtual] = useState(valor);
 
-  // Zera só enquanto o número ainda está fora de tela. Se ele já estiver
-  // visível na carga, fica no valor final em vez de piscar de 500 para 0.
+  // Zera sempre que o número está fora de tela, para a próxima entrada
+  // recontar. Se ele já estiver visível na carga, fica no valor final em vez
+  // de piscar para 0.
   //
   // O setState aqui é proposital: o HTML servido precisa trazer o valor
   // cheio, e a zeragem só pode acontecer depois da hidratação. Fazer isso

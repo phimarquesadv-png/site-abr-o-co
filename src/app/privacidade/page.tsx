@@ -106,8 +106,11 @@ export default function Privacidade() {
               <p>
                 {site.legal.razaoSocial}, inscrita no CNPJ sob o nº{" "}
                 {site.legal.cnpj}, com sede em{" "}
-                {sede ? `${sede.linhas.join(", ")}, ${sede.cidade} — ${sede.uf}` : ""}
-                , é a <strong className="font-medium text-ink">controladora</strong>{" "}
+                {sede
+                  ? `${sede.linhas.join(", ")}, ${sede.cidade}/${sede.uf}`
+                  : ""}
+                , é a{" "}
+                <strong className="font-bold text-ink">controladora</strong>{" "}
                 dos dados pessoais coletados neste site. Controladora é quem
                 decide por que e como esses dados são tratados.
               </p>
@@ -130,15 +133,15 @@ export default function Privacidade() {
 
             <Item numero={3} titulo="Que dados coletamos">
               <p>
-                <strong className="font-medium text-ink">
+                <strong className="font-bold text-ink">
                   Os que você informa.
                 </strong>{" "}
                 No formulário de contato: nome, empresa, e-mail, telefone, o
-                assunto escolhido e o texto que você escrever. Nada além disso é pedido, e nenhum campo é preenchido
-                por nós.
+                assunto escolhido e o texto que você escrever. Nada além disso é
+                pedido, e nenhum campo é preenchido por nós.
               </p>
               <p>
-                <strong className="font-medium text-ink">
+                <strong className="font-bold text-ink">
                   Os que o navegador envia sozinho.
                 </strong>{" "}
                 Como qualquer site, o nosso registra endereço IP, data e hora do
@@ -147,7 +150,7 @@ export default function Privacidade() {
                 Marco Civil da Internet.
               </p>
               <p>
-                <strong className="font-medium text-ink">
+                <strong className="font-bold text-ink">
                   O que não coletamos.
                 </strong>{" "}
                 Não pedimos CPF, dados bancários, documentos fiscais nem
@@ -268,7 +271,7 @@ export default function Privacidade() {
                   {site.encarregado.email}
                 </a>
                 . Respondemos em até 15 dias. Podemos pedir informação adicional
-                para confirmar que o pedido é seu — é proteção sua, não
+                para confirmar que o pedido é seu. Isso é proteção sua, não
                 obstáculo.
               </p>
               <p>
@@ -290,7 +293,8 @@ export default function Privacidade() {
 
             <Item numero={10} titulo="Cookies">
               <p>
-                Este site <strong className="font-medium text-ink">não usa</strong>{" "}
+                Este site{" "}
+                <strong className="font-bold text-ink">não usa</strong>{" "}
                 cookies de publicidade, de rastreamento entre sites nem
                 ferramenta de medição de audiência. Não há banner de cookies
                 porque não há o que consentir. Se isso mudar, esta política é

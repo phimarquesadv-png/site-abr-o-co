@@ -8,6 +8,8 @@ type Props = {
   className?: string;
   delayInicial?: number;
   as?: "h1" | "h2" | "p";
+  /** Revela quando entra na tela (blocos abaixo da dobra), não ao montar. */
+  emScroll?: boolean;
 };
 
 /**
@@ -23,6 +25,7 @@ export default function TextReveal({
   className,
   delayInicial = 0,
   as = "h1",
+  emScroll = false,
 }: Props) {
   const menosMovimento = useReducedMotion();
   const Tag = as;
@@ -42,7 +45,16 @@ export default function TextReveal({
   const MotionTag = motion[as];
 
   return (
-    <MotionTag className={className} initial="oculto" animate="visivel">
+    <MotionTag
+      className={className}
+      initial="oculto"
+      {...(emScroll
+        ? {
+            whileInView: "visivel",
+            viewport: { once: true, margin: "0px 0px -12% 0px" },
+          }
+        : { animate: "visivel" })}
+    >
       {linhas.map((linha, i) => (
         <span key={i} className="block overflow-hidden pb-[0.12em]">
           <motion.span

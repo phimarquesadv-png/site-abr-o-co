@@ -1,17 +1,15 @@
 import Hero from "@/components/sections/Hero";
+import Manifesto from "@/components/sections/Manifesto";
 import Historico from "@/components/sections/Historico";
-import Atuacao from "@/components/sections/Atuacao";
-import Processo from "@/components/sections/Processo";
-import ChamadaFinal from "@/components/sections/ChamadaFinal";
+import Clientes from "@/components/sections/Clientes";
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <Clientes />
       <Historico />
-      <Atuacao />
-      <Processo />
-      <ChamadaFinal />
+      <Manifesto />
     </>
   );
 }

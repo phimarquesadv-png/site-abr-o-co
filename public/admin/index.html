@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Painel do blog · Abrão & Co</title>
+    <link rel="icon" href="/icon.svg" />
+  </head>
+  <body>
+    <!--
+      Painel privado do blog (Decap CMS). Entra quem tem acesso de escrita ao
+      repositório no GitHub; o login passa pelo Worker do próprio site
+      (/api/auth e /api/callback). Cada texto salvo vira um arquivo em
+      content/blog/ e o site é reconstruído automaticamente.
+    -->
+    <script>
+      window.CMS_MANUAL_INIT = true;
+    </script>
+    <script src="/admin/decap-cms.js"></script>
+    <script>
+      CMS.init({
+        config: {
+          backend: {
+            name: "github",
+            repo: "phimarquesadv-png/site-abr-o-co",
+            branch: "main",
+            base_url: window.location.origin,
+            auth_endpoint: "api/auth",
+            commit_messages: {
+              create: "Blog: novo texto — {{slug}}",
+              update: "Blog: atualiza — {{slug}}",
+              delete: "Blog: remove — {{slug}}",
+              uploadMedia: "Blog: imagem — {{path}}",
+              deleteMedia: "Blog: remove imagem — {{path}}",
+            },
+          },
+          locale: "pt",
+          site_url: window.location.origin,
+          display_url: window.location.origin,
+          logo_url: "/logo.svg",
+          publish_mode: "editorial_workflow",
+          media_folder: "public/blog",
+          public_folder: "/blog",
+          slug: {
+            encoding: "ascii",
+            clean_accents: true,
+            sanitize_replacement: "-",
+          },
+          collections: [
+            {
+              name: "posts",
+              label: "Textos do blog",
+              label_singular: "Texto",
+              folder: "content/blog",
+              create: true,
+              slug: "{{slug}}",
+              summary: "{{titulo}} · {{data}}",
+              sortable_fields: ["data", "titulo"],
+              fields: [
+                { name: "titulo", label: "Título", widget: "string" },
+                {
+                  name: "data",
+                  label: "Data",
+                  widget: "datetime",
+                  format: "YYYY-MM-DD",
+                  date_format: "DD/MM/YYYY",
+                  time_format: false,
+                  picker_utc: false,
+                },
+                {
+                  name: "resumo",
+                  label: "Resumo (uma ou duas frases)",
+                  widget: "text",
+                },
+                {
+                  name: "autor",
+                  label: "Autor",
+                  widget: "string",
+                  default: "Abrão & Co",
+                  required: false,
+                },
+                {
+                  name: "capa",
+                  label: "Imagem de capa",
+                  widget: "image",
+                  required: false,
+                },
+                {
+                  name: "rascunho",
+                  label: "Rascunho (não publica)",
+                  widget: "boolean",
+                  default: false,
+                },
+                { name: "body", label: "Texto", widget: "markdown" },
+              ],
+            },
+          ],
+        },
+      });
+    </script>
+  </body>
+</html>

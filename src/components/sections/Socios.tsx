@@ -3,10 +3,11 @@ import Container from "@/components/ui/Container";
 import Rotulo from "@/components/ui/Rotulo";
 import Reveal from "@/components/motion/Reveal";
 import { socios } from "@/content/socios";
+import BioSocio from "@/components/ui/BioSocio";
 
 export default function Socios() {
   return (
-    <section className="border-t border-paper-3 bg-paper py-20 md:py-28">
+    <section className="border-t border-paper-3 bg-paper py-12 md:py-16">
       <Container>
         <Reveal>
           <Rotulo>Sócios</Rotulo>
@@ -15,7 +16,7 @@ export default function Socios() {
           </h2>
         </Reveal>
 
-        <div className="mt-16 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {socios.map((s, i) => (
             <Reveal key={s.slug} delay={(i % 3) * 0.06}>
               <article>
@@ -30,9 +31,7 @@ export default function Socios() {
                 </div>
                 <h3 className="mt-6 text-xl text-ink">{s.nome}</h3>
                 <p className="rotulo mt-2 text-muted">{s.cargo}</p>
-                {s.bio ? (
-                  <p className="mt-4 leading-relaxed text-muted">{s.bio}</p>
-                ) : null}
+                {s.bio ? <BioSocio bio={s.bio} /> : null}
               </article>
             </Reveal>
           ))}

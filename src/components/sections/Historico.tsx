@@ -1,9 +1,8 @@
+import Image from "next/image";
 import Container from "@/components/ui/Container";
 import Rotulo from "@/components/ui/Rotulo";
 import Reveal from "@/components/motion/Reveal";
 import Numero from "@/components/motion/Numero";
-import Monograma from "@/components/ui/Monograma";
-import Ambiente from "@/components/motion/Ambiente";
 import { site } from "@/content/site";
 
 /**
@@ -17,22 +16,19 @@ import { site } from "@/content/site";
 export default function Historico() {
   return (
     <section className="relative overflow-hidden bg-azul py-24 text-white md:py-32">
-      <Ambiente cor="rgba(255,255,255,0.075)" passo={72} segundos={48} />
-      {/* Halo frio no alto: dá profundidade ao campo chapado sem virar
-          gradiente decorativo. */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(70% 55% at 70% 0%, rgba(255,255,255,0.14), transparent 65%)",
-        }}
-      />
-      <Monograma
-        aria-hidden
-        className="pointer-events-none absolute -right-16 -bottom-16 hidden w-[26rem] text-white/[0.07] lg:block"
-      />
-
+      {/* Grafismo da marca: textura abstrata azul do material oficial, com um
+          véu do azul da marca por cima para unificar a cor e manter o branco
+          legível. */}
+      <div aria-hidden className="pointer-events-none absolute inset-0">
+        <Image
+          src="/grafismo/abstrato.webp"
+          alt=""
+          fill
+          sizes="100vw"
+          className="object-cover"
+        />
+        <div className="absolute inset-0 bg-azul/40" />
+      </div>
       <Container className="relative">
         <Reveal>
           <Rotulo claro>Nosso histórico</Rotulo>
@@ -55,11 +51,9 @@ export default function Historico() {
         </div>
 
         <Reveal delay={0.2}>
-          <p className="mt-16 max-w-xl border-t border-white/20 pt-6 text-sm leading-relaxed text-on-azul-muted">
-            Valores acumulados em operações conduzidas pela Abrão &amp; Co.
-            Resultado obtido no passado não representa promessa nem projeção de
-            resultado futuro: cada caso depende da documentação, da situação
-            fiscal da empresa e da decisão dos órgãos competentes.
+          <p className="mt-14 max-w-xl border-t border-white/20 pt-5 text-xs leading-relaxed text-on-azul-muted">
+            Valores acumulados. Resultado passado não é promessa nem projeção de
+            resultado futuro.
           </p>
         </Reveal>
       </Container>

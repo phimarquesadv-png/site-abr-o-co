@@ -11,3 +11,6 @@ next-env.d.ts
 # Gerados pelo `next dev` (agentRules); não fazem parte do projeto.
 AGENTS.md
 CLAUDE.md
+
+# Copiado do node_modules no build (scripts/copiar-painel.mjs).
+public/admin/decap-cms.js

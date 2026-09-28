@@ -153,7 +153,39 @@ src/components/ui/           Botão, container, rótulo
 src/content/site.ts          Dados institucionais, praças e contatos
 src/content/atuacao.ts       Frentes, Análise 360º, teses e segmentos
 src/content/socios.ts        Sócios
+src/lib/blog.ts              Leitura dos textos do blog (Markdown → HTML)
+content/blog/                Textos do blog, um `.md` por post
+public/admin/                Painel privado do blog (Decap CMS)
 ```
+
+## Blog e painel
+
+**Textos.** Cada post é um arquivo `content/blog/<slug>.md` com título, data,
+resumo, autor, capa (opcional) e a marcação `rascunho`. O site gera
+`/blog/` e `/blog/<slug>/` no build; rascunho não aparece. Imagens vão em
+`public/blog/`.
+
+**Painel.** `/admin/` carrega o Decap CMS com backend GitHub: quem tem acesso
+de escrita ao repositório entra com a conta do GitHub e escreve, revisa e
+publica sem tocar em código. Cada publicação vira um commit em `content/blog/`
+(ou um PR, no fluxo editorial, que é o padrão) e o Workers Builds reconstrói o
+site em um ou dois minutos.
+
+**Login.** O Decap precisa de um OAuth App do GitHub e de um intermediário
+que troque o código pelo token; o intermediário é o próprio Worker
+(`/api/auth` e `/api/callback`). Para ligar:
+
+1. GitHub → Settings → Developer settings → OAuth Apps → New OAuth App.
+   Homepage: `https://abrao.co`. Authorization callback URL:
+   `https://abrao.co/api/callback` (para testar na prévia, use a URL do
+   workers.dev no lugar). Gere um client secret.
+2. Cloudflare → Workers → `site-abr-o-co` → Settings → Variables and Secrets:
+   `GITHUB_OAUTH_ID` (o Client ID) e `GITHUB_OAUTH_SECRET` (como Secret).
+3. Convide quem vai escrever como colaborador do repositório, com permissão
+   de escrita. É o GitHub que controla quem publica.
+
+Sem as duas variáveis, `/admin/` abre mas o botão de login avisa que o
+painel não está configurado. Nada disso vai para o repositório.
 
 ## Verificação e prévia
 
@@ -183,12 +215,22 @@ timbrado, onde o texto já vinha convertido em curvas. O monograma empilhado em
 com o espaçamento medido no arquivo. Ambos usam `currentColor`, então a mesma
 peça serve positivo e negativo.
 
-**Tipografia.** A fonte da marca é a **Gramatika** (Regular e Bold no
-timbrado). É comercial e exige licença de webfont à parte, que ainda não
-existe. Até lá o site usa **Figtree**, a substituta mais próxima entre as
-gratuitas — mesma classe de grotesca geométrica, altura de x alta, "a" de dois
-andares e "g" de um só. Comprada a licença, troca-se em `src/app/layout.tsx` e
-no comentário do `@theme`.
+**Vídeos.** Três peças institucionais, todas sem som, em loop e servidas por
+`src/components/ui/VideoSede.tsx`: o `<video>` só é montado quando entra na
+tela, e com `prefers-reduced-motion` ou economia de dados ativa fica só a
+capa (imagem). Em `public/sede/`, dois cortes do render do projeto da matriz
+(`hero.mp4`, fundo do Hero, e `projeto.mp4`, seção "Projeto da Matriz" em Quem
+somos). Em `public/marca/`, `monograma.mp4`, o monograma animado que aparece na
+chamada final com `mix-blend-multiply`, para o fundo branco do vídeo sumir sobre
+o papel. Os originais (70 MB e 1,5 MB) foram cortados e comprimidos para
+1280×720 e 640×640 em H.264; nenhum arquivo passa de 2,5 MB.
+
+**Tipografia.** A fonte da marca é a **Gramatika** (Regular e Bold, como no
+timbrado), hospedada no próprio site em `src/app/fonts/` (WOFF2, ~54 KB cada)
+e carregada por `next/font/local` em `src/app/layout.tsx`. Os arquivos foram
+entregues pelo Philipe em 2026-09-28; a licença de web é responsabilidade da
+Abrão & Co. Não há peso Medium: onde o site pede 500, o navegador usa o
+Regular. O "º" não existe na fonte e cai na reserva do sistema.
 
 **Motion.** Duas camadas, com papéis distintos. A de **atmosfera** roda sozinha
 e não depende de scroll: uma malha que deriva devagar ao fundo dos blocos
@@ -225,7 +267,7 @@ segue em tom informativo por escolha editorial, não por obrigação.
 - [x] CNPJ (cartão CNPJ, 09/01/2026)
 - [x] E-mail e telefone (portfólio institucional, p. 20)
 - [x] Caixa comercial própria (`contato@abrao.co`) no lugar do e-mail pessoal do sócio
-- [ ] Licença de webfont da Gramatika (substitui a Figtree)
+- [ ] Guardar o comprovante da licença de web da Gramatika (os arquivos já estão no site)
 - [x] Fotos dos sócios (extraídas do portfólio, recortadas em 4:5)
 - [ ] Fotos de equipe e escritório
 
@@ -233,4 +275,5 @@ segue em tom informativo por escolha editorial, não por obrigação.
 - [ ] Revisão jurídica da política de privacidade e da minuta de termos
 - [ ] Criar a caixa `privacidade@abrao.co` e apontar o encarregado para ela
 - [ ] Variáveis do Resend no Worker
+- [ ] OAuth App do GitHub e variáveis `GITHUB_OAUTH_ID` / `GITHUB_OAUTH_SECRET` no Worker (login do painel do blog)
 - [x] Imagem de compartilhamento (Open Graph)

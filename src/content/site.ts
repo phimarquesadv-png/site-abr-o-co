@@ -17,8 +17,8 @@ export const site = {
     // e-mail pessoal do sócio fundador que constava do portfólio.
     email: "contato@abrao.co",
     // Número confirmado por Daniel em 2026-09-17.
-    telefone: "+55 (62) 98134-7394",
-    whatsapp: "5562981347394",
+    telefone: "+55 (62) 99924-2307",
+    whatsapp: "5562999242307",
   },
 
   /** Endereços conforme o timbrado. */
@@ -37,19 +37,24 @@ export const site = {
       cidade: "Goiânia",
       uf: "GO",
       // Sede, conforme a Cláusula Segunda do contrato social.
-      linhas: ["Rua 87, nº 535, Qd. F27, Lt. 61, Sala 02", "Setor Sul · CEP 74.080-295"],
+      linhas: [
+        "Rua 87, nº 535, Qd. F27, Lt. 61, Sala 02",
+        "Setor Sul · CEP 74.080-295",
+      ],
       sede: true,
     },
   ],
 
   /**
-   * Números do portfólio institucional. Reproduzidos exatamente como constam
-   * lá — sem arredondar, sem reescrever.
+   * Números do histórico. Vieram do portfólio institucional (500M / 300M) e
+   * foram atualizados e corrigidos pelo Philipe em 2026-09-22: valores
+   * exatos e legendas na ordem certa (créditos recuperados, débitos
+   * renegociados).
    * PENDENTE: período de apuração e critério de cálculo, para a nota de rodapé.
    */
   historico: [
-    { valor: 500, sufixo: "M", legenda: "em Créditos Renegociados" },
-    { valor: 300, sufixo: "M", legenda: "de Débitos Recuperados" },
+    { valor: 517, sufixo: "M", legenda: "em Créditos Recuperados" },
+    { valor: 309, sufixo: "M", legenda: "de Débitos Renegociados" },
   ],
 
   legal: {
@@ -76,9 +81,60 @@ export const site = {
   /** Data de vigência das políticas. Atualizar a cada revisão de texto. */
   politicasAtualizadasEm: "17 de setembro de 2026",
 
+  /** Perfis oficiais, confirmados pelo Philipe em 2026-09-28. */
+  redes: [
+    {
+      nome: "Instagram",
+      usuario: "@abrao.co",
+      href: "https://www.instagram.com/abrao.co",
+    },
+    {
+      nome: "LinkedIn",
+      usuario: "Abrão & Co",
+      href: "https://www.linkedin.com/company/abr%C3%A3o-co",
+    },
+  ],
+
   navegacao: [
-    { href: "/atuacao/", rotulo: "Atuação" },
     { href: "/quem-somos/", rotulo: "Quem somos" },
+    { href: "/atuacao/", rotulo: "Atuação" },
+    { href: "/blog/", rotulo: "Blog" },
     { href: "/contato/", rotulo: "Contato" },
   ],
 } as const;
+
+/**
+ * Link universal do Google Maps para um escritório: no celular abre o
+ * aplicativo de mapas, no computador abre o site, sempre com o endereço já
+ * pesquisado para a pessoa traçar a rota.
+ *
+ * A busca usa rua, número, quadra, bairro e cidade: andar, sala e lote
+ * confundem o geocodificador e não mudam o ponto no mapa.
+ */
+type Escritorio = {
+  cidade: string;
+  uf: string;
+  linhas: readonly string[];
+};
+
+function enderecoParaBusca(e: Escritorio) {
+  const ruaNumero = e.linhas[0]
+    .split(",")
+    .map((t) => t.trim())
+    .filter((t) => !/^(Lt\.|Sala|\d+º andar)/i.test(t))
+    .join(", ");
+  const bairro = (e.linhas[1] ?? "").split("·")[0].trim();
+  const bairroLimpo = /andar/i.test(bairro) ? "" : bairro;
+  return [ruaNumero, bairroLimpo, `${e.cidade} - ${e.uf}`]
+    .filter(Boolean)
+    .join(", ");
+}
+
+export function linkMapa(e: Escritorio) {
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(enderecoParaBusca(e))}`;
+}
+
+/** Link universal do Waze: abre o aplicativo já em modo de navegação. */
+export function linkWaze(e: Escritorio) {
+  return `https://waze.com/ul?q=${encodeURIComponent(enderecoParaBusca(e))}&navigate=yes`;
+}

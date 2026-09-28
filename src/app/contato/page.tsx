@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import PageHero from "@/components/layout/PageHero";
 import Container from "@/components/ui/Container";
 import Rotulo from "@/components/ui/Rotulo";
 import Reveal from "@/components/motion/Reveal";
 import FormularioContato from "@/components/sections/FormularioContato";
 import { site } from "@/content/site";
+import Redes from "@/components/ui/Redes";
 
 export const metadata: Metadata = {
   title: "Contato",
@@ -21,7 +23,7 @@ export default function Contato() {
         descricao="Pelo formulário, pelo WhatsApp ou pelos canais ao lado. O primeiro contato serve para ouvir o caso e dizer se há trabalho a fazer."
       />
 
-      <section className="bg-paper py-20 md:py-28">
+      <section className="bg-paper py-12 md:py-16">
         <Container>
           <div className="grid gap-16 md:grid-cols-[1.15fr_0.85fr]">
             <Reveal>
@@ -31,21 +33,18 @@ export default function Contato() {
             <Reveal delay={0.08}>
               <aside className="rounded-lg bg-paper-2 p-8">
                 <Rotulo>Antes de enviar</Rotulo>
-                <ul className="mt-6 space-y-4 text-sm leading-relaxed text-muted">
-                  <li>
-                    Não fazemos estimativa de valor sem acesso à documentação. A
-                    primeira conversa serve para entender o caso, não para
-                    projetar resultado.
-                  </li>
-                  <li>
-                    Não envie documento fiscal nem dado de terceiros por aqui.
-                    Se o contato avançar, combinamos o canal adequado.
-                  </li>
-                  <li>
-                    Os dados enviados são usados apenas para o contato comercial
-                    e ficam sob a política de privacidade.
-                  </li>
-                </ul>
+                <p className="mt-5 text-sm leading-relaxed text-muted">
+                  Não envie documento fiscal nem dado de terceiros por aqui. A
+                  primeira conversa serve para entender o caso, não para estimar
+                  valor. Os dados ficam sob a{" "}
+                  <Link
+                    href="/privacidade/"
+                    className="underline underline-offset-4"
+                  >
+                    política de privacidade
+                  </Link>
+                  .
+                </p>
 
                 <div className="mt-9 space-y-5 border-t border-paper-3 pt-6">
                   <div>
@@ -65,6 +64,10 @@ export default function Contato() {
                     >
                       {site.contato.telefone}
                     </a>
+                  </div>
+                  <div>
+                    <p className="rotulo text-muted">Redes</p>
+                    <Redes comNome className="mt-3" />
                   </div>
                 </div>
               </aside>
