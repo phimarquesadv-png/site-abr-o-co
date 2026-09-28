@@ -36,24 +36,19 @@ export default function Atuacao() {
         }))}
       />
 
-      {/* Segmentos com base instalada. Ficavam numa aba própria, "Transportes",
-          que era pensamento de landing page; num site institucional, os três
-          cabem aqui, lado a lado, sem hierarquia entre eles. */}
-      <section className="bg-paper-2 py-12 md:py-16">
+      {/* Segmentos com base instalada: só os três nomes, em linha, separados
+          por um fio. Sem cartão, sem texto de apoio. */}
+      <section className="bg-paper py-12 md:py-16">
         <Container>
           <Reveal>
             <Rotulo>Onde já atuamos</Rotulo>
-            <h2 className="mt-6 max-w-2xl text-ink text-[clamp(1.8rem,3.5vw,2.6rem)] leading-[1.12]">
-              Três segmentos com base instalada.
-            </h2>
           </Reveal>
-
-          <Stagger className="mt-14 grid gap-px overflow-hidden rounded-lg bg-paper-3 sm:grid-cols-3">
-            {segmentos.map((s) => (
-              <StaggerItem key={s.slug}>
-                <div className="flex h-full items-end bg-paper p-8 md:min-h-[9rem]">
-                  <p className="text-xl text-ink">{s.nome}</p>
-                </div>
+          <Stagger className="mt-8 flex flex-col divide-y divide-paper-3 md:-mx-10 md:flex-row md:divide-x md:divide-y-0">
+            {segmentos.map((seg) => (
+              <StaggerItem key={seg.slug}>
+                <p className="py-5 text-[clamp(1.4rem,2.6vw,2rem)] leading-tight tracking-[-0.02em] text-ink md:px-10 md:py-2">
+                  {seg.nome}
+                </p>
               </StaggerItem>
             ))}
           </Stagger>
