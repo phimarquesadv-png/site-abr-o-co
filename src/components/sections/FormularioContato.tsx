@@ -195,7 +195,7 @@ export default function FormularioContato() {
       <button
         type="submit"
         disabled={estado === "enviando"}
-        className="inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 text-sm font-medium text-white transition-colors hover:bg-ink-2 disabled:opacity-60 motion-reduce:transition-none"
+        className="inline-flex items-center gap-2 rounded-full bg-azul px-7 py-3.5 text-sm font-medium text-white transition-colors hover:bg-azul-escuro disabled:opacity-60 motion-reduce:transition-none"
       >
         {estado === "enviando" ? "Abrindo…" : "Enviar e abrir o WhatsApp"}
       </button>

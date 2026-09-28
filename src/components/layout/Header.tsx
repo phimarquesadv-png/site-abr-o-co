@@ -7,6 +7,7 @@ import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { site } from "@/content/site";
 import Container from "@/components/ui/Container";
 import Logo from "@/components/ui/Logo";
+import Redes from "@/components/ui/Redes";
 
 export default function Header() {
   const [rolou, setRolou] = useState(false);
@@ -156,11 +157,7 @@ export default function Header() {
                   </motion.div>
                 ))}
               </nav>
-              <motion.a
-                href={`https://wa.me/${site.contato.whatsapp}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setMenuAberto(false)}
+              <motion.div
                 initial={menosMovimento ? false : { opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
@@ -168,10 +165,19 @@ export default function Header() {
                   delay: 0.3,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="mt-10 inline-flex w-fit items-center rounded-full border border-white/50 px-6 py-3 text-base transition-colors hover:bg-white hover:text-azul motion-reduce:transition-none"
+                className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5"
               >
-                WhatsApp
-              </motion.a>
+                <a
+                  href={`https://wa.me/${site.contato.whatsapp}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMenuAberto(false)}
+                  className="inline-flex w-fit items-center rounded-full border border-white/50 px-6 py-3 text-base transition-colors hover:bg-white hover:text-azul motion-reduce:transition-none"
+                >
+                  WhatsApp
+                </a>
+                <Redes tom="azul" />
+              </motion.div>
             </Container>
           </motion.div>
         )}

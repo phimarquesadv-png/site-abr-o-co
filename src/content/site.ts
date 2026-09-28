@@ -81,6 +81,20 @@ export const site = {
   /** Data de vigência das políticas. Atualizar a cada revisão de texto. */
   politicasAtualizadasEm: "17 de setembro de 2026",
 
+  /** Perfis oficiais, confirmados pelo Philipe em 2026-09-28. */
+  redes: [
+    {
+      nome: "Instagram",
+      usuario: "@abrao.co",
+      href: "https://www.instagram.com/abrao.co",
+    },
+    {
+      nome: "LinkedIn",
+      usuario: "Abrão & Co",
+      href: "https://www.linkedin.com/company/abr%C3%A3o-co",
+    },
+  ],
+
   navegacao: [
     { href: "/quem-somos/", rotulo: "Quem somos" },
     { href: "/atuacao/", rotulo: "Atuação" },

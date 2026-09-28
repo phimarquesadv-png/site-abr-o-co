@@ -5,6 +5,7 @@ import Rotulo from "@/components/ui/Rotulo";
 import Reveal from "@/components/motion/Reveal";
 import FormularioContato from "@/components/sections/FormularioContato";
 import { site } from "@/content/site";
+import Redes from "@/components/ui/Redes";
 
 export const metadata: Metadata = {
   title: "Contato",
@@ -65,6 +66,10 @@ export default function Contato() {
                     >
                       {site.contato.telefone}
                     </a>
+                  </div>
+                  <div>
+                    <p className="rotulo text-muted">Redes</p>
+                    <Redes comNome className="mt-3" />
                   </div>
                 </div>
               </aside>

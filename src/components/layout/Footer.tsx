@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Container from "@/components/ui/Container";
+import Redes from "@/components/ui/Redes";
 import Logo from "@/components/ui/Logo";
 import { site } from "@/content/site";
 import { frentes } from "@/content/atuacao";
@@ -16,6 +17,7 @@ export default function Footer() {
             <p className="mt-6 max-w-xs leading-relaxed text-on-dark-muted">
               {site.assinatura}
             </p>
+            <Redes tom="escuro" className="mt-7" />
           </div>
 
           <nav aria-label="Atuação">
