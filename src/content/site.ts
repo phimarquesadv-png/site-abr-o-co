@@ -37,7 +37,10 @@ export const site = {
       cidade: "Goiânia",
       uf: "GO",
       // Sede, conforme a Cláusula Segunda do contrato social.
-      linhas: ["Rua 87, nº 535, Qd. F27, Lt. 61, Sala 02", "Setor Sul · CEP 74.080-295"],
+      linhas: [
+        "Rua 87, nº 535, Qd. F27, Lt. 61, Sala 02",
+        "Setor Sul · CEP 74.080-295",
+      ],
       sede: true,
     },
   ],
@@ -79,8 +82,8 @@ export const site = {
   politicasAtualizadasEm: "17 de setembro de 2026",
 
   navegacao: [
-    { href: "/atuacao/", rotulo: "Atuação" },
     { href: "/quem-somos/", rotulo: "Quem somos" },
+    { href: "/atuacao/", rotulo: "Atuação" },
     { href: "/contato/", rotulo: "Contato" },
   ],
 } as const;

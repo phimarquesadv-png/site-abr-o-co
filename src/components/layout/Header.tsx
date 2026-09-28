@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { site } from "@/content/site";
@@ -11,6 +12,10 @@ export default function Header() {
   const [rolou, setRolou] = useState(false);
   const [menuAberto, setMenuAberto] = useState(false);
   const menosMovimento = useReducedMotion();
+  const rota = usePathname();
+  // Página atual: marca o item do menu (desktop e celular).
+  const ativo = (href: string) =>
+    rota === href || rota === href.replace(/\/$/, "");
 
   useEffect(() => {
     const aoRolar = () => setRolou(window.scrollY > 24);
@@ -61,12 +66,17 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="group relative text-sm text-ink-3 transition-colors hover:text-ink motion-reduce:transition-none"
+                aria-current={ativo(item.href) ? "page" : undefined}
+                className={`group relative text-sm transition-colors hover:text-ink motion-reduce:transition-none ${
+                  ativo(item.href) ? "text-ink" : "text-ink-3"
+                }`}
               >
                 {item.rotulo}
                 <span
                   aria-hidden
-                  className="absolute -bottom-1.5 left-0 h-px w-full origin-left scale-x-0 bg-ink transition-transform duration-300 group-hover:scale-x-100 motion-reduce:transition-none"
+                  className={`absolute -bottom-1.5 left-0 h-px w-full origin-left bg-ink transition-transform duration-300 group-hover:scale-x-100 motion-reduce:transition-none ${
+                    ativo(item.href) ? "scale-x-100" : "scale-x-0"
+                  }`}
                 />
               </Link>
             ))}
@@ -133,8 +143,14 @@ export default function Header() {
                     <Link
                       href={item.href}
                       onClick={() => setMenuAberto(false)}
-                      className="block border-b border-white/15 py-5 text-4xl tracking-tight"
+                      aria-current={ativo(item.href) ? "page" : undefined}
+                      className={`flex items-center gap-4 border-b border-white/15 py-5 text-4xl tracking-tight ${
+                        ativo(item.href) ? "text-white" : "text-white/60"
+                      }`}
                     >
+                      {ativo(item.href) ? (
+                        <span aria-hidden className="h-px w-6 bg-white" />
+                      ) : null}
                       {item.rotulo}
                     </Link>
                   </motion.div>
