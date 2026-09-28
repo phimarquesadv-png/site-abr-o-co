@@ -5,6 +5,7 @@ import Rotulo from "@/components/ui/Rotulo";
 import Reveal from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import Percurso from "@/components/sections/Percurso";
+import ChamadaFinal from "@/components/sections/ChamadaFinal";
 import { frentes, analise, segmentos } from "@/content/atuacao";
 
 export const metadata: Metadata = {
@@ -93,6 +94,8 @@ export default function Atuacao() {
           </Stagger>
         </Container>
       </section>
+
+      <ChamadaFinal />
     </>
   );
 }
