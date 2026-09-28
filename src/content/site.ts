@@ -107,7 +107,7 @@ export const site = {
  * aplicativo de mapas, no computador abre o site, sempre com o endereço já
  * pesquisado para a pessoa traçar a rota.
  *
- * A busca usa só rua, número, bairro e cidade: andar, sala, quadra e lote
+ * A busca usa rua, número, quadra, bairro e cidade: andar, sala e lote
  * confundem o geocodificador e não mudam o ponto no mapa.
  */
 export function linkMapa(e: {
