@@ -56,7 +56,10 @@
   /* Títulos herdam a cor de quem os contém. Fixar a cor aqui faria o
      título ficar escuro dentro de um campo azul ou preto, que é justamente
      onde ele precisa ser branco. */
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-weight: 400;
     letter-spacing: -0.025em;
     color: inherit;
@@ -115,4 +118,27 @@
   color: #fff;
   padding: 0.6rem 1rem;
   border-radius: 999px;
+}
+
+/* Tarja das empresas atendidas: a trilha (duplicada) anda metade do próprio
+   comprimento e recomeça, sem emenda visível. */
+@keyframes tarja {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.tarja {
+  animation: tarja 70s linear infinite;
+}
+.tarja-mascara {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 8%,
+    black 92%,
+    transparent
+  );
 }
