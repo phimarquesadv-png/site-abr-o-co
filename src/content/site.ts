@@ -118,7 +118,7 @@ export function linkMapa(e: {
   const ruaNumero = e.linhas[0]
     .split(",")
     .map((t) => t.trim())
-    .filter((t) => !/^(Qd\.|Lt\.|Sala|\d+º andar)/i.test(t))
+    .filter((t) => !/^(Lt\.|Sala|\d+º andar)/i.test(t))
     .join(", ");
   const bairro = (e.linhas[1] ?? "").split("·")[0].trim();
   const bairroLimpo = /andar/i.test(bairro) ? "" : bairro;
